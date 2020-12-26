@@ -173,6 +173,7 @@ public class Day17 implements AOCDay {
     }
 
     public int run2(boolean is4D) throws Exception {
+        list.clear();
         List<String> lines = InputReader2020.readStrings(day, "");
 
 

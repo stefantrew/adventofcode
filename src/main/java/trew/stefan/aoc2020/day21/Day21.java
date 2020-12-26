@@ -105,7 +105,13 @@ public class Day21 implements AOCDay {
         part1 = String.valueOf(words.size());
 
         List<String> keys = new ArrayList<>(allergenMap.keySet());
-        keys.sort(Comparator.comparingInt(o -> o.charAt(0)));
+        keys.sort((o1, o2) -> {
+            if (o1.charAt(0) == o2.charAt(0)) {
+                return o1.charAt(1) - o2.charAt(1);
+            }
+            return o1.charAt(0) - o2.charAt(0);
+
+        });
 
         StringBuilder sb = new StringBuilder();
         for (String key : keys) {
