@@ -1,16 +1,14 @@
 package trew.stefan.aoc2020.day15;
 
-import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import trew.stefan.AOCDay;
-import trew.stefan.Day;
-import trew.stefan.utils.InputReader2019;
-import trew.stefan.utils.InputReader2020;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Stream;
+
+import static java.util.function.Function.identity;
+import static java.util.stream.Collectors.toList;
+import static java.util.stream.Collectors.toMap;
 
 @Slf4j
 public class Day15 implements AOCDay {
@@ -18,22 +16,28 @@ public class Day15 implements AOCDay {
     List<Number> numbers = new ArrayList<>();
     Map<Integer, Number> numberMap = new HashMap<>();
 
-    @AllArgsConstructor
-    class Number {
+
+    static class Number {
         int number;
-        int age;
-        int age2;
+        int age = 0;
+        int age2 = 0;
         int counter = 0;
+
+        public Number(int number) {
+            this.number = number;
+        }
+
+        public Number(int number, int age, int counter) {
+            this.number = number;
+            this.age = age;
+            this.counter = counter;
+        }
     }
 
     private Number getNumber(int number) {
 
-        if (numberMap.containsKey(number)) {
-            return numberMap.get(number);
-        }
-        Number e = new Number(number, 0, 0, 0);
-        numberMap.put(number, e);
-        return e;
+        return numberMap.computeIfAbsent(number, Number::new);
+
     }
 
     @Override
@@ -43,30 +47,32 @@ public class Day15 implements AOCDay {
 
     @Override
     public String runPart2() {
+
         return String.valueOf(run(30000000));
     }
+
 
     public int run(int limit) {
         numbers.clear();
         numberMap.clear();
-        numbers.add(new Number(6, 1, 0, 1));
-        numbers.add(new Number(19, 2, 0, 1));
-        numbers.add(new Number(0, 3, 0, 1));
-        numbers.add(new Number(5, 4, 0, 1));
-        numbers.add(new Number(7, 5, 0, 1));
-        numbers.add(new Number(13, 6, 0, 1));
-        numbers.add(new Number(1, 7, 0, 1));
+        Number prev = null;
+        String input = "6,19,0,5,7,13,1";
+        int a = 1;
+        for (String val : input.split(",")) {
+            int num = Integer.parseInt(val);
 
-        for (Number number1 : numbers) {
-            numberMap.put(number1.number, number1);
+            prev = getNumber(num);
+            prev.age = a++;
+            prev.counter = 1;
         }
 
-        int x = numbers.size();
-        Number prev = numbers.get(x - 1);
+        int x = a - 1;
+        Number zero = getNumber(0);
+        int last = 0;
         while (true) {
             x++;
 
-            Number number = prev.counter == 1 ? getNumber(0) : getNumber(prev.age - prev.age2);
+            Number number = prev.counter == 1 ? zero : getNumber(prev.age - prev.age2);
 
             number.counter++;
             number.age2 = number.age;
@@ -74,11 +80,14 @@ public class Day15 implements AOCDay {
 
             prev = number;
 
+
             if (x == limit) {
+//                log.info("{} {} {} {} {}", map1, map2, map3, map4, map5);
                 return number.number;
             }
         }
 
 
     }
+
 }

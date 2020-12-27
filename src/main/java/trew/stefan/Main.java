@@ -1,6 +1,7 @@
 package trew.stefan;
 
 import lombok.extern.slf4j.Slf4j;
+import trew.stefan.aoc2019.day20Take3.Day20;
 
 import java.io.File;
 import java.io.IOException;
@@ -105,11 +106,11 @@ public class Main {
                 wrapColour(String.format("%5s", summary.time1), FOREGROUND_WHITE),
                 wrapColour(String.format("%5s", summary.rank1), FOREGROUND_WHITE),
                 wrapColour(String.format("%15s", summary.part1), FOREGROUND_WHITE),
-                wrapColour(String.format("%15s", part1), FOREGROUND_WHITE),
+                wrapColour(String.format("%15s", part1), summary.part1.equals(part1) ? FOREGROUND_WHITE : FOREGROUND_RED),
                 wrapColour(String.format("| %-7s", summary.time2), FOREGROUND_WHITE),
                 wrapColour(String.format("%-5s", summary.rank2), FOREGROUND_WHITE),
                 wrapColour(String.format("%50s", summary.part2), FOREGROUND_WHITE),
-                wrapColour(String.format("%50s", part2), FOREGROUND_WHITE)
+                wrapColour(String.format("%50s", part2), summary.part2.equals(part2) ? FOREGROUND_WHITE : FOREGROUND_RED)
 
         );
 //        log.info("\u001b["  // Prefix - see [1]
@@ -147,13 +148,27 @@ public class Main {
                 ;
     }
 
-    public static void main(String[] args) {
 
+    public static void main(String[] args) {
+        run2019();
+    }
+
+    static void run2019() {
+        long startTime = System.nanoTime();
+        AOCDay day = new Day20();
+        String part1 = day.runPart1();
+        long endTime = System.nanoTime();
+        long duration = (endTime - startTime) / 1000000;  //divide by 1000000 to get milliseconds.
+        log.info("Execution Time: {}, result {}", duration, part1);
+    }
+
+    static void run2020() {
         Map<Integer, DayResult> summaries = buildSummary();
 
         for (int i = 0; i < 25; i++) {
+            if (i + 1 != 15) continue;
             if (i % 5 == 0) {
-                String div = "------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------";
+                String div = "----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------";
                 log.info(wrapColour(div, FOREGROUND_WHITE));
             }
             runDay(summaries.get(i + 1));
