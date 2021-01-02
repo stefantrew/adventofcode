@@ -56,6 +56,8 @@ public class Molecule {
                 streak = 1;
             } else if (lastEle == e) {
                 streak++;
+            } else {
+                streak = 1;
             }
             lastEle = e;
 

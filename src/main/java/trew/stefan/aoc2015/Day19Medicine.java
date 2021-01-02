@@ -15,7 +15,6 @@ public class Day19Medicine implements Day {
 
     Map<String, Element> elementMap = new ConcurrentHashMap<>();
     Set<Integer> distinct = new HashSet<>();
-    private int counter = 0;
 
     @Override
     public void run() {
@@ -47,33 +46,6 @@ public class Day19Medicine implements Day {
 
         new Decompose(target, elementMap);
 
-//        Molecule start = getMolecule("HF");
-//        int id = 1;
-//        List<MoleculeRunnable> runnables = new ArrayList<>();
-//
-//        addMolecule(target, getMolecule("N"), id, runnables);
-//        addMolecule(target, getMolecule("O"), id, runnables);
-//        addMolecule(target, getMolecule("P"), id, runnables);
-//        addMolecule(target, getMolecule("HF"), id, runnables);
-//        addMolecule(target, getMolecule("OMg"), id, runnables);
-
-//        while (true) {
-//            try {
-//                boolean allStopped = true;
-//                Thread.sleep(5000);
-//                log.info("---------------------------");
-//                log.info("------------ {} ---------", distinct.size());
-//                for (MoleculeRunnable runnable : runnables) {
-//                    log.info("{}", runnable);
-//                    if (!runnable.running) {
-//                        break;
-//                    }
-//                }
-//
-//            } catch (InterruptedException e) {
-//                e.printStackTrace();
-//            }
-//        }
     }
 
     private void addMolecule(Molecule target, Molecule start, int id, List<MoleculeRunnable> runnables) {
@@ -105,6 +77,7 @@ public class Day19Medicine implements Day {
             molecule.elements.add(output);
             elementMap.put(output.label, output);
         }
+        molecule.hash();
         return molecule;
     }
 }

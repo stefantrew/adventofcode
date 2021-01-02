@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Data
@@ -28,8 +29,16 @@ public class Donut {
 
         abstract char getPrintableChar();
 
+        abstract DonutTile cloneTile(int level);
+
         int x;
         int y;
+        int level = 0;
+
+        DonutTile setLevel(int level) {
+            this.level = level;
+            return this;
+        }
 
         public DonutTile(int y, int x) {
             this.x = x;
@@ -48,6 +57,20 @@ public class Donut {
         public int getY() {
             return y;
         }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            DonutTile donutTile = (DonutTile) o;
+            return x == donutTile.x &&
+                    y == donutTile.y;
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(x, y);
+        }
     }
 
     class VoidTile extends DonutTile {
@@ -59,14 +82,20 @@ public class Donut {
         char getPrintableChar() {
             return ' ';
         }
+
+        @Override
+        DonutTile cloneTile(int level) {
+            return (new VoidTile(y, x)).setLevel(level);
+        }
     }
 
-    class PortalTile extends DonutTile {
+    class PortalTile extends DonutTile implements Cloneable {
 
         PortalType type;
         String s;
         boolean isEntry = false;
         boolean isExit = false;
+        boolean isInner = false;
         PortalTile otherTile;
 
         public PortalTile(PortalType type, String s, int y, int x) {
@@ -75,6 +104,42 @@ public class Donut {
             this.s = s;
             this.isEntry = s.equals("AA");
             this.isExit = s.equals("ZZ");
+            switch (type) {
+
+
+                case OUTER_TOP:
+                case OUTER_BOTTOM:
+                case OUTER_LEFT:
+                case OUTER_RIGHT:
+                    isInner = false;
+                    break;
+                case INNER_TOP:
+                case INNER_BOTTOM:
+                case INNER_LEFT:
+                case INNER_RIGHT:
+                    isInner = true;
+                    break;
+            }
+        }
+
+        @Override
+        DonutTile cloneTile(int level) {
+            PortalTile donutTile = new PortalTile(type, s, y, x);
+            if (otherTile != null) {
+
+                PortalTile otherTile = new PortalTile(this.otherTile.type, this.otherTile.s, this.otherTile.y, this.otherTile.x);
+                donutTile.otherTile = otherTile;
+                otherTile.otherTile = donutTile;
+                if (otherTile.isInner) {
+
+                    otherTile.setLevel(level - 1);
+                } else {
+                    otherTile.setLevel(level + 1);
+
+                }
+            }
+            donutTile.setLevel(level);
+            return donutTile;
         }
 
         @Override
@@ -88,7 +153,7 @@ public class Donut {
         }
     }
 
-    class WallTile extends DonutTile {
+    class WallTile extends DonutTile implements Cloneable {
         public WallTile(int y, int x) {
             super(y, x);
         }
@@ -97,9 +162,14 @@ public class Donut {
         char getPrintableChar() {
             return '#';
         }
+
+        @Override
+        DonutTile cloneTile(int level) {
+            return (new WallTile(y, x)).setLevel(level);
+        }
     }
 
-    class EmptyTile extends DonutTile {
+    class EmptyTile extends DonutTile implements Cloneable {
         public EmptyTile(int y, int x) {
             super(y, x);
         }
@@ -107,6 +177,11 @@ public class Donut {
         @Override
         char getPrintableChar() {
             return '.';
+        }
+
+        @Override
+        DonutTile cloneTile(int level) {
+            return (new EmptyTile(y, x)).setLevel(level);
         }
     }
 
@@ -189,46 +264,76 @@ public class Donut {
         List<DonutTile> result = new ArrayList<>();
         int x = current.getX();
         int y = current.getY();
+        int level = current.level;
+        if (current instanceof PortalTile) {
+            PortalTile portalTile = (PortalTile) current;
+            if (portalTile.otherTile != null) {
+                if (!portalTile.isInner && portalTile.level == 0) {
+                    return result;
+                }
 
-        if (current instanceof PortalTile && ((PortalTile) current).otherTile != null) {
+                x = portalTile.otherTile.x;
+                y = portalTile.otherTile.y;
+                level = portalTile.otherTile.level;
 
-
-            x = ((PortalTile) current).otherTile.x;
-            y = ((PortalTile) current).otherTile.y;
-//            log.info("Portal Jump {}", ((PortalTile) current).s);
-
+            }
+            if (level == 400) {
+                return result;
+            }
         }
 
-        result.add(grid[y + 1][x]);
-        result.add(grid[y - 1][x]);
-        result.add(grid[y][x + 1]);
-        result.add(grid[y][x - 1]);
+        result.add(grid[y][x + 1].cloneTile(level));
+        result.add(grid[y + 1][x].cloneTile(level));
+        result.add(grid[y][x - 1].cloneTile(level));
+
+        result.add(grid[y - 1][x].cloneTile(level));
+
 
         return result.stream()
                 .filter(donutTile -> {
                     if (donutTile instanceof PortalTile) {
-                        String hash = currentPortal.s + ((PortalTile) donutTile).s;
+
+                        PortalTile temp = (PortalTile) donutTile;
+                        if (current.level == 0) {
+                            if (temp.isExit) {
+                                return true;
+                            }
+                            if (!temp.isInner) {
+                                return false;
+                            }
+
+                        }
+
+
+                        String hash = ((PortalTile) donutTile).isInner + ((PortalTile) donutTile).s + donutTile.level;
                         if (visitedPortalTiles.contains(hash)) {
                             return false;
                         }
                         visitedPortalTiles.add(hash);
-                        log.info("Adding hash {}", hash);
+//                        log.info("Adding hash {}", hash);
+                        return true;
 
                     }
-                    return donutTile instanceof EmptyTile || donutTile instanceof PortalTile;
+                    return donutTile instanceof EmptyTile;
                 })
                 .collect(Collectors.toList());
     }
 
-    public void printGrid() {
+    public void printGrid(DonutTile current) {
+        int row = 0;
         for (DonutTile[] chars : grid) {
             StringBuilder sb = new StringBuilder();
             for (DonutTile tile : chars) {
-                sb.append(tile);
+                if (tile.equals(current)) {
+                    sb.append("X");
+                } else {
+
+                    sb.append(tile);
+                }
             }
 
 
-            log.info("[{}]", sb.toString());
+            log.info("{}: {}", String.format("%3s", row++), sb.toString());
         }
     }
 }

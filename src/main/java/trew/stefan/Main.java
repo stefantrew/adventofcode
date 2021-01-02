@@ -1,7 +1,10 @@
 package trew.stefan;
 
 import lombok.extern.slf4j.Slf4j;
+import trew.stefan.aoc2015.Day19Medicine;
+import trew.stefan.aoc2019.day16.Day16;
 import trew.stefan.aoc2019.day20Take3.Day20;
+import trew.stefan.aoc2019.day22.Day22;
 
 import java.io.File;
 import java.io.IOException;
@@ -155,11 +158,13 @@ public class Main {
 
     static void run2019() {
         long startTime = System.nanoTime();
-        AOCDay day = new Day20();
-        String part1 = day.runPart1();
+//        AOCDay day = new Day16();
+//        String part1 = day.runPart2();
+        Day day22 = new trew.stefan.aoc2016.Day16();
+        day22.run();
         long endTime = System.nanoTime();
         long duration = (endTime - startTime) / 1000000;  //divide by 1000000 to get milliseconds.
-        log.info("Execution Time: {}, result {}", duration, part1);
+        log.info("Execution Time: {}, result {}", duration, "part1");
     }
 
     static void run2020() {

@@ -14,7 +14,6 @@ import java.util.regex.Pattern;
 @Slf4j
 public class Day20 implements AOCDay {
 
-    Map<Donut.PortalTile, List<Donut.DonutTile>> visitedMap = new HashMap<>();
 
     @Override
     public String runPart1() {
@@ -179,26 +178,44 @@ public class Day20 implements AOCDay {
 
     List<Donut.DonutTile> doWalk(Donut donut, Donut.DonutTile current, int currentDepth, Donut.DonutTile prev, Donut.PortalTile currentPortal) {
 
+
         if (prev instanceof Donut.PortalTile && ((Donut.PortalTile) prev).otherTile != null) {
             prev = ((Donut.PortalTile) prev).otherTile;
         }
 
-        if (currentDepth == 1200) {
+        if (currentDepth == 15000) {
             return null;
         }
 
-        if (current instanceof Donut.PortalTile && ((Donut.PortalTile) current).isExit) {
+        if (current instanceof Donut.PortalTile && ((Donut.PortalTile) current).isExit && current.level == 0) {
             return new ArrayList<>();
         }
 
         List<Donut.DonutTile> tiles = donut.getAdjacentTiles(current, currentPortal);
         List<Donut.DonutTile> min = null;
+
+
+//        log.info("=========================== {} ================================", currentDepth);
+//        donut.printGrid(current);
+//        log.info("Cur Tile: {} X={}; Y={};   level {}", current.getPrintableChar(), current.x, current.y, current.level);
+//        if (prev != null) {
+//
+//            log.info("Pre Tile: {} X={}; Y={};   level {}", prev.getPrintableChar(), prev.x, prev.y, prev.level);
+//        }
+//
+//        for (Donut.DonutTile tile : tiles) {
+//            log.info("Adj Tile: {} X={}; Y={};   level {}", tile.getPrintableChar(), tile.x, tile.y, tile.level);
+//        }
+
         for (Donut.DonutTile tile : tiles) {
 
-            if (tile == prev) {
+            if (tile.equals(prev)) {
                 continue;
             }
 
+            if (tile instanceof Donut.PortalTile) {
+//                log.info("Portal Tile: {} X={}; Y={};   level {}", ((Donut.PortalTile) tile).s, tile.x, tile.y, tile.level);
+            }
 
             List<Donut.DonutTile> list = doWalk(donut, tile, currentDepth + 1, current, tile instanceof Donut.PortalTile ? (Donut.PortalTile) tile : currentPortal);
 
@@ -222,3 +239,7 @@ public class Day20 implements AOCDay {
         return null;
     }
 }
+/*
+5152
+8677 ***************
+ */

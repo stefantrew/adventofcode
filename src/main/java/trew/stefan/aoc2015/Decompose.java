@@ -2,10 +2,7 @@ package trew.stefan.aoc2015;
 
 import lombok.extern.slf4j.Slf4j;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -17,7 +14,6 @@ public class Decompose {
     Map<String, Element> elementMap;
     HashMap<String, String> replacements = new HashMap<>();
     List<Pattern> regexPatterns = new ArrayList<>();
-    List<String> known = new ArrayList<>();
 
 
     public Decompose(Molecule target, Map<String, Element> elementMap) {
@@ -33,20 +29,14 @@ public class Decompose {
             }
         }
 
-        log.info("Target {}", target);
-        log.info("Target {}", replacements);
-
         String input = target.str;
 
-        log.info("final {}", decompose(input));
+        log.info("final {}", decompose(input, 1));
 
     }
 
-    private Integer decompose(String input) {
+    private Integer decompose(String input, int depth) {
 
-        if (known.contains(input)) {
-            return null;
-        }
 
         if (input.equals("e")) {
             return 0;
@@ -55,12 +45,12 @@ public class Decompose {
         for (Pattern regexPattern : regexPatterns) {
             Matcher matcher = regexPattern.matcher(input);
 
+            String last = "";
             while (matcher.find()) {
                 String label = matcher.group(1);
                 int position = matcher.start();
                 String rep = replacements.get(label);
                 if (rep.equals("e") && !input.equals(label)) {
-//                    log.info("{} {} {}", input, label, rep);
                     continue;
                 }
                 String newString = "";
@@ -74,19 +64,16 @@ public class Decompose {
                     newString += input.substring(position + label.length());
                 }
 
-//                log.info("Found {} @ {} => {}", label, position, newString);
 
                 if (newString.length() > 0) {
-                    Integer result = decompose(newString);
-                    if (result != null) {
-                        return result + 1;
-                    }
+                    last = newString;
                 }
             }
-
+            if (!last.equals("")) {
+                return decompose(last, depth + 1) + 1;
+            }
         }
 
-        known.add(input);
         return null;
     }
 
