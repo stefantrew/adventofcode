@@ -1,10 +1,7 @@
 package trew.stefan;
 
 import lombok.extern.slf4j.Slf4j;
-import trew.stefan.aoc2015.Day19Medicine;
-import trew.stefan.aoc2019.day16.Day16;
-import trew.stefan.aoc2019.day20Take3.Day20;
-import trew.stefan.aoc2019.day22.Day22;
+
 
 import java.io.File;
 import java.io.IOException;
@@ -79,15 +76,16 @@ public class Main {
         return result;
     }
 
-    public static void runDay(DayResult summary) {
+    public static void runDay(int day, DayResult summary) {
 
-        String t = summary.day < 10 ? "0" + summary.day : String.valueOf(summary.day);
-        AOCDay day2 = null;
-        long startTime = System.nanoTime();
+        String t = day < 10 ? "0" + day : String.valueOf(day);
+        AbstractAOC day2 = null;
+
         try {
-            String className = "trew.stefan.aoc2020.day" + t + ".Day" + t;
+            String className = "trew.stefan.aoc2021.day" + t + ".Day" + t;
             Class<?> clazz = Class.forName(className);
-            day2 = (AOCDay) clazz.newInstance();
+            day2 = (AbstractAOC) clazz.newInstance();
+            day2.setDay(day);
 
 
         } catch (ClassNotFoundException e) {
@@ -98,22 +96,28 @@ public class Main {
             e.printStackTrace();
         }
 
+        long startTime = System.nanoTime();
         String part1 = day2.runPart1();
+        String answerPart1 = day2.getAnswerPart1();
+        long midTime = System.nanoTime();
         String part2 = day2.runPart2();
         long endTime = System.nanoTime();
+        String answerPart2 = day2.getAnswerPart2();
 
-        long duration = (endTime - startTime) / 1000000;  //divide by 1000000 to get milliseconds.
-        log.info("{} {} {} {} {} {} {} {} {} {}",
-                wrapColour(String.format("%3s", summary.day), FOREGROUND_WHITE),
-                wrapTime(String.format("%7s", duration + " ms"), duration),
-                wrapColour(String.format("%5s", summary.time1), FOREGROUND_WHITE),
-                wrapColour(String.format("%5s", summary.rank1), FOREGROUND_WHITE),
-                wrapColour(String.format("%15s", summary.part1), FOREGROUND_WHITE),
-                wrapColour(String.format("%15s", part1), summary.part1.equals(part1) ? FOREGROUND_WHITE : FOREGROUND_RED),
-                wrapColour(String.format("| %-7s", summary.time2), FOREGROUND_WHITE),
-                wrapColour(String.format("%-5s", summary.rank2), FOREGROUND_WHITE),
-                wrapColour(String.format("%50s", summary.part2), FOREGROUND_WHITE),
-                wrapColour(String.format("%50s", part2), summary.part2.equals(part2) ? FOREGROUND_WHITE : FOREGROUND_RED)
+        long duration1 = (midTime - startTime) / 10000000;  //divide by 1000000 to get milliseconds.
+        long duration2 = (endTime - midTime) / 10000000;  //divide by 1000000 to get milliseconds.
+        log.info("{} {} {} {} {} {} {} {} {} {} {}",
+                wrapColour(String.format("%3s", day), FOREGROUND_WHITE),
+                wrapTime(String.format("%7s", duration1 + " ms"), duration1),
+                wrapColour(String.format("%5s", summary != null ? summary.time1 : ""), FOREGROUND_WHITE),
+                wrapColour(String.format("%5s", summary != null ? summary.rank1 : ""), FOREGROUND_WHITE),
+                wrapColour(String.format("%15s", answerPart1), FOREGROUND_WHITE),
+                wrapColour(String.format("%15s", part1), answerPart1.equals(part1) ? FOREGROUND_WHITE : FOREGROUND_RED),
+                wrapColour(String.format("| %-7s", summary != null ? summary.time2 : ""), FOREGROUND_WHITE),
+                wrapTime(String.format("%7s", duration2 + " ms"), duration2),
+                wrapColour(String.format("%-5s", summary != null ? summary.rank2 : ""), FOREGROUND_WHITE),
+                wrapColour(String.format("%50s", answerPart2), FOREGROUND_WHITE),
+                wrapColour(String.format("%50s", part2), answerPart2.equals(part2) ? FOREGROUND_WHITE : FOREGROUND_RED)
 
         );
 //        log.info("\u001b["  // Prefix - see [1]
@@ -153,30 +157,15 @@ public class Main {
 
 
     public static void main(String[] args) {
-        run2019();
-    }
+        Map<Integer, DayResult> summaries = new HashMap<>();//buildSummary();
 
-    static void run2019() {
-        long startTime = System.nanoTime();
-//        AOCDay day = new Day16();
-//        String part1 = day.runPart2();
-        Day day22 = new trew.stefan.aoc2016.Day16();
-        day22.run();
-        long endTime = System.nanoTime();
-        long duration = (endTime - startTime) / 1000000;  //divide by 1000000 to get milliseconds.
-        log.info("Execution Time: {}, result {}", duration, "part1");
-    }
-
-    static void run2020() {
-        Map<Integer, DayResult> summaries = buildSummary();
-
-        for (int i = 0; i < 25; i++) {
-            if (i + 1 != 15) continue;
+        for (int i = 0; i < 3; i++) {
+//            if (i + 1 != 15) continue;
             if (i % 5 == 0) {
                 String div = "----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------";
                 log.info(wrapColour(div, FOREGROUND_WHITE));
             }
-            runDay(summaries.get(i + 1));
+            runDay(i + 1, summaries.get(i + 1));
         }
     }
 

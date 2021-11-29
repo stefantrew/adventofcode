@@ -98,7 +98,7 @@ public class PrimeUtil {
 
         }
 
-        //System.out.println("Found " + isPrime.cardinality() + " primes");
+        System.out.println("Found " + isPrime.cardinality() + " primes");
         return isPrime;
     }
 

@@ -4,8 +4,276 @@
     <option name="SCOPE_TYPE" value="8" />
     <option name="CUSTOM_SCOPE_NAME" value="Project Files" />
   </component>
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="ALL" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="bc771e8d-ae86-4a6d-9622-eb703020cfea" name="Default Changelist" comment="" />
+    <list default="true" id="bc771e8d-ae86-4a6d-9622-eb703020cfea" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apiguardian_apiguardian_api_1_1_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_api_5_7_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_platform_junit_platform_commons_1_7_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2019.iml" beforeDir="false" afterPath="$PROJECT_DIR$/2021.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/amazon/dots/DotsPerSquare.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/amazon/maze/AmazonMaze.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/amazon/maze/AmazonMazePoint.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/amazon/maze/Maze123.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/amazon/maze/MazeCpu.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/codewars/DingleMouse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/codewars/RomanNumeralsEncoder.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/AOCDay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/trew/stefan/AOCDay.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/trew/stefan/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2015/Day19Medicine.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2015/Decompose.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2015/Element.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2015/Molecule.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2015/MoleculeRunnable.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2015/Replacement.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2015/temp.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2015/temp2.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2016/Day16.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2018/PracticeDay1.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2019/Day11.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2019/Day12.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2019/Day13.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2019/Day16.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2019/Day17.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2019/Day19.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2019/Day24.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2019/Day6.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2019/Day7.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2019/Day8.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2019/Day9.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2019/completed/ComputerOld.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2019/completed/Day17Processor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2019/completed/Day3.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2019/completed/Day4.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2019/completed/DayProcessor11.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2019/completed/MockPaintProcessor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2019/completed/OxygenProcessor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2019/completed/PaintProcessor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2019/completed/Processor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2019/completed/ProcessorOld.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2019/completed/Template.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2019/day10/Day10.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2019/day10/LineType.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2019/day10/StraightLine.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2019/day14/Day14.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2019/day14/Element.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2019/day14/Substitute.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2019/day14/SubstitutionProcessor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2019/day15/Day15.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2019/day15/Day15MazeWalker.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2019/day15/Day15OxygenSpreader.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2019/day16/Day16.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2019/day18/Day18.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2019/day18/Day18MazeWalker.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2019/day18/MazeMap.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2019/day18/Result.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2019/day20/Day20.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2019/day20/Direction.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2019/day20/MazeMap.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2019/day20/MazePoint.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2019/day20/PortalMazeWalker.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2019/day20Take3/Day20.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2019/day20Take3/Donut.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2019/day20new/Day20New.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2019/day20new/MazeMap.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2019/day20new/MazePoint.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2019/day20new/NewMazeWalker.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2019/day21/Day21.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2019/day21/DayProcessor21.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2019/day22/Day22.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2019/day23/Day23.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2019/day23/Processor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2019/day25/Day25.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2019/day25/DayProcessor25.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2020/Template.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2020/day01/Day01.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2020/day02/Day02.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2020/day03/Day03.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2020/day04/Day04.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2020/day05/Day05.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2020/day06/Day06.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2020/day07/Day07.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2020/day08/Day08.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2020/day09/Day09.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2020/day10/Day10.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2020/day11/Day11.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2020/day12/Day12.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2020/day13/Day13.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2020/day14/Day14.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2020/day15/Day15.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2020/day16/Day16.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2020/day17/Day17.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2020/day17/Day172.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2020/day18/Day18.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2020/day18/Day18Old.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2020/day19/Day19.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2020/day19/Day19Part1.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2020/day20/Day20.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2020/day20/Day20AA.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2020/day21/Day21.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2020/day22/Day22.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2020/day23/Day23.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2020/day24/Day24.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2020/day25/Day25.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/old/Alchemy.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/old/GuardProcessor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/old/Processor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/utils/InputReader2020.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/trew/stefan/utils/InputReader2020.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/utils/Matrix.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/trew/stefan/utils/Matrix.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/utils/MatrixHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/trew/stefan/utils/MatrixHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/utils/PrimeUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/trew/stefan/utils/PrimeUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/2018/1.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/2020/1.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/2020/10.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/2020/10_sample.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/2020/11.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/2020/11_sample.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/2020/11_sample_2.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/2020/11_sample_3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/2020/11_sample_4.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/2020/11_sample_5.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/2020/11_sample_6.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/2020/11_sample_7.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/2020/11_sample_8.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/2020/12.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/2020/12_sample.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/2020/13.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/2020/13_sample.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/2020/14.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/2020/14_sample.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/2020/15.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/2020/15_sample.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/2020/16.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/2020/16_sample.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/2020/17.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/2020/17_sample.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/2020/18.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/2020/18_sample.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/2020/19.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/2020/19_sample.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/2020/1_sample.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/2020/2.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/2020/20.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/2020/20_sample.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/2020/21.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/2020/21_sample.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/2020/22.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/2020/22_sample.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/2020/23.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/2020/23_sample.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/2020/24.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/2020/24_sample.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/2020/25.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/2020/25_sample.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/2020/2_sample.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/2020/3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/2020/3_sample.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/2020/4.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/2020/4_sample.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/2020/5.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/2020/5_sample.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/2020/6.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/2020/6_sample.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/2020/7.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/2020/7_sample.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/2020/8.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/2020/8_sample.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/2020/9.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/2020/9_sample.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/2020/results.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/inputs/1.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/inputs/1.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/inputs/10.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/inputs/10_sample.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/inputs/10_sample2.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/inputs/10_sample3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/inputs/10_sample4.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/inputs/10_sample5.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/inputs/11.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/inputs/11_sample.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/inputs/12.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/inputs/12_sample.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/inputs/13.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/inputs/13_sample.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/inputs/14.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/inputs/14_sample.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/inputs/14_sample1.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/inputs/14_sample2.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/inputs/14_sample3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/inputs/14_sample4.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/inputs/15.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/inputs/15_sample.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/inputs/16.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/inputs/16_sample.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/inputs/17.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/inputs/17_sample.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/inputs/17_sample2.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/inputs/18.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/inputs/18_gold.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/inputs/18_gold_sample.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/inputs/18_gold_sample2.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/inputs/18_gold_sample3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/inputs/18_gold_sample4.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/inputs/18_sample.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/inputs/18_sample2.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/inputs/18_sample3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/inputs/18_sample4.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/inputs/18_sample5.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/inputs/19.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/inputs/19_sample.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/inputs/1_sample.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/inputs/1_sample.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/inputs/2.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/inputs/2.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/inputs/20.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/inputs/2015.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/inputs/2015_sample.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/inputs/2016.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/inputs/2016_11.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/inputs/2016_11_sample.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/inputs/2016_sample.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/inputs/20_sample.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/inputs/20_sample2.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/inputs/20_sample3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/inputs/21.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/inputs/21_sample.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/inputs/22.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/inputs/22_2.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/inputs/22_sample.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/inputs/23_sample.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/inputs/24_sample.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/inputs/25_sample.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/inputs/2_sample.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/inputs/3.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/inputs/3.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/inputs/3_sample.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/inputs/4.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/inputs/4_sample.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/inputs/5.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/inputs/5_sample.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/inputs/6.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/inputs/6_sample.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/inputs/7.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/inputs/7_sample.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/inputs/8.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/inputs/8_sample.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/inputs/9.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/inputs/9_sample.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/inputs/day1.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/inputs/day23.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/inputs/day24.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/inputs/day25.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/rule37b.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/codewars/DingleMouseTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/codewars/RomanNumeralsEncoderTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/trew/stefan/MainTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/trew/stefan/aoc2019/day10/Day10Test.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/trew/stefan/aoc2019/day10/Day2016_13Test.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/trew/stefan/aoc2019/day10/Day2016_24Test.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/trew/stefan/aoc2020/day01/Day01Test.java" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -45,91 +313,88 @@
       </list>
     </option>
   </component>
-  <component name="MavenImportPreferences">
-    <option name="importingSettings">
-      <MavenImportingSettings>
-        <option name="importAutomatically" value="true" />
-      </MavenImportingSettings>
-    </option>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="ProjectId" id="1Un3H6CMSM46LyfBhKspclh6cFi" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit4" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4" value="" />
     <property name="extract.method.default.visibility" value="private" />
-    <property name="last_directory_selection" value="$PROJECT_DIR$/src/main/java/trew/stefan" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../git_tuts/starter-java" />
+    <property name="last_directory_selection" value="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2021" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="restartRequiresConfirmation" value="false" />
-    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
-    <key name="ExtractSuperBase.RECENT_KEYS">
-      <recent name="trew.stefan.completed" />
-    </key>
-    <key name="CreateTestDialog.RecentsKey">
-      <recent name="trew.stefan.aoc2020.day01" />
-      <recent name="trew.stefan" />
-      <recent name="codewars" />
-    </key>
-    <key name="MoveInnerDialog.RECENTS_KEY">
-      <recent name="trew.stefan" />
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\code\aoc\2019\src\main\resources\inputs" />
+      <recent name="C:\code\aoc\2019\src\main\java\trew\stefan\aoc2015" />
+      <recent name="C:\code\aoc\2019\src\main\resources\2019" />
+      <recent name="C:\code\aoc\2019\src" />
     </key>
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
-    </key>
-    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
-      <recent name="trew.stefan.aof2019" />
-      <recent name="trew.stefan" />
-    </key>
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="trew.stefan.aoc2020.day20" />
-      <recent name="trew.stefan.aoc2020.day19" />
-      <recent name="trew.stefan.aoc2020.day18" />
-      <recent name="trew.stefan.aoc2020.day17" />
-      <recent name="trew.stefan.utils" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\code\aoc\2019\src" />
-      <recent name="C:\code\aoc\2019\src\main\resources\inputs" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\code\aoc\2019\src\main\java" />
       <recent name="C:\code\aoc\2019\src\main\java\trew\stefan\utils" />
       <recent name="C:\code\aoc\2019\src\main\resources" />
     </key>
+    <key name="ExtractSuperBase.RECENT_KEYS">
+      <recent name="trew.stefan.completed" />
+    </key>
+    <key name="MoveInnerDialog.RECENTS_KEY">
+      <recent name="trew.stefan" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="trew.stefan.aof2019" />
+      <recent name="trew.stefan" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="codewars" />
+      <recent name="trew.stefan.aoc2020.day01" />
+      <recent name="trew.stefan" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="trew.stefan.utils" />
+      <recent name="trew.stefan.aoc2021.day03" />
+      <recent name="trew.stefan" />
+      <recent name="codewars" />
+      <recent name="trew.stefan.aoc2018" />
+    </key>
   </component>
   <component name="RunManager" selected="Application.Main">
-    <configuration name="DotsPerSquare" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="amazon.dots.DotsPerSquare" />
-      <module name="2019" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="amazon.dots.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="trew.stefan.Main" />
-      <module name="2019" />
-      <option name="VM_PARAMETERS" value="-Xmx16048m -Xss1024m" />
+      <module name="2021" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="trew.stefan.aoc2019.day15.*" />
+          <option name="PATTERN" value="trew.stefan.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -137,40 +402,14 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Day2016_13Test.run" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="2019" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="trew.stefan.aoc2019.day10.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="trew.stefan.aoc2019.day10" />
-      <option name="MAIN_CLASS_NAME" value="trew.stefan.aoc2019.day10.Day2016_13Test" />
-      <option name="METHOD_NAME" value="run" />
-      <option name="TEST_OBJECT" value="method" />
+    <configuration name="Unnamed" type="Application" factoryName="Application">
+      <module name="2021" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Day2016_24Test.run" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="2019" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="trew.stefan.aoc2019.day10.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="trew.stefan.aoc2019.day10" />
-      <option name="MAIN_CLASS_NAME" value="trew.stefan.aoc2019.day10.Day2016_24Test" />
-      <option name="METHOD_NAME" value="run" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="DingleMouseTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="2019" />
+    <configuration name="BlobservationTest.sampleTest1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="2021" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="codewars.*" />
@@ -178,26 +417,76 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="codewars" />
-      <option name="MAIN_CLASS_NAME" value="codewars.DingleMouseTest" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="MAIN_CLASS_NAME" value="codewars.BlobservationTest" />
+      <option name="METHOD_NAME" value="sampleTest1" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="FindThePoisonExampleTest.basicTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="2021" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="codewars.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="codewars" />
+      <option name="MAIN_CLASS_NAME" value="codewars.FindThePoisonExampleTest" />
+      <option name="METHOD_NAME" value="basicTests" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="FindThePoisonExampleTest.singleRatTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="2021" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="codewars.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="codewars" />
+      <option name="MAIN_CLASS_NAME" value="codewars.FindThePoisonExampleTest" />
+      <option name="METHOD_NAME" value="singleRatTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="InterfacingTest.testCreate" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="2021" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="codewars.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="codewars" />
+      <option name="MAIN_CLASS_NAME" value="codewars.InterfacingTest" />
+      <option name="METHOD_NAME" value="testCreate" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <list>
+      <item itemvalue="Application.Unnamed" />
+      <item itemvalue="JUnit.FindThePoisonExampleTest.singleRatTest" />
+      <item itemvalue="JUnit.FindThePoisonExampleTest.basicTests" />
+      <item itemvalue="JUnit.BlobservationTest.sampleTest1" />
+      <item itemvalue="JUnit.InterfacingTest.testCreate" />
       <item itemvalue="Application.Main" />
-      <item itemvalue="Application.DotsPerSquare" />
-      <item itemvalue="JUnit.DingleMouseTest" />
-      <item itemvalue="JUnit.Day2016_13Test.run" />
-      <item itemvalue="JUnit.Day2016_24Test.run" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
-        <item itemvalue="Application.DotsPerSquare" />
-        <item itemvalue="JUnit.Day2016_24Test.run" />
-        <item itemvalue="JUnit.Day2016_13Test.run" />
-        <item itemvalue="JUnit.DingleMouseTest" />
+        <item itemvalue="JUnit.InterfacingTest.testCreate" />
+        <item itemvalue="JUnit.BlobservationTest.sampleTest1" />
+        <item itemvalue="JUnit.FindThePoisonExampleTest.basicTests" />
+        <item itemvalue="JUnit.FindThePoisonExampleTest.singleRatTest" />
       </list>
     </recent_temporary>
   </component>
@@ -213,6 +502,7 @@
       </list>
     </option>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -287,149 +577,39 @@
       <workItem from="1608786197781" duration="5996000" />
       <workItem from="1608872400141" duration="8853000" />
       <workItem from="1608889377878" duration="3085000" />
-      <workItem from="1608895169127" duration="13483000" />
+      <workItem from="1608895169127" duration="20767000" />
+      <workItem from="1609046981389" duration="39741000" />
+      <workItem from="1609410217922" duration="5220000" />
+      <workItem from="1609496930309" duration="17718000" />
+      <workItem from="1609585261700" duration="3775000" />
+      <workItem from="1609589071702" duration="9106000" />
+      <workItem from="1609852353590" duration="7319000" />
+      <workItem from="1610033688166" duration="5095000" />
+      <workItem from="1610113652181" duration="20266000" />
+      <workItem from="1611039432193" duration="19000" />
+      <workItem from="1611491255304" duration="740000" />
+      <workItem from="1611924966627" duration="3347000" />
+      <workItem from="1633607663061" duration="6030000" />
+      <workItem from="1633700634721" duration="4770000" />
+      <workItem from="1633719500736" duration="2483000" />
+      <workItem from="1634039288252" duration="6899000" />
+      <workItem from="1638174000374" duration="10952000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
+    <option name="version" value="3" />
   </component>
-  <component name="WindowStateProjectService">
-    <state x="712" y="329" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1607701671048">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state x="712" y="329" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1050@0.0.1920.1050" timestamp="1607701671048" />
-    <state x="765" y="242" key="#com.intellij.ide.util.MemberChooser" timestamp="1608907552384">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state x="612" y="192" key="#com.intellij.ide.util.MemberChooser/0.0.1536.834@0.0.1536.834" timestamp="1608891829631" />
-    <state x="765" y="242" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1050@0.0.1920.1050" timestamp="1608907552384" />
-    <state x="779" y="451" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1606717300808">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state x="779" y="451" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1606717300808" />
-    <state x="756" y="385" width="408" height="288" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1606717314997">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state x="756" y="385" width="408" height="288" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1920.1050@0.0.1920.1050" timestamp="1606717314997" />
-    <state x="405" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1608905022090">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state x="405" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1608905022090" />
-    <state x="715" y="229" key="#xdebugger.evaluate" timestamp="1608304215687">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state x="715" y="229" key="#xdebugger.evaluate/-1920.0.1536.840/0.0.1920.1050@0.0.1920.1050" timestamp="1608304215687" />
-    <state x="740" y="281" key="FileChooserDialogImpl" timestamp="1608646361465">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state x="740" y="281" key="FileChooserDialogImpl/0.0.1920.1050@0.0.1920.1050" timestamp="1608646361465" />
-    <state width="1877" height="431" key="GridCell.Tab.0.bottom" timestamp="1608915725961">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state width="1877" height="369" key="GridCell.Tab.0.bottom/-1920.0.1536.840/0.0.1920.1050/1920.-10.1920.1050@0.0.1920.1050" timestamp="1607582115979" />
-    <state width="1877" height="566" key="GridCell.Tab.0.bottom/-1920.0.1536.840/0.0.1920.1050@0.0.1920.1050" timestamp="1608304224384" />
-    <state width="1493" height="251" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1608891766238" />
-    <state width="1877" height="431" key="GridCell.Tab.0.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1608915725961" />
-    <state width="1877" height="431" key="GridCell.Tab.0.center" timestamp="1608915725961">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state width="1877" height="369" key="GridCell.Tab.0.center/-1920.0.1536.840/0.0.1920.1050/1920.-10.1920.1050@0.0.1920.1050" timestamp="1607582115978" />
-    <state width="1877" height="566" key="GridCell.Tab.0.center/-1920.0.1536.840/0.0.1920.1050@0.0.1920.1050" timestamp="1608304224384" />
-    <state width="1493" height="251" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1608891766237" />
-    <state width="1877" height="431" key="GridCell.Tab.0.center/0.0.1920.1050@0.0.1920.1050" timestamp="1608915725961" />
-    <state width="1877" height="431" key="GridCell.Tab.0.left" timestamp="1608915725961">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state width="1877" height="369" key="GridCell.Tab.0.left/-1920.0.1536.840/0.0.1920.1050/1920.-10.1920.1050@0.0.1920.1050" timestamp="1607582115978" />
-    <state width="1877" height="566" key="GridCell.Tab.0.left/-1920.0.1536.840/0.0.1920.1050@0.0.1920.1050" timestamp="1608304224384" />
-    <state width="1493" height="251" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1608891766236" />
-    <state width="1877" height="431" key="GridCell.Tab.0.left/0.0.1920.1050@0.0.1920.1050" timestamp="1608915725961" />
-    <state width="1877" height="431" key="GridCell.Tab.0.right" timestamp="1608915725961">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state width="1877" height="369" key="GridCell.Tab.0.right/-1920.0.1536.840/0.0.1920.1050/1920.-10.1920.1050@0.0.1920.1050" timestamp="1607582115979" />
-    <state width="1877" height="566" key="GridCell.Tab.0.right/-1920.0.1536.840/0.0.1920.1050@0.0.1920.1050" timestamp="1608304224384" />
-    <state width="1493" height="251" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1608891766237" />
-    <state width="1877" height="431" key="GridCell.Tab.0.right/0.0.1920.1050@0.0.1920.1050" timestamp="1608915725961" />
-    <state width="1877" height="320" key="GridCell.Tab.1.bottom" timestamp="1608901739326">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state width="1877" height="566" key="GridCell.Tab.1.bottom/-1920.0.1536.840/0.0.1920.1050@0.0.1920.1050" timestamp="1608304224384" />
-    <state width="1493" height="492" key="GridCell.Tab.1.bottom/0.0.1536.834@0.0.1536.834" timestamp="1608891222091" />
-    <state width="1877" height="320" key="GridCell.Tab.1.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1608901739326" />
-    <state width="1877" height="320" key="GridCell.Tab.1.center" timestamp="1608901739325">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state width="1877" height="566" key="GridCell.Tab.1.center/-1920.0.1536.840/0.0.1920.1050@0.0.1920.1050" timestamp="1608304224384" />
-    <state width="1493" height="492" key="GridCell.Tab.1.center/0.0.1536.834@0.0.1536.834" timestamp="1608891222090" />
-    <state width="1877" height="320" key="GridCell.Tab.1.center/0.0.1920.1050@0.0.1920.1050" timestamp="1608901739325" />
-    <state width="1877" height="320" key="GridCell.Tab.1.left" timestamp="1608901739325">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state width="1877" height="566" key="GridCell.Tab.1.left/-1920.0.1536.840/0.0.1920.1050@0.0.1920.1050" timestamp="1608304224384" />
-    <state width="1493" height="492" key="GridCell.Tab.1.left/0.0.1536.834@0.0.1536.834" timestamp="1608891222090" />
-    <state width="1877" height="320" key="GridCell.Tab.1.left/0.0.1920.1050@0.0.1920.1050" timestamp="1608901739325" />
-    <state width="1877" height="320" key="GridCell.Tab.1.right" timestamp="1608901739325">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state width="1877" height="566" key="GridCell.Tab.1.right/-1920.0.1536.840/0.0.1920.1050@0.0.1920.1050" timestamp="1608304224384" />
-    <state width="1493" height="492" key="GridCell.Tab.1.right/0.0.1536.834@0.0.1536.834" timestamp="1608891222090" />
-    <state width="1877" height="320" key="GridCell.Tab.1.right/0.0.1920.1050@0.0.1920.1050" timestamp="1608901739325" />
-    <state x="775" y="460" key="ReplaceDuplicatesPrompt" timestamp="1607061115196">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state x="775" y="460" key="ReplaceDuplicatesPrompt/0.0.1920.1050@0.0.1920.1050" timestamp="1607061115196" />
-    <state x="461" y="168" key="SettingsEditor" timestamp="1608895196778">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state x="369" y="122" key="SettingsEditor/0.0.1536.834@0.0.1536.834" timestamp="1608889407280" />
-    <state x="461" y="168" key="SettingsEditor/0.0.1920.1050@0.0.1920.1050" timestamp="1608895196778" />
-    <state x="632" y="360" key="SignInWindow" timestamp="1607084318547">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state x="632" y="360" key="SignInWindow/0.0.1920.1050@0.0.1920.1050" timestamp="1607084318547" />
-    <state x="701" y="267" key="SubscriptionsDialog" timestamp="1607084345135">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state x="701" y="267" key="SubscriptionsDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1607084345135" />
-    <state x="731" y="244" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1606719000445">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state x="731" y="244" key="com.intellij.testIntegration.createTest.CreateTestDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1606719000445" />
-    <state x="690" y="281" width="540" height="496" key="extract.method.dialog" timestamp="1608788221623">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state x="690" y="281" key="extract.method.dialog/-1920.0.1536.840/0.0.1920.1050@0.0.1920.1050" timestamp="1607491073485" />
-    <state x="690" y="281" width="540" height="496" key="extract.method.dialog/0.0.1920.1050@0.0.1920.1050" timestamp="1608788221623" />
-    <state x="656" y="257" width="607" height="536" key="find.popup" timestamp="1608440944351">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state x="656" y="257" width="607" height="536" key="find.popup/0.0.1920.1050@0.0.1920.1050" timestamp="1608440944351" />
-    <state width="681" height="171" key="javadoc.popup.new" timestamp="1608914873161">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state width="681" height="171" key="javadoc.popup.new/-1920.0.1536.840/0.0.1920.1050@0.0.1920.1050" timestamp="1608304130235" />
-    <state width="545" height="136" key="javadoc.popup.new/0.0.1536.834@0.0.1536.834" timestamp="1608891563206" />
-    <state width="681" height="171" key="javadoc.popup.new/0.0.1920.1050@0.0.1920.1050" timestamp="1608914873161" />
-    <state x="342" y="138" key="new project wizard" timestamp="1608646368683">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state x="342" y="138" key="new project wizard/0.0.1920.1050@0.0.1920.1050" timestamp="1608646368683" />
-    <state x="616" y="243" width="672" height="677" key="run.anything.popup" timestamp="1608907541029">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state x="616" y="243" key="run.anything.popup/-1920.0.1536.840/0.0.1920.1050@0.0.1920.1050" timestamp="1608301447775" />
-    <state x="616" y="243" width="672" height="677" key="run.anything.popup/0.0.1920.1050@0.0.1920.1050" timestamp="1608907541029" />
-    <state x="552" y="185" key="scopes" timestamp="1606718316756">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state x="552" y="185" key="scopes/0.0.1920.1050@0.0.1920.1050" timestamp="1606718316756" />
-    <state x="623" y="227" width="672" height="678" key="search.everywhere.popup" timestamp="1608896590134">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state x="623" y="227" width="672" height="678" key="search.everywhere.popup/-1920.0.1536.840/0.0.1920.1050@0.0.1920.1050" timestamp="1608268048180" />
-    <state x="623" y="227" width="672" height="678" key="search.everywhere.popup/0.0.1920.1050@0.0.1920.1050" timestamp="1608896590134" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -448,6 +628,31 @@
           <url>file://$PROJECT_DIR$/src/main/java/trew/stefan/aoc2019/day18/Day18.java</url>
           <line>59</line>
           <option name="timeStamp" value="53" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/trew/stefan/aoc2019/day20Take3/Day20.java</url>
+          <line>216</line>
+          <option name="timeStamp" value="56" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/trew/stefan/aoc2016/Day16.java</url>
+          <line>100</line>
+          <option name="timeStamp" value="61" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/codewars/Blobservation.java</url>
+          <line>242</line>
+          <option name="timeStamp" value="64" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/codewars/Blobservation.java</url>
+          <line>121</line>
+          <option name="timeStamp" value="65" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/codewars/InterfacingTest.java</url>
+          <line>22</line>
+          <option name="timeStamp" value="68" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
