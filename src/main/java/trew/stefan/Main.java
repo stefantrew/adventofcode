@@ -158,7 +158,7 @@ public class Main {
     public static void main(String[] args) {
         Map<Integer, DayResult> summaries = new HashMap<>();//buildSummary();
 
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 5; i++) {
 //            if (i + 1 != 15) continue;
             if (i % 5 == 0) {
                 String div = "----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------";

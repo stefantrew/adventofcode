@@ -10,14 +10,9 @@
   <component name="ChangeListManager">
     <list default="true" id="bc771e8d-ae86-4a6d-9622-eb703020cfea" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/AbstractAOC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/trew/stefan/AbstractAOC.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2021.iml" beforeDir="false" afterPath="$PROJECT_DIR$/2021.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/trew/stefan/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2021/Day02.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2021/Day02.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/utils/FabricClaim.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/utils/FibTestFixtures.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/utils/GuardTime.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/utils/InputReader2019.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/utils/MatrixOld.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,6 +49,7 @@
       <list>
         <option value="JUnit4 Test Class" />
         <option value="Interface" />
+        <option value="AnnotationType" />
         <option value="Class" />
       </list>
     </option>
@@ -96,6 +92,9 @@
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="trew.stefan.aoc2021" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\code\aoc\2019\src\main\resources\inputs" />
       <recent name="C:\code\aoc\2019\src\main\java\trew\stefan\aoc2015" />
@@ -126,11 +125,11 @@
       <recent name="trew.stefan" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="trew.stefan.aoc2021" />
       <recent name="trew.stefan.utils" />
       <recent name="trew.stefan.aoc2021.day03" />
       <recent name="trew.stefan" />
       <recent name="codewars" />
-      <recent name="trew.stefan.aoc2018" />
     </key>
   </component>
   <component name="RunManager" selected="Application.Main">
@@ -338,7 +337,7 @@
       <workItem from="1633700634721" duration="4770000" />
       <workItem from="1633719500736" duration="2483000" />
       <workItem from="1634039288252" duration="6899000" />
-      <workItem from="1638174000374" duration="15860000" />
+      <workItem from="1638174000374" duration="23731000" />
     </task>
     <servers />
   </component>
