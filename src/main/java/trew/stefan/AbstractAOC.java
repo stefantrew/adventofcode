@@ -20,7 +20,7 @@ public abstract class AbstractAOC implements AOCDay {
     }
 
     public List<String> getInput(String suffix) {
-        return InputReader.readStrings(day, "");
+        return InputReader.readStrings(day, suffix);
 
     }
 }

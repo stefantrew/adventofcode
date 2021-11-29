@@ -24,6 +24,7 @@ public class InputReader {
             log.info("File exists: {}", result.getAbsolutePath());
             return;
         }
+        log.info("File does not exist: {}", result.getAbsolutePath());
 
         var url = "https://adventofcode.com/" + year + "/day/" + day + "/input";
         HttpURLConnection con = null;

@@ -103,8 +103,8 @@ public class Main {
         long endTime = System.nanoTime();
         String answerPart2 = day2.getAnswerPart2();
 
-        long duration1 = (midTime - startTime) / 10000000;  //divide by 1000000 to get milliseconds.
-        long duration2 = (endTime - midTime) / 10000000;  //divide by 1000000 to get milliseconds.
+        long duration1 = (midTime - startTime) / 1000000;  //divide by 1000000 to get milliseconds.
+        long duration2 = (endTime - midTime) / 1000000;  //divide by 1000000 to get milliseconds.
         log.info("{} {} {} {} {} {} {} {} {} {} {}",
                 wrapColour(String.format("%3s", day), FOREGROUND_WHITE),
                 wrapTime(String.format("%7s", duration1 + " ms"), duration1),

@@ -12,10 +12,12 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/AbstractAOC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/trew/stefan/AbstractAOC.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/trew/stefan/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2021/day01/Day01.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2021/Day01.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2021/day02/Day02.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2021/Day02.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2021/day03/Day03.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2021/Day03.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/utils/InputReader2020.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/trew/stefan/utils/InputReader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2021/Day02.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2021/Day02.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/utils/FabricClaim.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/utils/FibTestFixtures.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/utils/GuardTime.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/utils/InputReader2019.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/utils/MatrixOld.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -336,7 +338,7 @@
       <workItem from="1633700634721" duration="4770000" />
       <workItem from="1633719500736" duration="2483000" />
       <workItem from="1634039288252" duration="6899000" />
-      <workItem from="1638174000374" duration="13449000" />
+      <workItem from="1638174000374" duration="15860000" />
     </task>
     <servers />
   </component>

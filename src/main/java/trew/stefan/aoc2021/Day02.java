@@ -55,20 +55,24 @@ public class Day02 extends AbstractAOC {
                     continue;
                 }
 
-                var same = "";
-                var diff = "";
+                StringBuilder same = new StringBuilder();
+                var diff = 0;
 
                 for (var i = 0; i < item.length(); i++) {
                     if (item.charAt(i) == sub.charAt(i)) {
-                        same += item.charAt(i);
+                        same.append(item.charAt(i));
                     } else {
-
-                        diff += item.charAt(i);
+                        if (diff == 0) {
+                            diff = 1;
+                        } else {
+                            diff = 2;
+                            break;
+                        }
                     }
 
                 }
-                if (diff.length() == 1) {
-                    return same;
+                if (diff == 1) {
+                    return same.toString();
                 }
             }
         }
