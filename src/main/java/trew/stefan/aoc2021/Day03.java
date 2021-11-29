@@ -1,4 +1,4 @@
-package trew.stefan.aoc2021.day03;
+package trew.stefan.aoc2021;
 
 import lombok.AllArgsConstructor;
 import lombok.ToString;
@@ -83,8 +83,6 @@ public class Day03 extends AbstractAOC {
         List<Claim> list = getClaims();
 
         var map = buildMap(list);
-
-//        map.printMatrix(false);
         for (var claim : list) {
             if (testClaim(map, claim)) {
                 return String.valueOf(claim.id);

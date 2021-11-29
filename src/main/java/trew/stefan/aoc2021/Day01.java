@@ -1,4 +1,4 @@
-package trew.stefan.aoc2021.day01;
+package trew.stefan.aoc2021;
 
 import lombok.extern.slf4j.Slf4j;
 import trew.stefan.AbstractAOC;

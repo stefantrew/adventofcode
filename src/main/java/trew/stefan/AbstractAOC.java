@@ -1,7 +1,6 @@
 package trew.stefan;
 
-import trew.stefan.AOCDay;
-import trew.stefan.utils.InputReader2020;
+import trew.stefan.utils.InputReader;
 
 import java.util.List;
 
@@ -21,7 +20,7 @@ public abstract class AbstractAOC implements AOCDay {
     }
 
     public List<String> getInput(String suffix) {
-        return InputReader2020.readStrings(day, "");
+        return InputReader.readStrings(day, "");
 
     }
 }

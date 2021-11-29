@@ -1,10 +1,12 @@
 package trew.stefan;
 
 import lombok.extern.slf4j.Slf4j;
+import trew.stefan.utils.InputReader;
 
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -81,19 +83,16 @@ public class Main {
         String t = day < 10 ? "0" + day : String.valueOf(day);
         AbstractAOC day2 = null;
 
+        String className = "trew.stefan.aoc2021.Day" + t;
         try {
-            String className = "trew.stefan.aoc2021.day" + t + ".Day" + t;
             Class<?> clazz = Class.forName(className);
-            day2 = (AbstractAOC) clazz.newInstance();
+            day2 = (AbstractAOC) clazz.getDeclaredConstructor().newInstance();
             day2.setDay(day);
 
 
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
+        } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | NoSuchMethodException | InvocationTargetException e) {
+            log.error(wrapColour(String.format("Day %s Class not found: %s", day, className), FOREGROUND_RED));
+            return;
         }
 
         long startTime = System.nanoTime();
@@ -159,7 +158,7 @@ public class Main {
     public static void main(String[] args) {
         Map<Integer, DayResult> summaries = new HashMap<>();//buildSummary();
 
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 4; i++) {
 //            if (i + 1 != 15) continue;
             if (i % 5 == 0) {
                 String div = "----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------";
