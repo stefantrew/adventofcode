@@ -10,9 +10,9 @@
   <component name="ChangeListManager">
     <list default="true" id="bc771e8d-ae86-4a6d-9622-eb703020cfea" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2021.iml" beforeDir="false" afterPath="$PROJECT_DIR$/2021.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/trew/stefan/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2021/Day06.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2021/Day06.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/utils/Matrix.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/trew/stefan/utils/Matrix.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,7 +83,7 @@
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4" value="" />
     <property name="extract.method.default.visibility" value="private" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2021" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/inputs" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
@@ -96,6 +96,7 @@
       <recent name="trew.stefan.aoc2021" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\code\aoc\2021\src\main\resources\inputs" />
       <recent name="C:\code\aoc\2019\src\main\resources\inputs" />
       <recent name="C:\code\aoc\2019\src\main\java\trew\stefan\aoc2015" />
       <recent name="C:\code\aoc\2019\src\main\resources\2019" />
@@ -337,7 +338,7 @@
       <workItem from="1633700634721" duration="4770000" />
       <workItem from="1633719500736" duration="2483000" />
       <workItem from="1634039288252" duration="6899000" />
-      <workItem from="1638174000374" duration="23731000" />
+      <workItem from="1638174000374" duration="42643000" />
     </task>
     <servers />
   </component>

@@ -91,7 +91,7 @@ public class Main {
 
 
         } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | NoSuchMethodException | InvocationTargetException e) {
-            log.error(wrapColour(String.format("Day %s Class not found: %s", day, className), FOREGROUND_RED));
+//            log.error(wrapColour(String.format("Day %s Class not found: %s", day, className), FOREGROUND_RED));
             return;
         }
 
@@ -110,13 +110,13 @@ public class Main {
                 wrapTime(String.format("%7s", duration1 + " ms"), duration1),
                 wrapColour(String.format("%5s", summary != null ? summary.time1 : ""), FOREGROUND_WHITE),
                 wrapColour(String.format("%5s", summary != null ? summary.rank1 : ""), FOREGROUND_WHITE),
-                wrapColour(String.format("%15s", answerPart1), FOREGROUND_WHITE),
-                wrapColour(String.format("%15s", part1), answerPart1.equals(part1) ? FOREGROUND_WHITE : FOREGROUND_RED),
+                wrapColour(String.format("%30s", answerPart1), FOREGROUND_WHITE),
+                wrapColour(String.format("%30s", part1), answerPart1.equals(part1) ? FOREGROUND_WHITE : FOREGROUND_RED),
                 wrapColour(String.format("| %-7s", summary != null ? summary.time2 : ""), FOREGROUND_WHITE),
                 wrapTime(String.format("%7s", duration2 + " ms"), duration2),
                 wrapColour(String.format("%-5s", summary != null ? summary.rank2 : ""), FOREGROUND_WHITE),
-                wrapColour(String.format("%50s", answerPart2), FOREGROUND_WHITE),
-                wrapColour(String.format("%50s", part2), answerPart2.equals(part2) ? FOREGROUND_WHITE : FOREGROUND_RED)
+                wrapColour(String.format("%20s", answerPart2), FOREGROUND_WHITE),
+                wrapColour(String.format("%20s", part2), answerPart2.equals(part2) ? FOREGROUND_WHITE : FOREGROUND_RED)
 
         );
 //        log.info("\u001b["  // Prefix - see [1]
@@ -158,7 +158,7 @@ public class Main {
     public static void main(String[] args) {
         Map<Integer, DayResult> summaries = new HashMap<>();//buildSummary();
 
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 25; i++) {
 //            if (i + 1 != 15) continue;
             if (i % 5 == 0) {
                 String div = "----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------";

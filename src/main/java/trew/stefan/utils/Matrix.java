@@ -5,6 +5,7 @@ import lombok.experimental.Accessors;
 import lombok.extern.slf4j.Slf4j;
 
 import java.lang.reflect.Array;
+import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
@@ -64,14 +65,19 @@ public class Matrix<T> {
         long max = 0;
         for (int i = 0; i < getHeight(); i++) {
             for (int j = 0; j < getWidth(); j++) {
-                max = Math.max(max, get(i, j).toString().length());
+                T t = get(i, j);
+                if (t == null) {
+                    continue;
+                }
+                max = Math.max(max, t.toString().length());
             }
         }
         var template = "%" + max + "s" + (useSeparator ? " " : "");
         for (int i = 0; i < getHeight(); i++) {
             StringBuilder builder = new StringBuilder();
             for (int j = 0; j < getWidth(); j++) {
-                builder.append(String.format(template, get(i, j).toString()));
+                T t = get(i, j);
+                builder.append(String.format(template, t != null ? t.toString() : "."));
             }
             log.info(builder.toString());
         }
@@ -86,6 +92,7 @@ public class Matrix<T> {
 
         return value2;
     }
+
 
     public int count(Predicate<? super T> inc) {
         var count = 0;
