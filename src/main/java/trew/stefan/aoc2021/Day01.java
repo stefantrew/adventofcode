@@ -3,9 +3,6 @@ package trew.stefan.aoc2021;
 import lombok.extern.slf4j.Slf4j;
 import trew.stefan.AbstractAOC;
 
-import java.util.HashSet;
-import java.util.stream.Collectors;
-
 @Slf4j
 public class Day01 extends AbstractAOC {
 
@@ -14,43 +11,27 @@ public class Day01 extends AbstractAOC {
     public String runPart1() {
 
 
-        var list = getInput().stream().map(Integer::parseInt)
-                .reduce(0, Integer::sum);
+        var list = getInput();
 
-        return list.toString();
+        return "";
     }
 
     @Override
     public String runPart2() {
-        var list = getInput().stream().map(Integer::parseInt).collect(Collectors.toList());
 
-        var visited = new HashSet<Integer>();
 
-        var current = Integer.valueOf(0);
-        var index = 0;
+        var list = getInput();
 
-        while (true) {
-
-            current += list.get(index);
-
-            if (visited.contains(current)) {
-                break;
-            }
-            visited.add(current);
-            index++;
-            index = index % list.size();
-        }
-
-        return current.toString();
+        return "";
     }
 
     @Override
     public String getAnswerPart1() {
-        return "576";
+        return "";
     }
 
     @Override
     public String getAnswerPart2() {
-        return "77674";
+        return "";
     }
 }

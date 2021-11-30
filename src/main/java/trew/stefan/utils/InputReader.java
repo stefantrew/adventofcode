@@ -47,13 +47,13 @@ public class InputReader {
         }
     }
 
-    public static List<String> readStrings(int day, String suffix) {
+    public static List<String> readStrings(int year, int day, String suffix) {
 
-
-        File file = new File(s + day + suffix + ".txt");
+        String pathname = s + year + "/" + day + suffix + ".txt";
+        File file = new File(pathname);
 
         if (suffix.equals("") && !file.exists()) {
-            downloadFile(new File(s + day + ".txt"), 2018, day);
+            downloadFile(new File(pathname), year, day);
         }
 
         try {
@@ -65,14 +65,14 @@ public class InputReader {
     }
 
 
-    public static List<Long> readCommaStringsLong(int day, String suffix) {
-        List<String> lines = readStrings(day, suffix);
+    public static List<Long> readCommaStringsLong(int year, int day, String suffix) {
+        List<String> lines = readStrings(year, day, suffix);
         String[] strs = lines.get(0).split(",");
         return Arrays.stream(strs).map(Long::parseLong).collect(Collectors.toList());
     }
 
-    public static List<Integer> readCommaStrings(int day, String suffix) {
-        List<String> lines = readStrings(day, suffix);
+    public static List<Integer> readCommaStrings(int year, int day, String suffix) {
+        List<String> lines = readStrings(year, day, suffix);
         String[] strs = lines.get(0).split(",");
         return Arrays.stream(strs).map(Integer::parseInt).collect(Collectors.toList());
     }

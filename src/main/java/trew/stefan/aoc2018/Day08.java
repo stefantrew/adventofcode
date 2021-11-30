@@ -1,4 +1,4 @@
-package trew.stefan.aoc2021;
+package trew.stefan.aoc2018;
 
 import lombok.extern.slf4j.Slf4j;
 import trew.stefan.AbstractAOC;
@@ -8,7 +8,6 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @Slf4j
 public class Day08 extends AbstractAOC {

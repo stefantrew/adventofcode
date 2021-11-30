@@ -1,4 +1,4 @@
-package trew.stefan.aoc2021;
+package trew.stefan.aoc2018;
 
 import lombok.AllArgsConstructor;
 import lombok.ToString;

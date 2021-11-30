@@ -78,16 +78,16 @@ public class Main {
         return result;
     }
 
-    public static void runDay(int day, DayResult summary) {
+    public static void runDay(int year, int day, DayResult summary) {
 
         String t = day < 10 ? "0" + day : String.valueOf(day);
         AbstractAOC day2 = null;
 
-        String className = "trew.stefan.aoc2021.Day" + t;
+        String className = "trew.stefan.aoc" + year + ".Day" + t;
         try {
             Class<?> clazz = Class.forName(className);
             day2 = (AbstractAOC) clazz.getDeclaredConstructor().newInstance();
-            day2.setDay(day);
+            day2.setDay(day, year);
 
 
         } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | NoSuchMethodException | InvocationTargetException e) {
@@ -157,14 +157,14 @@ public class Main {
 
     public static void main(String[] args) {
         Map<Integer, DayResult> summaries = new HashMap<>();//buildSummary();
-
-        for (int i = 0; i < 25; i++) {
+        int year = 2021;
+        for (int i = 0; i < 2; i++) {
 //            if (i + 1 != 15) continue;
             if (i % 5 == 0) {
                 String div = "----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------";
                 log.info(wrapColour(div, FOREGROUND_WHITE));
             }
-            runDay(i + 1, summaries.get(i + 1));
+            runDay(year, i + 1, summaries.get(i + 1));
         }
     }
 

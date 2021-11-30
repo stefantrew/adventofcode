@@ -7,11 +7,12 @@ import java.util.List;
 public abstract class AbstractAOC implements AOCDay {
 
     protected int day = 1;
+    protected int year = 1;
 
 
-    public void setDay(int day) {
+    public void setDay(int day, int year) {
 
-
+        this.year = year;
         this.day = day;
     }
 
@@ -20,7 +21,7 @@ public abstract class AbstractAOC implements AOCDay {
     }
 
     public List<String> getInput(String suffix) {
-        return InputReader.readStrings(day, suffix);
+        return InputReader.readStrings(year, day, suffix);
 
     }
 }

@@ -1,11 +1,9 @@
-package trew.stefan.aoc2021;
+package trew.stefan.aoc2018;
 
 import lombok.extern.slf4j.Slf4j;
 import trew.stefan.AbstractAOC;
 
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.stream.Collectors;
 
 @Slf4j
 public class Day02 extends AbstractAOC {
