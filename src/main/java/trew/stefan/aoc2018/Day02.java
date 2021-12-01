@@ -13,7 +13,7 @@ public class Day02 extends AbstractAOC {
     public String runPart1() {
 
 
-        var list = getInput();
+        var list = getStringInput();
 
         var doubles = 0;
         var triples = 0;
@@ -44,7 +44,7 @@ public class Day02 extends AbstractAOC {
     @Override
     public String runPart2() {
 
-        var list = getInput();
+        var list = getStringInput();
         for (var item : list) {
 
             for (var sub : list) {

@@ -18,4 +18,16 @@ public class StringUtil {
 
         return true;
     }
+
+
+    public static int countChars(String input, char target) {
+        var count = 0;
+        for (char c : input.toCharArray()) {
+            if (c == target) {
+                count++;
+            }
+        }
+        return count;
+
+    }
 }

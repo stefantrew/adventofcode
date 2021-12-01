@@ -99,7 +99,7 @@ public class Day10 extends AbstractAOC {
     }
 
     private List<Light> getLights() {
-        var list = getInput("").stream().map(this::mapper).collect(Collectors.toList());
+        var list = getStringInput("").stream().map(this::mapper).collect(Collectors.toList());
         return list;
     }
 

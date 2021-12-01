@@ -11,7 +11,7 @@ public class Day05 extends AbstractAOC {
     public String runPart1() {
 
 
-        var list = getInput();
+        var list = getStringInput();
         var str = list.get(0);
 
         return String.valueOf(process2(str).length());

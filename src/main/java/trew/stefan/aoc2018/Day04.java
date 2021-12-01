@@ -101,7 +101,7 @@ public class Day04 extends AbstractAOC {
         var p1 = Pattern.compile("#(\\d*)");
         var map = new HashMap<String, Guard>();
 
-        var input = getInput("");
+        var input = getStringInput("");
         input.sort((o1, o2) -> {
             var sub1 = o1.substring(1, 17);
             var sub2 = o2.substring(1, 17);

@@ -60,7 +60,7 @@ public class Day08 extends AbstractAOC {
     }
 
     private Node buildRootNode() {
-        var list = getInput();
+        var list = getStringInput();
         var data = Arrays.stream(list.get(0).split(" ")).map(Integer::parseInt).collect(Collectors.toList());
 
         var node = processNode(new LinkedList<>(data));

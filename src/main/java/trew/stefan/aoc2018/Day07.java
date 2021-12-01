@@ -57,7 +57,7 @@ public class Day07 extends AbstractAOC {
     public String runPart1() {
 
 
-        var list = getInput("");
+        var list = getStringInput("");
 
         Map<String, Step> map = getSteps(list);
 
@@ -100,7 +100,7 @@ public class Day07 extends AbstractAOC {
     public String runPart2() {
 
 
-        var list = getInput("");
+        var list = getStringInput("");
 
         Map<String, Step> map = getSteps(list);
         map.values().forEach(step -> {

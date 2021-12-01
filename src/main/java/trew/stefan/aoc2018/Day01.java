@@ -14,7 +14,7 @@ public class Day01 extends AbstractAOC {
     public String runPart1() {
 
 
-        var list = getInput().stream().map(Integer::parseInt)
+        var list = getStringInput().stream().map(Integer::parseInt)
                 .reduce(0, Integer::sum);
 
         return list.toString();
@@ -22,7 +22,7 @@ public class Day01 extends AbstractAOC {
 
     @Override
     public String runPart2() {
-        var list = getInput().stream().map(Integer::parseInt).collect(Collectors.toList());
+        var list = getStringInput().stream().map(Integer::parseInt).collect(Collectors.toList());
 
         var visited = new HashSet<Integer>();
 

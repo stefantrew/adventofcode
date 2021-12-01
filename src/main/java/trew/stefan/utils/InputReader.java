@@ -47,6 +47,18 @@ public class InputReader {
         }
     }
 
+    public static List<Integer> readIntegers(int year, int day, String suffix) {
+        return readStrings(year, day, suffix).stream().map(Integer::parseInt).collect(Collectors.toList());
+    }
+
+    public static List<Double> readDoubles(int year, int day, String suffix) {
+        return readStrings(year, day, suffix).stream().map(Double::parseDouble).collect(Collectors.toList());
+    }
+
+    public static List<Long> readLongs(int year, int day, String suffix) {
+        return readStrings(year, day, suffix).stream().map(Long::parseLong).collect(Collectors.toList());
+    }
+
     public static List<String> readStrings(int year, int day, String suffix) {
 
         String pathname = s + year + "/" + day + suffix + ".txt";
@@ -76,6 +88,24 @@ public class InputReader {
         String[] strs = lines.get(0).split(",");
         return Arrays.stream(strs).map(Integer::parseInt).collect(Collectors.toList());
     }
+
+    public static List<String> readSplitStrings(String separator, int year, int day, String suffix) {
+        List<String> lines = readStrings(year, day, suffix);
+        return Arrays.asList(lines.get(0).split(separator));
+    }
+
+    public static List<Integer> readSplitIntegers(String separator, int year, int day, String suffix) {
+        return readSplitStrings(separator, year, day, suffix).stream().map(Integer::parseInt).collect(Collectors.toList());
+    }
+
+    public static List<Double> readSplitDoubles(String separator, int year, int day, String suffix) {
+        return readSplitStrings(separator, year, day, suffix).stream().map(Double::parseDouble).collect(Collectors.toList());
+    }
+
+    public static List<Long> readSplitLongs(String separator, int year, int day, String suffix) {
+        return readSplitStrings(separator, year, day, suffix).stream().map(Long::parseLong).collect(Collectors.toList());
+    }
+
 
 }
 

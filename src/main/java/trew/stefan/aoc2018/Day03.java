@@ -73,7 +73,7 @@ public class Day03 extends AbstractAOC {
 
 
     private List<Claim> getClaims() {
-        return getInput().stream().map(this::map).collect(Collectors.toList());
+        return getStringInput().stream().map(this::map).collect(Collectors.toList());
     }
 
     @Override

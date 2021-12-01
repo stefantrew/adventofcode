@@ -111,7 +111,7 @@ public class Day06 extends AbstractAOC {
     private List<Planet> getPlanets() {
         var p = Pattern.compile("(\\d*), (\\d*)");
 
-        return getInput("").stream().map(str -> {
+        return getStringInput("").stream().map(str -> {
             var m = p.matcher(str);
             if (m.find()) {
 

@@ -11,34 +11,20 @@
     <list default="true" id="bc771e8d-ae86-4a6d-9622-eb703020cfea" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/AbstractAOC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/trew/stefan/AbstractAOC.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/DayTemplate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/trew/stefan/DayTemplate.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/trew/stefan/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2021/Day01.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2018/Day01.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2021/Day02.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2018/Day02.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2021/Day03.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2018/Day03.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2021/Day04.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2018/Day04.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2021/Day05.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2018/Day05.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2021/Day06.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2018/Day06.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2021/Day07.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2018/Day07.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2021/Day08.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2018/Day08.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2021/Day09.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2018/Day09.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2021/Day10.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2018/Day10.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2021/Day11.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2018/Day11.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2018/Day01.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2018/Day01.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2018/Day02.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2018/Day02.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2018/Day03.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2018/Day03.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2018/Day04.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2018/Day04.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2018/Day05.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2018/Day05.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2018/Day06.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2018/Day06.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2018/Day07.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2018/Day07.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2018/Day08.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2018/Day08.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2018/Day10.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2018/Day10.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2021/Day01.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2021/Day01.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/utils/InputReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/trew/stefan/utils/InputReader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/inputs/1.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/inputs/2018/1.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/inputs/10.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/inputs/2018/10.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/inputs/10_sample.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/inputs/2018/10_sample.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/inputs/1_sample.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/inputs/2018/1_sample.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/inputs/2.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/inputs/2018/2.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/inputs/3.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/inputs/2018/3.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/inputs/4.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/inputs/2018/4.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/inputs/4_sample.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/inputs/2018/4_sample.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/inputs/5.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/inputs/2018/5.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/inputs/6.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/inputs/2018/6.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/inputs/6_sample.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/inputs/2018/6_sample.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/inputs/7.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/inputs/2018/7.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/inputs/7_sample.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/inputs/2018/7_sample.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/inputs/8.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/inputs/2018/8.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/inputs/9.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/inputs/2018/9.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/utils/StringUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/trew/stefan/utils/StringUtil.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -153,11 +139,11 @@
       <recent name="trew.stefan" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="trew.stefan.aoc2018" />
+      <recent name="trew.stefan.aoc2020" />
       <recent name="trew.stefan.aoc2021" />
+      <recent name="trew.stefan.aoc2018" />
       <recent name="trew.stefan.utils" />
       <recent name="trew.stefan.aoc2021.day03" />
-      <recent name="trew.stefan" />
     </key>
   </component>
   <component name="RunManager" selected="Application.Main">
@@ -365,7 +351,7 @@
       <workItem from="1633700634721" duration="4770000" />
       <workItem from="1633719500736" duration="2483000" />
       <workItem from="1634039288252" duration="6899000" />
-      <workItem from="1638174000374" duration="43395000" />
+      <workItem from="1638174000374" duration="50495000" />
     </task>
     <servers />
   </component>
