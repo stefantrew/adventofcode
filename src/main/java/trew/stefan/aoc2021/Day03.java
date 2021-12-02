@@ -1,16 +1,15 @@
-package trew.stefan;
+package trew.stefan.aoc2021;
 
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import trew.stefan.aoc2018.Day10;
+import trew.stefan.AbstractAOC;
 import trew.stefan.utils.AOCMatcher;
 
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 @Slf4j
-public class DayTemplate extends AbstractAOC {
+public class Day03 extends AbstractAOC {
 
 
     @Override

@@ -1,8 +1,15 @@
 package trew.stefan.utils;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.util.regex.Matcher;
 
+@Slf4j
 public class AOCMatcher {
+
+    enum Status {
+        NOT_DONE, NO_MATCHES, MATCHES
+    }
 
     final private Matcher matcher;
 
@@ -36,5 +43,11 @@ public class AOCMatcher {
 
     public boolean find() {
         return matcher.find();
+    }
+
+    public void print() {
+        int count = matcher.groupCount();
+        if (!matcher.matches())
+            log.info("Groups {}; {}", count, matcher.group());
     }
 }

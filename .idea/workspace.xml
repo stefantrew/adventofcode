@@ -9,22 +9,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bc771e8d-ae86-4a6d-9622-eb703020cfea" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/AbstractAOC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/trew/stefan/AbstractAOC.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/DayTemplate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/trew/stefan/DayTemplate.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/trew/stefan/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2018/Day01.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2018/Day01.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2018/Day02.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2018/Day02.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2018/Day03.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2018/Day03.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2018/Day04.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2018/Day04.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2018/Day05.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2018/Day05.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2018/Day06.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2018/Day06.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2018/Day07.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2018/Day07.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2018/Day08.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2018/Day08.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2018/Day10.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2018/Day10.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2021/Day01.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2021/Day01.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/utils/InputReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/trew/stefan/utils/InputReader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/utils/StringUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/trew/stefan/utils/StringUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2021/Day02.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2021/Day02.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/utils/AOCMatcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/trew/stefan/utils/AOCMatcher.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -232,11 +223,11 @@
     </configuration>
     <list>
       <item itemvalue="Application.Unnamed" />
+      <item itemvalue="Application.Main" />
       <item itemvalue="JUnit.FindThePoisonExampleTest.singleRatTest" />
       <item itemvalue="JUnit.FindThePoisonExampleTest.basicTests" />
       <item itemvalue="JUnit.BlobservationTest.sampleTest1" />
       <item itemvalue="JUnit.InterfacingTest.testCreate" />
-      <item itemvalue="Application.Main" />
     </list>
     <recent_temporary>
       <list>
@@ -351,7 +342,9 @@
       <workItem from="1633700634721" duration="4770000" />
       <workItem from="1633719500736" duration="2483000" />
       <workItem from="1634039288252" duration="6899000" />
-      <workItem from="1638174000374" duration="50495000" />
+      <workItem from="1638174000374" duration="53759000" />
+      <workItem from="1638385689038" duration="5575000" />
+      <workItem from="1638476965390" duration="1305000" />
     </task>
     <servers />
   </component>
@@ -368,6 +361,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

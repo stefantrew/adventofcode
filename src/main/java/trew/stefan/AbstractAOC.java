@@ -81,4 +81,20 @@ public abstract class AbstractAOC implements AOCDay {
     public List<Long> getLongSplit(String separator, String suffix) {
         return InputReader.readSplitLongs(separator, year, day, suffix);
     }
+
+    protected String formatResult(int i) {
+        return String.valueOf(i);
+    }
+
+    protected String formatResult(double i) {
+        return String.valueOf(i);
+    }
+
+    protected String formatResult(long i) {
+        return String.valueOf(i);
+    }
+
+    protected String formatResult(String s) {
+        return s;
+    }
 }
