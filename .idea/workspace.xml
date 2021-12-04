@@ -11,11 +11,9 @@
     <list default="true" id="bc771e8d-ae86-4a6d-9622-eb703020cfea" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/AbstractAOC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/trew/stefan/AbstractAOC.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/DayTemplate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/trew/stefan/DayTemplate.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/trew/stefan/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2021/Day02.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2021/Day02.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/utils/AOCMatcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/trew/stefan/utils/AOCMatcher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2021/Day03.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2021/Day03.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/utils/Matrix.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/trew/stefan/utils/Matrix.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -130,12 +128,17 @@
       <recent name="trew.stefan" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="trew.stefan.aoc2020" />
       <recent name="trew.stefan.aoc2021" />
+      <recent name="trew.stefan.aoc2020" />
       <recent name="trew.stefan.aoc2018" />
       <recent name="trew.stefan.utils" />
       <recent name="trew.stefan.aoc2021.day03" />
     </key>
+  </component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="setShadow" />
+    </option>
   </component>
   <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -344,7 +347,8 @@
       <workItem from="1634039288252" duration="6899000" />
       <workItem from="1638174000374" duration="53759000" />
       <workItem from="1638385689038" duration="5575000" />
-      <workItem from="1638476965390" duration="1305000" />
+      <workItem from="1638476965390" duration="3664000" />
+      <workItem from="1638592804368" duration="6036000" />
     </task>
     <servers />
   </component>
