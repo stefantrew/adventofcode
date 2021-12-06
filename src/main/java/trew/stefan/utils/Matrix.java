@@ -61,6 +61,59 @@ public class Matrix<T> {
         return this;
     }
 
+    public Matrix<T> copy() {
+
+        var temp = new Matrix<T>(height, width, cls, null);
+
+        for (int row = 0; row < height; row++) {
+
+            for (int col = 0; col < width; col++) {
+                temp.setVisited(row, col, visitedMap[row][col]);
+                temp.set(row, col, map[row][col]);
+            }
+        }
+        return temp;
+    }
+
+    public Matrix<T> flipVertically() {
+        var temp = new Matrix<T>(height, width, cls, null);
+
+        for (int row = 0; row < height; row++) {
+
+            for (int col = 0; col < width; col++) {
+                temp.setVisited(height - row - 1, col, visitedMap[row][col]);
+                temp.set(height - row - 1, col, map[row][col]);
+            }
+        }
+        return temp;
+    }
+
+    public Matrix<T> flipHorizontally() {
+        var temp = new Matrix<T>(height, width, cls, null);
+
+        for (int row = 0; row < height; row++) {
+
+            for (int col = 0; col < width; col++) {
+                temp.setVisited(row, width - col - 1, visitedMap[row][col]);
+                temp.set(row, width - col - 1, map[row][col]);
+            }
+        }
+        return temp;
+    }
+
+    @SuppressWarnings("all")
+    public Matrix<T> transpose() {
+        var temp = new Matrix<T>(width, height, cls, null);
+
+        for (int row = 0; row < height; row++) {
+
+            for (int col = 0; col < width; col++) {
+                temp.setVisited( col, row, visitedMap[row][col]);
+                temp.set( col, row, map[row][col]);
+            }
+        }
+        return temp;
+    }
 
     protected void validateDimensions(int row, int col) {
         validateRowDimensions(row);

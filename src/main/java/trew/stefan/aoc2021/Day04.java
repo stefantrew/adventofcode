@@ -105,8 +105,7 @@ public class Day04 extends AbstractAOC {
             }
 
             if (s.isEmpty()) {
-                log.info("");
-                current.printMatrix(true);
+
                 current = null;
                 row = 0;
                 continue;

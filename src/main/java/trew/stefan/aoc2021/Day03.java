@@ -94,11 +94,11 @@ public class Day03 extends AbstractAOC {
 
     @Override
     public String getAnswerPart1() {
-        return "";
+        return "3912944";
     }
 
     @Override
     public String getAnswerPart2() {
-        return "";
+        return "4996233";
     }
 }
