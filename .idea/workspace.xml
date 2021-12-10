@@ -9,11 +9,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bc771e8d-ae86-4a6d-9622-eb703020cfea" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/trew/stefan/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2021/Day03.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2021/Day03.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2021/Day04.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2021/Day04.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/utils/Matrix.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/trew/stefan/utils/Matrix.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,7 +83,7 @@
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4" value="" />
     <property name="extract.method.default.visibility" value="private" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/src/main/java/trew/stefan" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/inputs" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/inputs/2021" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
@@ -98,11 +96,11 @@
       <recent name="trew.stefan.aoc2021" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\code\aoc\2021\src\main\resources\inputs\2021" />
       <recent name="C:\code\aoc\2021\src\main\resources\inputs" />
       <recent name="C:\code\aoc\2019\src\main\resources\inputs" />
       <recent name="C:\code\aoc\2019\src\main\java\trew\stefan\aoc2015" />
       <recent name="C:\code\aoc\2019\src\main\resources\2019" />
-      <recent name="C:\code\aoc\2019\src" />
     </key>
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
@@ -349,7 +347,12 @@
       <workItem from="1638174000374" duration="53759000" />
       <workItem from="1638385689038" duration="5575000" />
       <workItem from="1638476965390" duration="3664000" />
-      <workItem from="1638592804368" duration="13739000" />
+      <workItem from="1638592804368" duration="13988000" />
+      <workItem from="1638771468927" duration="592000" />
+      <workItem from="1638822133454" duration="2406000" />
+      <workItem from="1638938940972" duration="4438000" />
+      <workItem from="1638972955243" duration="727000" />
+      <workItem from="1639025702821" duration="3688000" />
     </task>
     <servers />
   </component>
