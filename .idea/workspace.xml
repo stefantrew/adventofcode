@@ -12,6 +12,10 @@
       <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/trew/stefan/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2021/Day07.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2021/Day07.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2021/Day08.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2021/Day08.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2021/Day10.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2021/Day10.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/inputs/2021/10_sample.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/inputs/2021/10_sample.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -353,6 +357,8 @@
       <workItem from="1638938940972" duration="4438000" />
       <workItem from="1638972955243" duration="727000" />
       <workItem from="1639025702821" duration="3688000" />
+      <workItem from="1639112131751" duration="2840000" />
+      <workItem from="1639198325800" duration="2311000" />
     </task>
     <servers />
   </component>

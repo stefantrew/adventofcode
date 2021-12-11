@@ -25,11 +25,6 @@ Z
 *src/main/java/trew/stefan/AbstractAOC.java,7\a\7a5404abc13c22ed02a6ae9dab0a81aced36ff5c
 `
 0src/main/java/trew/stefan/utils/InputReader.java,c\b\cb84d04fc93734e4b93cf0cd7e12f0f44dfa12ae
-:
-
-.gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
-[
-+src/main/java/trew/stefan/utils/Matrix.java,7\8\78c90e84b4efa7998ab710dddbc5cf27d3a7b7e5
 \
 ,src/main/java/trew/stefan/aoc2021/Day05.java,0\7\0711dc9df306a4c7f7d503302480d74789c9b665
 \
@@ -39,6 +34,4 @@ Z
 \
 ,src/main/java/trew/stefan/aoc2021/Day06.java,4\4\44a7568a00a2264ec9db222d579043c8d98b0cd7
 \
-,src/main/java/trew/stefan/aoc2021/Day07.java,c\f\cf1ecfa484e0d06eae9792785375c707f4cf419e
-\
-,src/main/java/trew/stefan/aoc2021/Day08.java,0\e\0e729d56ceb78b7450ca3812cbfe44ffbdfaeb22
+,src/main/java/trew/stefan/aoc2021/Day09.java,b\c\bcacf1a27a0c3ac09f9e28c968460a0601398cee
