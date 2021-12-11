@@ -108,8 +108,8 @@ public class Matrix<T> {
         for (int row = 0; row < height; row++) {
 
             for (int col = 0; col < width; col++) {
-                temp.setVisited( col, row, visitedMap[row][col]);
-                temp.set( col, row, map[row][col]);
+                temp.setVisited(col, row, visitedMap[row][col]);
+                temp.set(col, row, map[row][col]);
             }
         }
         return temp;
@@ -131,6 +131,21 @@ public class Matrix<T> {
             throw new ArrayIndexOutOfBoundsException("Col out of bounds: " + col);
         }
 
+    }
+
+    public List<MatrixPoint> find(Predicate<? super T> inc) {
+        var temp = new ArrayList<MatrixPoint>();
+        for (int row = 0; row < height; row++) {
+
+            for (int col = 0; col < width; col++) {
+                var value = get(row, col);
+                if (inc.test(value)) {
+                    temp.add(new MatrixPoint(value, row, col));
+                }
+            }
+        }
+
+        return temp;
     }
 
     public List<MatrixPoint> find(T target) {
@@ -167,6 +182,14 @@ public class Matrix<T> {
         return temp;
     }
 
+    public void resetVisited() {
+        for (int i = 0; i < height; i++) {
+            for (int j = 0; j < width; j++) {
+                visitedMap[i][j] = false;
+            }
+        }
+
+    }
 
     public List<T> getUnvisited() {
         var temp = new ArrayList<T>();
@@ -215,6 +238,10 @@ public class Matrix<T> {
         return visitedMap[row][col];
     }
 
+    public boolean hasVisited(MatrixPoint item) {
+        return hasVisited(item.row, item.col);
+    }
+
     public Matrix<T> set(int row, int col, T value) {
         validateDimensions(row, col);
         map[row][col] = value;
@@ -245,10 +272,9 @@ public class Matrix<T> {
         setVisited(point.row, point.col, value);
     }
 
-    public Matrix<T> setVisited(int row, int col, boolean value) {
+    public void setVisited(int row, int col, boolean value) {
         validateDimensions(row, col);
         visitedMap[row][col] = value;
-        return this;
     }
 
     public void printMatrix(boolean useSeparator) {
@@ -274,6 +300,19 @@ public class Matrix<T> {
 
     }
 
+    public void applyAll(Function<? super T, ? extends T> inc) {
+        for (int row = 0; row < height; row++) {
+
+            for (int col = 0; col < width; col++) {
+                apply(row, col, inc);
+            }
+        }
+    }
+
+    public T apply(MatrixPoint item, Function<? super T, ? extends T> inc) {
+        return apply(item.row, item.col, inc);
+    }
+
     public T apply(int row, int col, Function<? super T, ? extends T> inc) {
         var value = get(row, col);
 
@@ -283,6 +322,27 @@ public class Matrix<T> {
         return value2;
     }
 
+    public void applyAround(MatrixPoint item, Function<? super T, ? extends T> function) {
+        applyAround(item.row, item.col, function);
+    }
+
+    public void applyAround(int row, int col, Function<? super T, ? extends T> function) {
+
+        for (int i = -1; i <= 1; i++) {
+            for (int j = -1; j <= 1; j++) {
+                if (i == 0 && j == 0) {
+                    continue;
+                }
+                try {
+                    apply(row + i, col + j, function);
+                } catch (ArrayIndexOutOfBoundsException e) {
+                    //do nothing
+                }
+
+            }
+        }
+
+    }
 
     public int count(Predicate<? super T> inc) {
         var count = 0;

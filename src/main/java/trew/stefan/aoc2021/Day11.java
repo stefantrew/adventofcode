@@ -27,59 +27,35 @@ public class Day11 extends AbstractAOC {
     }
 
     private int run(Matrix<Integer> matrix) {
-        for (int i = 0; i < 10; i++) {
-            for (int j = 0; j < 10; j++) {
-
-                matrix.apply(i, j, integer -> integer + 1);
-            }
-        }
+        matrix.applyAll(integer -> integer + 1);
 
         while (true) {
             if (!iterate(matrix)) {
                 break;
             }
         }
-        int count = 0;
-        for (int i = 0; i < 10; i++) {
-            for (int j = 0; j < 10; j++) {
+        int count = matrix.getVisited().size();
+        for (var item : matrix.find(value -> value > 9)) {
 
-                matrix.apply(i, j, integer -> integer > 9 ? 0 : integer);
-
-                if (matrix.hasVisited(i, j)) {
-                    count++;
-                }
-                matrix.setVisited(i, j, false);
-
-            }
+            matrix.apply(item, integer -> integer > 9 ? 0 : integer);
+            matrix.setVisited(item, false);
         }
         return count;
     }
 
+
     private boolean iterate(Matrix<Integer> matrix) {
         var found = false;
-        for (int i = 0; i < 10; i++) {
-            for (int j = 0; j < 10; j++) {
 
-                if (matrix.get(i, j) > 9 && !matrix.hasVisited(i, j)) {
-                    matrix.setVisited(i, j, true);
-                    found = true;
-                    for (int dy = -1; dy < 2; dy++) {
-                        for (int dx = -1; dx < 2; dx++) {
-                            if (dy == 0 && dx == 0) {
-                                continue;
-                            }
-                            try {
+        for (var item : matrix.find(value -> value > 9)) {
+            if (!matrix.hasVisited(item)) {
+                matrix.setVisited(item, true);
+                found = true;
+                matrix.applyAround(item, integer -> integer + 1);
 
-                                matrix.apply(i + dy, j + dx, integer -> integer + 1);
-                            } catch (ArrayIndexOutOfBoundsException e) {
-
-                            }
-                        }
-                    }
-                }
             }
-
         }
+
         return found;
     }
 
