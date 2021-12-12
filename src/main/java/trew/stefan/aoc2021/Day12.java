@@ -1,6 +1,7 @@
 package trew.stefan.aoc2021;
 
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import trew.stefan.AbstractAOC;
 import trew.stefan.utils.AOCMatcher;
@@ -14,7 +15,7 @@ public class Day12 extends AbstractAOC {
 
 
     Map<String, Node> nodes = new HashMap<>();
-    Set<String> routes = new HashSet<>();
+    List<String> routes = new ArrayList<>();
 
     @Override
     public String runPart1() {
@@ -26,8 +27,8 @@ public class Day12 extends AbstractAOC {
     private String run(boolean allowDuplicates) {
         var list = getStringInput("");
         nodes = new HashMap<>();
-        routes = new HashSet<>();
-        Node startNode = null;
+        routes = new ArrayList<>();
+        Node startNode = new Node("start");
 
         for (var s : list) {
             var p = Pattern.compile("(\\w*)-(\\w*)");
@@ -52,13 +53,12 @@ public class Day12 extends AbstractAOC {
             }
         }
 
-
-        getRoutes(startNode, new ArrayList<>(), allowDuplicates);
+        getRoutes(startNode, new NodePath(), allowDuplicates);
 
         return formatResult(routes.size());
     }
 
-    private void getRoutes(Node startNode, List<Node> path, boolean allowDuplicates) {
+    private void getRoutes(Node startNode, NodePath path, boolean allowDuplicates) {
 
         if (startNode.isEnd()) {
             routes.add(path.toString());
@@ -72,37 +72,64 @@ public class Day12 extends AbstractAOC {
         for (Node sibling : startNode.siblings) {
 
 
-            if (sibling.isSmallCave && path.contains(sibling)) {
+            if (path.canAddNode(sibling, allowDuplicates)) {
+                var temp = new NodePath(path);
 
-                if (allowDuplicates) {
 
-                    var flag = false;
-
-                    var smalls = path.stream().filter(node -> node.isSmallCave).collect(Collectors.toList());
-                    var set = new HashSet<Node>();
-                    for (Node small : smalls) {
-                        if (set.contains(small)) {
-                            flag = true;
-                            break;
-                        }
-
-                        set.add(small);
-                    }
-                    if (flag) {
-                        continue;
-                    }
-                } else {
-                    continue;
-                }
+                getRoutes(sibling, temp.addNode(sibling), allowDuplicates);
             }
-
-            var temp = new ArrayList<Node>(path);
-            temp.add(sibling);
-            getRoutes(sibling, temp, allowDuplicates);
         }
 
     }
 
+    @NoArgsConstructor
+    class NodePath {
+
+        List<Node> path = new ArrayList<>();
+        HashSet<Node> smalls = new HashSet<>();
+        boolean hasSecondSmall = false;
+
+        public NodePath(NodePath temp) {
+            this.path.addAll(temp.path);
+            this.smalls.addAll(temp.smalls);
+            this.hasSecondSmall = temp.hasSecondSmall;
+        }
+
+        boolean canAddNode(Node node, boolean allowDuplicates) {
+            if (node.isSmallCave) {
+                if (!smalls.contains(node)) {
+                    return true;
+                }
+                return allowDuplicates ? !hasSecondSmall : !smalls.contains(node);
+            }
+
+            return true;
+
+        }
+
+        NodePath addNode(Node node) {
+
+
+            if (node.isSmallCave) {
+
+                if (smalls.contains(node)) {
+                    hasSecondSmall = true;
+                }
+                smalls.add(node);
+            }
+            path.add(node);
+            return this;
+        }
+
+        @Override
+        public String toString() {
+            return path.toString();
+        }
+
+        public boolean isEmpty() {
+            return path.isEmpty();
+        }
+    }
 
     @AllArgsConstructor
     class Node {
@@ -113,7 +140,7 @@ public class Day12 extends AbstractAOC {
 
         public Node(String label) {
             this.label = label;
-            isSmallCave = label.toLowerCase().equals(label);
+            isSmallCave = label.toLowerCase().equals(label) && !isStart() && !isEnd();
         }
 
         boolean isStart() {
