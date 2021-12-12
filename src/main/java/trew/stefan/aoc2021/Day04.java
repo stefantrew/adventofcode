@@ -48,7 +48,7 @@ public class Day04 extends AbstractAOC {
     }
 
     private Integer computeScore(Matrix<Integer> board, int number) {
-        int sum = board.getUnvisited().stream().reduce(Integer::sum).orElse(0);
+        int sum = board.getUnvisited().stream().map(Matrix.MatrixPoint::getValue).reduce(Integer::sum).orElse(0);
 
         return sum * number;
     }

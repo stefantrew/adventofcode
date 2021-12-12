@@ -34,11 +34,13 @@ public class Matrix<T> {
     }
 
     private T[][] map;
+    private T[][] shadowMap;
     private Boolean[][] visitedMap;
     private Integer height;
     private Integer width;
     private final Class<? extends T> cls;
     private int id;
+    private boolean isTransaction = false;
 
     public Matrix(Integer height, Integer width, Class<? extends T> cls, T initialValue) {
         this.height = height;
@@ -59,6 +61,43 @@ public class Matrix<T> {
         }
 
         return this;
+    }
+
+
+    public Matrix<T> set(int row, int col, T value) {
+        validateDimensions(row, col);
+        if (isTransaction) {
+            shadowMap[row][col] = value;
+        } else {
+            map[row][col] = value;
+        }
+        return this;
+    }
+
+    public void commitTransaction() {
+
+        isTransaction = false;
+        map = shadowMap;
+        shadowMap = null;
+    }
+
+    public void abortTransaction() {
+        isTransaction = false;
+        shadowMap = null;
+    }
+
+    public boolean isTransaction() {
+        return isTransaction;
+    }
+
+    public void startTransaction() {
+        isTransaction = true;
+        shadowMap = (T[][]) Array.newInstance(cls, height, width);
+        for (int i = 0; i < height; i++) {
+            for (int j = 0; j < width; j++) {
+                shadowMap[i][j] = map[i][j];
+            }
+        }
     }
 
     public Matrix<T> copy() {
@@ -191,13 +230,13 @@ public class Matrix<T> {
 
     }
 
-    public List<T> getUnvisited() {
-        var temp = new ArrayList<T>();
+    public List<MatrixPoint> getUnvisited() {
+        var temp = new ArrayList<MatrixPoint>();
         for (int row = 0; row < height; row++) {
 
             for (int col = 0; col < width; col++) {
                 if (!hasVisited(row, col)) {
-                    temp.add(get(row, col));
+                    temp.add(new MatrixPoint(get(row, col), row, col));
                 }
             }
         }
@@ -205,13 +244,13 @@ public class Matrix<T> {
         return temp;
     }
 
-    public List<T> getVisited() {
-        var temp = new ArrayList<T>();
+    public List<MatrixPoint> getVisited() {
+        var temp = new ArrayList<MatrixPoint>();
         for (int row = 0; row < height; row++) {
 
             for (int col = 0; col < width; col++) {
                 if (hasVisited(row, col)) {
-                    temp.add(get(row, col));
+                    temp.add(new MatrixPoint(get(row, col), row, col));
                 }
             }
         }
@@ -242,18 +281,15 @@ public class Matrix<T> {
         return hasVisited(item.row, item.col);
     }
 
-    public Matrix<T> set(int row, int col, T value) {
-        validateDimensions(row, col);
-        map[row][col] = value;
-        return this;
-    }
 
     public Matrix<T> setRow(int row, List<T> values) {
         validateRowDimensions(row);
         if (values.size() != width) {
             throw new ArrayIndexOutOfBoundsException("Data does not match width for : " + row);
         }
-        values.toArray(map[row]);
+        for (int i = 0; i < getWidth(); i++) {
+            set(row, i, values.get(i));
+        }
         return this;
     }
 
@@ -263,7 +299,7 @@ public class Matrix<T> {
             throw new ArrayIndexOutOfBoundsException("Data does not match height for : " + col);
         }
         for (int i = 0; i < getHeight(); i++) {
-            map[i][col] = values.get(i);
+            set(i, col, values.get(i));
         }
         return this;
     }
