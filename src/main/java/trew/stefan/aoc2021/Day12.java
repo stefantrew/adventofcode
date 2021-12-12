@@ -15,7 +15,7 @@ public class Day12 extends AbstractAOC {
 
 
     Map<String, Node> nodes = new HashMap<>();
-    List<String> routes = new ArrayList<>();
+    int count = 0;
 
     @Override
     public String runPart1() {
@@ -27,7 +27,7 @@ public class Day12 extends AbstractAOC {
     private String run(boolean allowDuplicates) {
         var list = getStringInput("");
         nodes = new HashMap<>();
-        routes = new ArrayList<>();
+        count = 0;
         Node startNode = new Node("start");
 
         for (var s : list) {
@@ -55,23 +55,22 @@ public class Day12 extends AbstractAOC {
 
         getRoutes(startNode, new NodePath(), allowDuplicates);
 
-        return formatResult(routes.size());
+        return formatResult(count);
     }
 
     private void getRoutes(Node startNode, NodePath path, boolean allowDuplicates) {
 
-        if (startNode.isEnd()) {
-            routes.add(path.toString());
-            return;
-        }
-
-        if (startNode.isStart() && !path.isEmpty()) {
-            return;
-        }
 
         for (Node sibling : startNode.siblings) {
 
 
+            if (sibling.isStart) {
+                continue;
+            }
+            if (sibling.isEnd) {
+                count++;
+                continue;
+            }
             if (path.canAddNode(sibling, allowDuplicates)) {
                 var temp = new NodePath(path);
 
@@ -85,12 +84,10 @@ public class Day12 extends AbstractAOC {
     @NoArgsConstructor
     class NodePath {
 
-        List<Node> path = new ArrayList<>();
         HashSet<Node> smalls = new HashSet<>();
         boolean hasSecondSmall = false;
 
         public NodePath(NodePath temp) {
-            this.path.addAll(temp.path);
             this.smalls.addAll(temp.smalls);
             this.hasSecondSmall = temp.hasSecondSmall;
         }
@@ -117,18 +114,10 @@ public class Day12 extends AbstractAOC {
                 }
                 smalls.add(node);
             }
-            path.add(node);
             return this;
         }
 
-        @Override
-        public String toString() {
-            return path.toString();
-        }
 
-        public boolean isEmpty() {
-            return path.isEmpty();
-        }
     }
 
     @AllArgsConstructor
@@ -137,18 +126,14 @@ public class Day12 extends AbstractAOC {
         String label;
         Set<Node> siblings = new HashSet<>();
         boolean isSmallCave;
+        boolean isStart;
+        boolean isEnd;
 
         public Node(String label) {
             this.label = label;
-            isSmallCave = label.toLowerCase().equals(label) && !isStart() && !isEnd();
-        }
-
-        boolean isStart() {
-            return label.equals("start");
-        }
-
-        boolean isEnd() {
-            return label.equals("end");
+            isStart = label.equals("start");
+            isEnd = label.equals("end");
+            isSmallCave = label.toLowerCase().equals(label) && !isStart && !isEnd;
         }
 
         @Override
