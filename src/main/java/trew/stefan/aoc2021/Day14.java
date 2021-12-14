@@ -17,132 +17,91 @@ public class Day14 extends AbstractAOC {
 
     @Override
     public String runPart1() {
-
-        var total = 0;
-        var result = "";
-
-
-//        var list = getStringInput().stream().map(this::mapper).collect(Collectors.toList());
-
-        var list = getStringInput();
-
-
-//        var list = getLongInput();
-//        var list = getIntegerInput();
-//        var list = getDoubleInput();
-
-        var map = new HashMap<String, String>();
-
-        String target = null;
-        for (var s : list) {
-            if (target == null) {
-                target = s;
-                continue;
-            } else if (s.isEmpty()) {
-                continue;
-            } else {
-                var p = Pattern.compile("(\\w*) -> (\\w)");
-                var m = new AOCMatcher(p.matcher(s));
-
-                if (m.find()) {
-                    m.print();
-                    map.put(m.getString(1), m.group(2));
-                }
-            }
-            log.info("{}", s);
-        }
-
-
-        var history = new HashMap<Character, List<Long>>();
-
-        long max = -1;
-        long min = -1;
-        long last = -1;
-        var i = 10;
-        while (i-- > 0) {
-            log.info("step {}", i);
-            target = doStep(map, target);
-
-
-            var map2 = new HashMap<Character, Long>();
-            for (char c : target.toCharArray()) {
-                map2.putIfAbsent(c, 0L);
-                map2.put(c, map2.get(c) + 1);
-
-
-                max = -1;
-                min = -1;
-            }
-            for (var key : map2.keySet()) {
-                history.putIfAbsent(key, new ArrayList<>());
-                var arr = history.get(key);
-                arr.add(map2.get(key));
-                history.put(key, arr);
-            }
-            for (var i1 : map2.values()) {
-                if (max == -1) {
-                    max = i1;
-                    min = i1;
-                } else {
-                    max = Math.max(max, i1);
-                    min = Math.min(min, i1);
-                }
-
-            }
-        }
-        for (var key : history.keySet()) {
-            log.info("{} {}", key, history.get(key));
-        }
-//                log.info("{}", map2);
-        return formatResult(max - min);
-    }
-
-    private String doStep(HashMap<String, String> map, String target) {
-        StringBuilder res = new StringBuilder(target.length() + 10);
-        for (int i = 0; i < target.length() - 1; i++) {
-            String com = String.valueOf(target.charAt(i)) + String.valueOf(target.charAt(i + 1));
-            res.append(target.charAt(i) + map.get(com));
-
-        }
-        res.append(target.charAt(target.length() - 1));
-        return res.toString();
-    }
-
-
-    @AllArgsConstructor
-    class Item {
-
-    }
-
-    Item mapper(String input) {
-
-        var p = Pattern.compile("");
-        var m = new AOCMatcher(p.matcher(input));
-
-        if (m.find()) {
-            m.print();
-            return new Item();
-        }
-        return null;
+        return run(10);
     }
 
 
     @Override
     public String runPart2() {
+        return run(40);
+    }
 
-
+    private String run(int i) {
         var list = getStringInput();
 
-        return formatResult("");
+        var map = new HashMap<String, String>();
+
+        String target = "";
+        for (var s : list) {
+            if (target.isEmpty()) {
+                target = s;
+            } else if (!s.isEmpty()) {
+                var p = Pattern.compile("(\\w*) -> (\\w)");
+                var m = new AOCMatcher(p.matcher(s));
+
+                if (m.find()) {
+                    map.put(m.getString(1), m.getString(2));
+                }
+            }
+        }
+
+        var map3 = new HashMap<String, Long>();
+        for (int j = 0; j < target.length() - 1; j++) {
+            String com = target.charAt(j) + String.valueOf(target.charAt(j + 1));
+
+            map3.putIfAbsent(com, 0L);
+            var temp = map3.get(com);
+            map3.put(com, temp + 1);
+
+        }
+        while (i-- > 0) {
+            map3 = doStep2(map, map3);
+        }
+        long max = -1;
+        long min = -1;
+        var map2 = new HashMap<Character, Long>();
+        for (var c : map3.entrySet()) {
+            var key = c.getKey().charAt(0);
+            map2.putIfAbsent(key, 0L);
+            map2.put(key, map2.get(key) + c.getValue());
+        }
+
+        for (var i1 : map2.values()) {
+            if (max == -1) {
+                max = i1;
+                min = i1;
+            } else {
+                max = Math.max(max, i1);
+                min = Math.min(min, i1);
+            }
+
+        }
+
+        return formatResult(max - min - 1);
+    }
+
+    private HashMap<String, Long> doStep2(HashMap<String, String> map, HashMap<String, Long> map3) {
+        var result = new HashMap<String, Long>();
+        for (String s : map3.keySet()) {
+            var c = map.get(s.substring(0, 2));
+            var s1 = s.charAt(0) + c;
+            var s2 = c + s.charAt(1);
+
+            result.putIfAbsent(s1, 0L);
+            result.putIfAbsent(s2, 0L);
+            result.put(s1, result.get(s1) + map3.get(s));
+            result.put(s2, result.get(s2) + map3.get(s));
+        }
+        return result;
     }
 
     @Override
     public String getAnswerPart1() {
-        return "";
+        return "2602";
     }
 
     @Override
     public String getAnswerPart2() {
-        return "";
+        return "2942885922173";
     }
 }
