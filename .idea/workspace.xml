@@ -11,7 +11,8 @@
     <list default="true" id="bc771e8d-ae86-4a6d-9622-eb703020cfea" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2021/Day14.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/trew/stefan/aoc2021/Day14.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/trew/stefan/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/trew/stefan/utils/Matrix.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/trew/stefan/utils/Matrix.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -143,6 +144,7 @@
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="trew.stefan.Main" />
       <module name="2021" />
+      <option name="PROGRAM_PARAMETERS" value="-Xss1" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="trew.stefan.*" />
@@ -357,7 +359,8 @@
       <workItem from="1639198325800" duration="5352000" />
       <workItem from="1639240829066" duration="11819000" />
       <workItem from="1639429735524" duration="1622000" />
-      <workItem from="1639459418060" duration="3776000" />
+      <workItem from="1639459418060" duration="4491000" />
+      <workItem from="1639544099741" duration="3438000" />
     </task>
     <servers />
   </component>

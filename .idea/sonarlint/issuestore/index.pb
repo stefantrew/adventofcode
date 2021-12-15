@@ -40,8 +40,6 @@ Z
 0src/main/java/trew/stefan/utils/InputReader.java,c\b\cb84d04fc93734e4b93cf0cd7e12f0f44dfa12ae
 \
 ,src/main/java/trew/stefan/aoc2021/Day04.java,d\a\da251c29c6848457a208b0ef22b34ece4201fdb9
-[
-+src/main/java/trew/stefan/utils/Matrix.java,7\8\78c90e84b4efa7998ab710dddbc5cf27d3a7b7e5
 \
 ,src/main/java/trew/stefan/aoc2021/Day11.java,a\1\a17d8a75ad47e40ca9d3e6f7033b976ab26ea492
 \

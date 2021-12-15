@@ -203,7 +203,7 @@ public class Matrix<T> {
     }
 
     public T get(int row, int col) {
-        validateDimensions(row, col);
+//        validateDimensions(row, col);
         return map[row][col];
     }
 
