@@ -12,23 +12,37 @@ import java.util.regex.Pattern;
 @Slf4j
 public class Day13 extends AbstractAOC {
 
+    class InputData {
+        ArrayList<String> points = new ArrayList<>();
+        ArrayList<String> steps = new ArrayList<>();
+        Matrix<Character> matrix;
+    }
 
     @Override
     public String runPart1() {
+        InputData data = getInputData();
+        return formatResult(fold(data.matrix, data.steps.get(0)).count(character -> character == '#'));
+    }
 
-        var total = 0;
-        var result = "";
+    @Override
+    public String runPart2() {
 
 
-//        var list = getStringInput().stream().map(this::mapper).collect(Collectors.toList());
+        InputData data = getInputData();
 
+        for (String step : data.steps) {
+
+            data.matrix = fold(data.matrix, step);
+        }
+        data.matrix.printMatrix(false);
+
+        return formatResult("PFKLKCFP");
+    }
+
+    private InputData getInputData() {
         var list = getStringInput("");
-//        var list = getLongInput();
-//        var list = getIntegerInput();
-//        var list = getDoubleInput();
+        var data = new InputData();
 
-        var points = new ArrayList<String>();
-        var steps = new ArrayList<String>();
         var mode = 1;
 
         for (var s : list) {
@@ -37,15 +51,14 @@ public class Day13 extends AbstractAOC {
                 continue;
             }
             if (mode == 1) {
-                points.add(s);
+                data.points.add(s);
             } else {
-                steps.add(s);
+                data.steps.add(s);
             }
         }
-        log.info("points {}", points);
         var maxX = -1;
         var maxY = -1;
-        for (String point : points) {
+        for (String point : data.points) {
 
             var p = Pattern.compile("(\\d*),(\\d*)");
             var m = new AOCMatcher(p.matcher(point));
@@ -55,40 +68,26 @@ public class Day13 extends AbstractAOC {
                 maxX = Math.max(maxX, m.getInt(1));
                 maxY = Math.max(maxY, m.getInt(2));
 
-            } else {
-                log.info("aaa");
             }
 
         }
 
-        var matrix = new Matrix<Character>(maxY + 1, maxX + 1, Character.class, '.');
+        data.matrix = new Matrix<Character>(maxY + 1, maxX + 1, Character.class, '.');
 
-        for (String point : points) {
+        for (String point : data.points) {
 
             var p = Pattern.compile("(\\d*),(\\d*)");
             var m = new AOCMatcher(p.matcher(point));
 
             if (m.find()) {
-                matrix.set(m.getInt(2), m.getInt(1), '#');
+                data.matrix.set(m.getInt(2), m.getInt(1), '#');
             }
 
         }
-//        matrix.printMatrix(false);
-        log.info("maxY {}, maxX {}", maxY, maxX);
-        log.info("steps {}", steps);
-
-        for (String step : steps) {
-
-            matrix = fold(matrix, step);
-        }
-        log.info("--------");
-        matrix.printMatrix(false);
-
-        return formatResult(total);
+        return data;
     }
 
     private Matrix<Character> fold(Matrix<Character> matrix, String step) {
-        log.info("step {}", step);
 
         var p = Pattern.compile("fold along (x|y)=(\\d*)");
         var m = new AOCMatcher(p.matcher(step));
@@ -140,40 +139,13 @@ public class Day13 extends AbstractAOC {
     }
 
 
-    @AllArgsConstructor
-    class Item {
-
-    }
-
-    Item mapper(String input) {
-
-        var p = Pattern.compile("");
-        var m = new AOCMatcher(p.matcher(input));
-
-        if (m.find()) {
-            m.print();
-            return new Item();
-        }
-        return null;
-    }
-
-
-    @Override
-    public String runPart2() {
-
-
-        var list = getStringInput();
-
-        return formatResult("");
-    }
-
     @Override
     public String getAnswerPart1() {
-        return "";
+        return "661";
     }
 
     @Override
     public String getAnswerPart2() {
-        return "";
+        return "PFKLKCFP";
     }
 }

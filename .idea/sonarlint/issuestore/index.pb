@@ -40,17 +40,11 @@
 ,src/main/java/trew/stefan/aoc2021/Day04.java,d\a\da251c29c6848457a208b0ef22b34ece4201fdb9
 \
 ,src/main/java/trew/stefan/aoc2021/Day11.java,a\1\a17d8a75ad47e40ca9d3e6f7033b976ab26ea492
-\
-,src/main/java/trew/stefan/aoc2021/Day12.java,7\c\7c164045e3553296bd51512921e86f8719bf018b
-\
-,src/main/java/trew/stefan/aoc2021/Day13.java,3\3\336d6491a0b912390fa7489572c5c04aff52d8ba
 _
 /src/main/java/trew/stefan/utils/AOCMatcher.java,2\5\2541347178070dc57a1d721680927c4e7bfd472c
 \
 ,src/main/java/trew/stefan/aoc2021/Day14.java,5\1\5122cc9e80973ee8d8ce372fd967294ecb3ca359
 Z
 *src/main/java/trew/stefan/AbstractAOC.java,7\a\7a5404abc13c22ed02a6ae9dab0a81aced36ff5c
-S
-#src/main/java/trew/stefan/Main.java,0\a\0a5d3077ca20d13e63588205823574f09e69caf5
 [
 +src/main/java/trew/stefan/utils/Matrix.java,7\8\78c90e84b4efa7998ab710dddbc5cf27d3a7b7e5
