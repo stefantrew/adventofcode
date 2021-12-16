@@ -7,6 +7,7 @@ import trew.stefan.utils.AOCMatcher;
 import trew.stefan.utils.Matrix;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.regex.Pattern;
 
 @Slf4j
@@ -34,9 +35,39 @@ public class Day13 extends AbstractAOC {
 
             data.matrix = fold(data.matrix, step);
         }
-        data.matrix.printMatrix(false);
 
-        return formatResult("PFKLKCFP");
+
+        return formatResult(extractText(data.matrix));
+    }
+
+    private String extractText(Matrix<Character> matrix) {
+        var map = new HashMap<String, String>();
+        map.put("###.#..##..####.#...#...", "P");
+        map.put("#####...###.#...#...#...", "F");
+        map.put("#..##.#.##..#.#.#.#.#..#", "K");
+        map.put("#...#...#...#...#...####", "L");
+        map.put(".##.#..##...#...#..#.##.", "C");
+
+        var last = 0;
+        var result = new StringBuilder();
+        for (int i = 0; i < matrix.getWidth(); i++) {
+
+            var count = matrix.getCol(i).stream().filter(character -> character == '#').count();
+            if (count == 0) {
+
+                var temp = new StringBuilder();
+                for (int r = 0; r < matrix.getHeight(); r++) {
+
+                    for (int j = last; j < i; j++) {
+                        temp.append(matrix.get(r, j));
+                    }
+                }
+
+                result.append(map.get(temp.toString()));
+                last = i + 1;
+            }
+        }
+        return result.toString();
     }
 
     private InputData getInputData() {
