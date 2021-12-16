@@ -15,42 +15,54 @@ public class Day15 extends AbstractAOC {
 
     @Override
     public String runPart1() {
-
-        var total = 0;
-        var result = "";
-
-
-//        var list = getStringInput().stream().map(this::mapper).collect(Collectors.toList());
-
-        var list = getStringInput("_sample");
-//        var list = getLongInput();
-//        var list = getIntegerInput();
-//        var list = getDoubleInput();
-        var width = list.get(0).length();
-        var matrix = new Matrix<Integer>(width, width, Integer.class, 0);
-        var visited = new Matrix<Integer>(width, width, Integer.class, 0);
-
-        for (int i = 0; i < matrix.getHeight(); i++) {
-            var chars = list.get(i).toCharArray();
-            for (int j = 0; j < width; j++) {
-
-                matrix.set(i, j, Integer.parseInt(String.valueOf(chars[j])));
-            }
-        }
-
-        matrix.printMatrix(false);
-
-        var row = 0;
-        var col = 0;
-
-
-        var cost = matrix.get(row, col);
-//        visited.set(row, col, cost);
-        total = visit(cost, row, col, matrix, visited, 0);
-        visited.printMatrix(true);
-        var i = visited.get(matrix.getHeight() - 1, matrix.getWidth() - 1);
-        i -= matrix.get(0, 0) * 2;
-        return formatResult(i);
+return "";
+//        var total = 0;
+//        var result = "";
+//
+//
+////        var list = getStringInput().stream().map(this::mapper).collect(Collectors.toList());
+//
+//        var list = getStringInput("");
+////        var list = getLongInput();
+////        var list = getIntegerInput();
+////        var list = getDoubleInput();
+//        var width = list.get(0).length() * 5;
+//        var orig = list.get(0).length();
+//        var matrix = new Matrix<Integer>(width, width, Integer.class, 0);
+//        var visited = new Matrix<Integer>(width, width, Integer.class, 0);
+//
+//        for (int i = 0; i < matrix.getHeight(); i++) {
+//            var chars = list.get(i % orig).toCharArray();
+//            for (int j = 0; j < width; j++) {
+//                log.info("{} {} {} {}", i, j, i / orig, j / orig);
+//                var i1 = Integer.parseInt(String.valueOf(chars[j % orig]));
+//
+//                if (i >= orig) {
+//                    i1 = matrix.get(i - orig, j) + 1;
+//
+//                } else if (j >= orig) {
+//
+//                    i1 = matrix.get(i, j - orig) + 1;
+//
+//                }
+//
+//                matrix.set(i, j, i1 > 9 ? 1 : i1);
+//            }
+//        }
+//
+////        matrix.printMatrix(false);
+//
+//        var row = 0;
+//        var col = 0;
+//
+//
+//        var cost = matrix.get(row, col);
+////        visited.set(row, col, cost);
+//        total = visit(cost, row, col, matrix, visited, 0);
+////        visited.printMatrix(true);
+//        var i = visited.get(matrix.getHeight() - 1, matrix.getWidth() - 1);
+//        i -= matrix.get(0, 0) * 2;
+//        return formatResult(i);
     }
 
     private int visit(int current, int row, int col, Matrix<Integer> matrix, Matrix<Integer> visited, int depth) {
@@ -63,13 +75,15 @@ public class Day15 extends AbstractAOC {
 //        } else {
 //            return 0;
 //        }
-
+        if (depth > 2000) {
+            return -1;
+        }
 
         var integer = visited.get(row, col);
         var cost = current + matrix.get(row, col);
 //        log.info("{} {} {} {}", row, col, integer, cost);
-        if (integer > 0 && integer < cost) {
-            return integer;
+        if (integer > 0 && integer <= cost) {
+            return -1;
         }
         visited.set(row, col, cost);
 
@@ -90,20 +104,20 @@ public class Day15 extends AbstractAOC {
                 min = min == -1 ? value : Math.min(min, value);
             }
         }
-//        if (col > 0) {
-//            var value = visit(cost, row, col - 1, matrix, visited, depth + 1);
-//            if (value > 0) {
-//
-//                min = min == -1 ? value : Math.min(min, value);
-//            }
-//        }
-//        if (row > 0) {
-//            var value = visit(cost, row - 1, col, matrix, visited, depth + 1);
-//            if (value > 0) {
-//
-//                min = min == -1 ? value : Math.min(min, value);
-//            }
-//        }
+        if (col > 0) {
+            var value = visit(cost, row, col - 1, matrix, visited, depth + 1);
+            if (value > 0) {
+
+                min = min == -1 ? value : Math.min(min, value);
+            }
+        }
+        if (row > 0) {
+            var value = visit(cost, row - 1, col, matrix, visited, depth + 1);
+            if (value > 0) {
+
+                min = min == -1 ? value : Math.min(min, value);
+            }
+        }
 
 
         return min;
