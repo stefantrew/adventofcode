@@ -39,7 +39,6 @@ public class Day20 extends AbstractAOC {
 
         for (int row = 0; row < list.size(); row++) {
             String s = list.get(row);
-            log.info("{}", s);
             for (int col = 0; col < s.toCharArray().length; col++) {
                 matrix.set(row + offset / 2, col + offset / 2, s.toCharArray()[col] == '#' ? 1 : 0);
             }
@@ -65,7 +64,6 @@ public class Day20 extends AbstractAOC {
                 }
             }
         }
-        matrix.printMatrix(false);
         var count = 0;
         for (int i = 5; i < matrix.getWidth() - 5; i++) {
             for (int j = 5; j < matrix.getWidth() - 5; j++) {
