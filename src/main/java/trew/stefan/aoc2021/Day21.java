@@ -11,6 +11,7 @@ import java.util.regex.Pattern;
 
 @Slf4j
 public class Day21 extends AbstractAOC {
+    Map<Integer, Integer> d2 = new HashMap<>();
 
 
     public int rollDice(int d) {
@@ -22,9 +23,6 @@ public class Day21 extends AbstractAOC {
 
         return d;
     }
-
-    long win1 = 0;
-    long win2 = 0;
 
     @Override
     public String runPart1() {
@@ -75,8 +73,6 @@ public class Day21 extends AbstractAOC {
             p2 %= 10;
             score2 += p2 + 1;
 
-//            log.info("p1 {} p2 {}", p1, p2);
-//            log.info("s1 {} s2 {}", score1, score2);
             if (score2 >= 1000) {
                 break;
             }
@@ -85,7 +81,7 @@ public class Day21 extends AbstractAOC {
         return formatResult(loser * count);
     }
 
-    class Result {
+    static class Result {
         long win1;
         long win2;
 
@@ -96,37 +92,35 @@ public class Day21 extends AbstractAOC {
     }
 
     Map<Integer, Result> cache = new HashMap<>();
-    long hits = 0;
 
     Result playRound(int p1, int p2, int s1, int s2) {
 
-
         var state = Objects.hash(p1, p2, s1, s2);
         if (cache.containsKey(state)) {
-            hits++;
             return cache.get(state);
         }
+
         var result = new Result(0, 0);
-        for (int i : d) {
-            var temp = p1 + i;
+        for (var entry : d2.entrySet()) {
+            var temp = p1 + entry.getKey();
             temp %= 10;
             var tempS1 = s1 + temp + 1;
 
             if (tempS1 >= 21) {
-                result.win1++;
+                result.win1 += entry.getValue();
             } else {
 
-                for (int j : d) {
-                    var temp2 = p2 + j;
+                for (var entry2 : d2.entrySet()) {
+                    var temp2 = p2 + entry2.getKey();
                     temp2 %= 10;
                     var tempS2 = s2 + temp2 + 1;
                     if (tempS2 >= 21) {
-                        result.win2++;
+                        result.win2 += entry.getValue() + entry2.getValue();
                     } else {
 
                         var res = playRound(temp, temp2, tempS1, tempS2);
-                        result.win1 += res.win1;
-                        result.win2 += res.win2;
+                        result.win1 += res.win1 * entry.getValue() * entry2.getValue();
+                        result.win2 += res.win2 * entry.getValue() * entry2.getValue();
                     }
                 }
 
@@ -140,8 +134,6 @@ public class Day21 extends AbstractAOC {
     }
 
 
-    List<Integer> d = new ArrayList<>();
-
     @Override
     public String runPart2() {
 
@@ -151,11 +143,12 @@ public class Day21 extends AbstractAOC {
         for (int i = 1; i <= 3; i++) {
             for (int j = 1; j <= 3; j++) {
                 for (int k = 1; k <= 3; k++) {
-                    d.add(i + j + k);
+                    var sum = i + j + k;
+                    d2.putIfAbsent(sum, 0);
+                    d2.compute(sum, (integer, integer2) -> integer2 + 1);
                 }
             }
         }
-
         var result = playRound(p1, p2, 0, 0);
         return formatResult(Math.max(result.win1, result.win2));
     }
