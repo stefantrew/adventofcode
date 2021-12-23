@@ -1,23 +1,33 @@
 package trew.stefan.aoc2021;
 
+import javafx.application.Application;
+import javafx.scene.Group;
+import javafx.scene.Scene;
+import javafx.scene.shape.Box;
+import javafx.scene.transform.Translate;
+import javafx.stage.Stage;
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 import trew.stefan.AbstractAOC;
 import trew.stefan.utils.AOCMatcher;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 @Slf4j
 public class Day22 extends AbstractAOC {
 
+    int order = 1;
 
     @Override
     public String runPart1() {
 
         var total = 0L;
-
+        order = 1;
         var list = getStringInput("").stream().map(this::mapper).collect(Collectors.toList());
 
 
@@ -26,28 +36,28 @@ public class Day22 extends AbstractAOC {
         return formatResult(total);
     }
 
-    private long getTotal(java.util.List<Item> list, int lowerX, int lowerY, int lowerZ, int size) {
+    private long getTotal(java.util.List<Step> list, int lowerX, int lowerY, int lowerZ, int size) {
         var h = size;
         long total = 0L;
         var grid = new boolean[h][h][h];
 
-        for (Item item : list) {
-            boolean target = item.task.equals("on");
+        for (Step step : list) {
+            boolean target = step.task.equals("on");
 
-            if (item.startX > lowerX + size - 1) continue;
-            if (item.endX < lowerX) continue;
-            if (item.startY > lowerY + size - 1) continue;
-            if (item.endY < lowerY) continue;
-            if (item.startZ > lowerZ + size - 1) continue;
-            if (item.endZ < lowerZ) continue;
+            if (step.startX > lowerX + size - 1) continue;
+            if (step.endX < lowerX) continue;
+            if (step.startY > lowerY + size - 1) continue;
+            if (step.endY < lowerY) continue;
+            if (step.startZ > lowerZ + size - 1) continue;
+            if (step.endZ < lowerZ) continue;
 
 
-            var startX = Math.max(item.startX, lowerX);
-            var endX = Math.min(item.endX, lowerX + size - 1);
-            var startY = Math.max(item.startY, lowerY);
-            var endY = Math.min(item.endY, lowerY + size - 1);
-            var startZ = Math.max(item.startZ, lowerZ);
-            var endZ = Math.min(item.endZ, lowerZ + size - 1);
+            var startX = Math.max(step.startX, lowerX);
+            var endX = Math.min(step.endX, lowerX + size - 1);
+            var startY = Math.max(step.startY, lowerY);
+            var endY = Math.min(step.endY, lowerY + size - 1);
+            var startZ = Math.max(step.startZ, lowerZ);
+            var endZ = Math.min(step.endZ, lowerZ + size - 1);
 
             for (int x = startX; x <= endX; x++) {
                 for (int y = startY; y <= endY; y++) {
@@ -73,8 +83,8 @@ public class Day22 extends AbstractAOC {
     }
 
     @ToString
-    @AllArgsConstructor
-    class Item {
+    @NoArgsConstructor
+    class Step {
 
         String task;
         int startX;
@@ -83,17 +93,55 @@ public class Day22 extends AbstractAOC {
         int endY;
         int startZ;
         int endZ;
+        int order;
+        Box box = new Box();
+        List<Step> intersecting = new ArrayList<>();
 
+        public Step(String task, int startX, int endX, int startY, int endY, int startZ, int endZ) {
+            this.task = task;
+            this.startX = startX;
+            this.endX = endX;
+            this.startY = startY;
+            this.endY = endY;
+            this.startZ = startZ;
+            this.endZ = endZ;
+
+            box.setWidth(endX - startX);
+            box.setDepth(endY - startY);
+            box.setHeight(endZ - startZ);
+
+            //Instantiating the Translate class
+            Translate translate = new Translate();
+
+            //setting the properties of the translate object
+            translate.setX(startX);
+            translate.setY(startY);
+            translate.setZ(startZ);
+
+            box.getTransforms().add(translate);
+        }
+
+        public void explode(Step test) {
+
+
+        }
+
+        public boolean intersects(Step test) {
+
+            return box.intersects(test.box.getBoundsInParent());
+//            return inRange(test.startX, test.endX, startX, endX) && inRange(test.startY, test.endY, startY, endY) && inRange(test.startZ, test.endZ, startZ, endZ);
+        }
     }
 
-    Item mapper(String input) {
+
+    Step mapper(String input) {
 
         var p = Pattern.compile("(on|off) x=(-?\\d*)\\.\\.(-?\\d*),y=(-?\\d*)\\.\\.(-?\\d*),z=(-?\\d*)\\.\\.(-?\\d*)");
         var m = new AOCMatcher(p.matcher(input));
 
         if (m.find()) {
             m.print();
-            return new Item(m.group(1), m.getInt(2), m.getInt(3), m.getInt(4), m.getInt(5), m.getInt(6), m.getInt(7));
+            return new Step(m.group(1), m.getInt(2), m.getInt(3), m.getInt(4), m.getInt(5), m.getInt(6), m.getInt(7));
         }
         return null;
     }
@@ -105,43 +153,76 @@ public class Day22 extends AbstractAOC {
 
         var total = 0L;
 
-        var list = getStringInput("_sample").stream().map(this::mapper).collect(Collectors.toList());
+        var steps = getStringInput("_sample").stream().map(this::mapper).collect(Collectors.toList());
 
-
-        int maxX = 0;
-        int minX = 0;
-        int maxY = 0;
-        int minY = 0;
-        int maxZ = 0;
-        int minZ = 0;
-        for (var s : list) {
-
-
-            maxX = Math.max(maxX, s.endX);
-            minX = Math.min(minX, s.startX);
-            maxY = Math.max(maxY, s.endY);
-            minY = Math.min(minY, s.startY);
-            maxZ = Math.max(maxZ, s.endZ);
-            minZ = Math.min(minZ, s.startZ);
-
-
+        Group root = new Group();
+        for (Step step : steps) {
+            step.order = order++;
+            log.info("Step {}", step);
+            root.getChildren().add(step.box);
         }
-        log.info("X {} {} {} {}", maxX, minX, maxX - minX, (maxX - minX) / 100);
-        log.info("Y {} {} {} {}", maxY, minY, maxY - minY, (maxY - minY) / 100);
-        log.info("Z {} {} {} {}", maxZ, minZ, maxZ - minZ, (maxZ - minZ) / 100);
 
-        log.info("{}", ((maxX - minX) * (maxY - minY) * (maxZ - minZ)) / (10000));
-        for (int x = minX; x < maxX; x += 100) {
-            log.info("{}", x);
-            for (int y = minY; y < maxY; y += 100) {
-                for (int z = minZ; z < maxZ; z += 100) {
+//        determineIntersects(steps);
 
-                    total =+ getTotal(list, x, y, z, 100);
+
+        var res = findFirstIntersect(steps);
+
+        log.info("Found {} {}", res.step.order, res.step2.order);
+
+//        root.get
+        return formatResult(total);
+    }
+
+    @AllArgsConstructor
+    class Result {
+        Step step;
+        Step step2;
+    }
+
+    public Result findFirstIntersect(List<Step> steps) {
+
+        for (int i = 0; i < steps.size(); i++) {
+            var subject = steps.get(i);
+            log.info("Finding for {}", subject.order);
+            for (int j = i + 1; j < steps.size(); j++) {
+
+                var test = steps.get(j);
+                log.info("  testing {}", test.order);
+
+                if (subject.intersects(test)) {
+
+                    return new Result(subject, test);
                 }
+
             }
         }
-//2758514936282235
-        return formatResult(total);
+
+        return null;
+
+    }
+
+
+    public void determineIntersects(List<Step> steps) {
+
+        for (int i = 0; i < steps.size(); i++) {
+            var subject = steps.get(i);
+            log.info("Finding for {}", subject.order);
+            for (int j = i + 1; j < steps.size(); j++) {
+
+                var test = steps.get(j);
+                log.info("  testing {}", test.order);
+
+                if (subject.intersects(test)) {
+                    subject.intersecting.add(test);
+                }
+
+            }
+        }
+
+        for (Step step : steps) {
+            log.info("{} {}", step.order, step.intersecting.size());
+        }
+
     }
 
     @Override
@@ -151,6 +232,7 @@ public class Day22 extends AbstractAOC {
 
     @Override
     public String getAnswerPart2() {
-        return "";
+//        return "2758514936282235";
+        return "474140";
     }
 }
