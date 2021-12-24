@@ -314,6 +314,7 @@ public class Matrix<T> {
     }
 
     public void printMatrix(boolean useSeparator) {
+        log.info("--------------------------");
         long max = 0;
         for (int i = 0; i < getHeight(); i++) {
             for (int j = 0; j < getWidth(); j++) {
