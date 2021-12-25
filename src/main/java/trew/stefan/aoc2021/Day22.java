@@ -1,11 +1,5 @@
 package trew.stefan.aoc2021;
 
-import javafx.application.Application;
-import javafx.scene.Group;
-import javafx.scene.Scene;
-import javafx.scene.shape.Box;
-import javafx.scene.transform.Translate;
-import javafx.stage.Stage;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
@@ -14,25 +8,19 @@ import trew.stefan.AbstractAOC;
 import trew.stefan.utils.AOCMatcher;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 @Slf4j
 public class Day22 extends AbstractAOC {
 
-    int order = 1;
-
     @Override
     public String runPart1() {
 
         var total = 0L;
-        order = 1;
-        var list = getStringInput("").stream().map(this::mapper).collect(Collectors.toList());
-
-
-        total = getTotal(list, -50, -50, -50, 101);
-
         return formatResult(total);
     }
 
@@ -41,64 +29,69 @@ public class Day22 extends AbstractAOC {
         long total = 0L;
         var grid = new boolean[h][h][h];
 
-        for (Step step : list) {
-            boolean target = step.task.equals("on");
 
-            if (step.startX > lowerX + size - 1) continue;
-            if (step.endX < lowerX) continue;
-            if (step.startY > lowerY + size - 1) continue;
-            if (step.endY < lowerY) continue;
-            if (step.startZ > lowerZ + size - 1) continue;
-            if (step.endZ < lowerZ) continue;
-
-
-            var startX = Math.max(step.startX, lowerX);
-            var endX = Math.min(step.endX, lowerX + size - 1);
-            var startY = Math.max(step.startY, lowerY);
-            var endY = Math.min(step.endY, lowerY + size - 1);
-            var startZ = Math.max(step.startZ, lowerZ);
-            var endZ = Math.min(step.endZ, lowerZ + size - 1);
-
-            for (int x = startX; x <= endX; x++) {
-                for (int y = startY; y <= endY; y++) {
-                    for (int z = startZ; z <= endZ; z++) {
-                        grid[x + lowerX + size - 1][y + lowerY + size - 1][z + lowerZ + size - 1] = target;
-                    }
-                }
-            }
-
-        }
-
-        for (int i = 0; i < size; i++) {
-            for (int j = 0; j < size; j++) {
-                for (int k = 0; k < size; k++) {
-                    if (grid[i][j][k]) {
-                        total++;
-                    }
-
-                }
-            }
-        }
         return total;
     }
 
+    @AllArgsConstructor
     @ToString
-    @NoArgsConstructor
-    class Step {
+    class IntersectLine {
 
-        String task;
+        Character axis;
+        int point;
+    }
+
+    @ToString
+    class Box {
         int startX;
         int endX;
         int startY;
         int endY;
         int startZ;
         int endZ;
-        int order;
-        Box box = new Box();
-        List<Step> intersecting = new ArrayList<>();
 
-        public Step(String task, int startX, int endX, int startY, int endY, int startZ, int endZ) {
-            this.task = task;
+        List<Step> steps = new ArrayList<>();
+
+
+        public boolean sameSpace(Box box) {
+            return startX == box.startX && endX == box.endX && startY == box.startY && endY == box.endY && startZ == box.startZ && endZ == box.endZ;
+        }
+
+
+        List<Box> split(IntersectLine line) {
+
+            var result = new ArrayList<Box>();
+            if (line.axis == 'x') {
+                if (startX < line.point && line.point < endX) {
+
+                    result.add(new Box(steps, startX, line.point, startY, endY, startZ, endZ));
+                    result.add(new Box(steps, line.point, endX, startY, endY, startZ, endZ));
+                } else {
+                    result.add(this);
+                }
+            }
+            if (line.axis == 'y') {
+                if (startY < line.point && line.point < endY) {
+
+                    result.add(new Box(steps, startX, endX, startY, line.point, startZ, endZ));
+                    result.add(new Box(steps, startX, endX, line.point, endY, startZ, endZ));
+                } else {
+                    result.add(this);
+                }
+            }
+            if (line.axis == 'z') {
+                if (startZ < line.point && line.point < endZ) {
+
+                    result.add(new Box(steps, startX, endX, startY, endY, startZ, line.point));
+                    result.add(new Box(steps, startX, endX, startY, endY, line.point, endZ));
+                } else {
+                    result.add(this);
+                }
+            }
+            return result;
+        }
+
+        public Box(Step step, int startX, int endX, int startY, int endY, int startZ, int endZ) {
             this.startX = startX;
             this.endX = endX;
             this.startY = startY;
@@ -106,46 +99,111 @@ public class Day22 extends AbstractAOC {
             this.startZ = startZ;
             this.endZ = endZ;
 
-            box.setWidth(endX - startX);
-            box.setDepth(endY - startY);
-            box.setHeight(endZ - startZ);
-
-            //Instantiating the Translate class
-            Translate translate = new Translate();
-
-            //setting the properties of the translate object
-            translate.setX(startX);
-            translate.setY(startY);
-            translate.setZ(startZ);
-
-            box.getTransforms().add(translate);
-        }
-
-        public void explode(Step test) {
-
+            this.steps.add(step);
 
         }
 
-        public boolean intersects(Step test) {
+        public Box(List<Step> steps, int startX, int endX, int startY, int endY, int startZ, int endZ) {
+            this.startX = startX;
+            this.endX = endX;
+            this.startY = startY;
+            this.endY = endY;
+            this.startZ = startZ;
+            this.endZ = endZ;
 
-            return box.intersects(test.box.getBoundsInParent());
-//            return inRange(test.startX, test.endX, startX, endX) && inRange(test.startY, test.endY, startY, endY) && inRange(test.startZ, test.endZ, startZ, endZ);
+            this.steps = steps;
+
         }
+
+        public List<IntersectLine> intersects(Box test) {
+            var result = new ArrayList<IntersectLine>();
+            if (inRange(test.startX, startX, endX)) {
+                result.add(new IntersectLine('x', test.startX));
+            }
+            if (inRange(test.endX, startX, endX)) {
+                result.add(new IntersectLine('x', test.endX));
+            }
+            if (inRange(test.startY, startY, endY)) {
+                result.add(new IntersectLine('y', test.startY));
+            }
+            if (inRange(test.endY, startY, endY)) {
+                result.add(new IntersectLine('y', test.endY));
+            }
+            if (inRange(test.startZ, startZ, endZ)) {
+                result.add(new IntersectLine('z', test.startZ));
+            }
+            if (inRange(test.endZ, startZ, endZ)) {
+                result.add(new IntersectLine('z', test.endZ));
+            }
+
+            return result;
+        }
+
+        private boolean inRange(int point, int start2, int end2) {
+            return start2 < point && point < end2;
+        }
+
+
+        long getVolume() {
+            return (endX - startX) * (endY - startY) * (endZ - startZ);
+
+        }
+
     }
 
+    @ToString
+    @NoArgsConstructor
+    class Step {
 
-    Step mapper(String input) {
+        String task;
+        int order;
 
-        var p = Pattern.compile("(on|off) x=(-?\\d*)\\.\\.(-?\\d*),y=(-?\\d*)\\.\\.(-?\\d*),z=(-?\\d*)\\.\\.(-?\\d*)");
-        var m = new AOCMatcher(p.matcher(input));
+        public Step(String task, int order) {
+            this.task = task;
 
-        if (m.find()) {
-            m.print();
-            return new Step(m.group(1), m.getInt(2), m.getInt(3), m.getInt(4), m.getInt(5), m.getInt(6), m.getInt(7));
+            this.order = order;
         }
-        return null;
+
     }
 
+    List<Box> split(Box box1, Box box2, List<IntersectLine> lines, List<IntersectLine> lines2) {
+        var result = split(box1, lines);
+
+        var temp = split(box2, lines2);
+        for (Box boxA : temp) {
+            var found = false;
+            for (Box boxB : result) {
+                if (boxA.sameSpace(boxB)) {
+                    boxA.steps.addAll(boxB.steps);
+                    log.info("Found match {}", boxA);
+                    found = true;
+                    break;
+                }
+            }
+            if (!found) {
+                result.add(boxA);
+            }
+        }
+
+        return result;
+    }
+
+    List<Box> split(Box box, List<IntersectLine> lines) {
+        var result = new ArrayList<Box>();
+
+        result.add(box);
+
+        for (IntersectLine line : lines) {
+            var temp = new ArrayList<Box>();
+
+            for (Box box1 : result) {
+                temp.addAll(box1.split(line));
+            }
+            result = temp;
+        }
+
+        return result;
+    }
 
     @Override
     public String runPart2() {
@@ -153,76 +211,48 @@ public class Day22 extends AbstractAOC {
 
         var total = 0L;
 
-        var steps = getStringInput("_sample").stream().map(this::mapper).collect(Collectors.toList());
+        List<Box> boxes = new ArrayList<>();
+        for (String s : getStringInput("_sample")) {
 
-        Group root = new Group();
-        for (Step step : steps) {
-            step.order = order++;
-            log.info("Step {}", step);
-            root.getChildren().add(step.box);
+            var p = Pattern.compile("(on|off) x=(-?\\d*)\\.\\.(-?\\d*),y=(-?\\d*)\\.\\.(-?\\d*),z=(-?\\d*)\\.\\.(-?\\d*)");
+            var m = new AOCMatcher(p.matcher(s));
+
+            if (m.find()) {
+                m.print();
+                var step = new Step(m.group(1), boxes.size());
+                boxes.add(new Box(step, m.getInt(2), m.getInt(3), m.getInt(4), m.getInt(5), m.getInt(6), m.getInt(7)));
+            }
+            if (boxes.size() == 2) {
+                break;
+            }
         }
 
-//        determineIntersects(steps);
+        var box1 = boxes.get(0);
+        var box2 = boxes.get(1);
+
+        var intersects = box1.intersects(box2);
+        var intersects2 = box2.intersects(box1);
+        log.info("box1 {} {} ", box1, box1.getVolume());
+        log.info("box2 {} {} ", box2, box2.getVolume());
+        log.info("intersects {}", intersects);
+        log.info("intersects2 {}", intersects2);
+        var splitBoxes = split(box1, box2, intersects, intersects2);
+        var sum = 0;
+        var result = new ArrayList<Box>();
+        for (Box splitBox : splitBoxes) {
+            sum += splitBox.getVolume();
+            log.info("split {} {}", splitBox, splitBox.getVolume());
+        }
 
 
-        var res = findFirstIntersect(steps);
-
-        log.info("Found {} {}", res.step.order, res.step2.order);
-
+        log.info("sum {}", sum);
 //        root.get
+
+        for (Box splitBox : result) {
+
+            log.info("result {} {}", splitBox, splitBox.getVolume());
+        }
         return formatResult(total);
-    }
-
-    @AllArgsConstructor
-    class Result {
-        Step step;
-        Step step2;
-    }
-
-    public Result findFirstIntersect(List<Step> steps) {
-
-        for (int i = 0; i < steps.size(); i++) {
-            var subject = steps.get(i);
-            log.info("Finding for {}", subject.order);
-            for (int j = i + 1; j < steps.size(); j++) {
-
-                var test = steps.get(j);
-                log.info("  testing {}", test.order);
-
-                if (subject.intersects(test)) {
-
-                    return new Result(subject, test);
-                }
-
-            }
-        }
-
-        return null;
-
-    }
-
-
-    public void determineIntersects(List<Step> steps) {
-
-        for (int i = 0; i < steps.size(); i++) {
-            var subject = steps.get(i);
-            log.info("Finding for {}", subject.order);
-            for (int j = i + 1; j < steps.size(); j++) {
-
-                var test = steps.get(j);
-                log.info("  testing {}", test.order);
-
-                if (subject.intersects(test)) {
-                    subject.intersecting.add(test);
-                }
-
-            }
-        }
-
-        for (Step step : steps) {
-            log.info("{} {}", step.order, step.intersecting.size());
-        }
-
     }
 
     @Override
