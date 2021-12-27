@@ -7,10 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import trew.stefan.AbstractAOC;
 import trew.stefan.utils.AOCMatcher;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
@@ -50,7 +47,7 @@ public class Day22 extends AbstractAOC {
         int startZ;
         int endZ;
 
-        List<Step> steps = new ArrayList<>();
+        Set<Step> steps = new HashSet<>();
 
 
         public boolean sameSpace(Box box) {
@@ -103,7 +100,7 @@ public class Day22 extends AbstractAOC {
 
         }
 
-        public Box(List<Step> steps, int startX, int endX, int startY, int endY, int startZ, int endZ) {
+        public Box(Set<Step> steps, int startX, int endX, int startY, int endY, int startZ, int endZ) {
             this.startX = startX;
             this.endX = endX;
             this.startY = startY;
@@ -117,34 +114,49 @@ public class Day22 extends AbstractAOC {
 
         public List<IntersectLine> intersects(Box test) {
             var result = new ArrayList<IntersectLine>();
-            if (inRange(test.startX, startX, endX)) {
+            if (inStartRange(test.startX, startX, endX)) {
                 result.add(new IntersectLine('x', test.startX));
             }
-            if (inRange(test.endX, startX, endX)) {
+            if (inEndRange(test.endX, startX, endX)) {
                 result.add(new IntersectLine('x', test.endX));
             }
-            if (inRange(test.startY, startY, endY)) {
+            if (inStartRange(test.startY, startY, endY)) {
                 result.add(new IntersectLine('y', test.startY));
             }
-            if (inRange(test.endY, startY, endY)) {
+            if (inEndRange(test.endY, startY, endY)) {
                 result.add(new IntersectLine('y', test.endY));
             }
-            if (inRange(test.startZ, startZ, endZ)) {
+            if (inStartRange(test.startZ, startZ, endZ)) {
                 result.add(new IntersectLine('z', test.startZ));
             }
-            if (inRange(test.endZ, startZ, endZ)) {
+            if (inEndRange(test.endZ, startZ, endZ)) {
                 result.add(new IntersectLine('z', test.endZ));
             }
 
             return result;
         }
 
-        private boolean inRange(int point, int start2, int end2) {
+        private boolean inStartRange(int point, int start2, int end2) {
             return start2 < point && point < end2;
         }
 
+        private boolean inEndRange(int point, int start2, int end2) {
+            return start2 < point && point < end2;
+        }
 
         long getVolume() {
+
+            var state = false;
+            var list = steps.stream().sorted(Comparator.comparingInt(o -> o.order)).collect(Collectors.toList());
+
+            for (Step step : list) {
+                state = step.task.equals("on");
+            }
+
+            if (!state) {
+                return 0;
+            }
+
             return (endX - startX) * (endY - startY) * (endZ - startZ);
 
         }
@@ -157,6 +169,19 @@ public class Day22 extends AbstractAOC {
 
         String task;
         int order;
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            Step step = (Step) o;
+            return order == step.order && Objects.equals(task, step.task);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(task, order);
+        }
 
         public Step(String task, int order) {
             this.task = task;
@@ -175,7 +200,7 @@ public class Day22 extends AbstractAOC {
             for (Box boxB : result) {
                 if (boxA.sameSpace(boxB)) {
                     boxA.steps.addAll(boxB.steps);
-                    log.info("Found match {}", boxA);
+//                    log.info("Found match {}", boxA);
                     found = true;
                     break;
                 }
@@ -220,39 +245,66 @@ public class Day22 extends AbstractAOC {
             if (m.find()) {
                 m.print();
                 var step = new Step(m.group(1), boxes.size());
-                boxes.add(new Box(step, m.getInt(2), m.getInt(3), m.getInt(4), m.getInt(5), m.getInt(6), m.getInt(7)));
+                boxes.add(new Box(step, m.getInt(2), m.getInt(3) + 1, m.getInt(4), m.getInt(5) + 1, m.getInt(6), m.getInt(7) + 1));
             }
-            if (boxes.size() == 2) {
-                break;
-            }
-        }
 
-        var box1 = boxes.get(0);
-        var box2 = boxes.get(1);
-
-        var intersects = box1.intersects(box2);
-        var intersects2 = box2.intersects(box1);
-        log.info("box1 {} {} ", box1, box1.getVolume());
-        log.info("box2 {} {} ", box2, box2.getVolume());
-        log.info("intersects {}", intersects);
-        log.info("intersects2 {}", intersects2);
-        var splitBoxes = split(box1, box2, intersects, intersects2);
-        var sum = 0;
-        var result = new ArrayList<Box>();
-        for (Box splitBox : splitBoxes) {
-            sum += splitBox.getVolume();
-            log.info("split {} {}", splitBox, splitBox.getVolume());
         }
 
 
-        log.info("sum {}", sum);
-//        root.get
+        List<Box> result = new ArrayList<Box>();
+
+        for (Box box : boxes) {
+
+            result = getBoxes(result, box);
+        }
+
 
         for (Box splitBox : result) {
-
+            total += splitBox.getVolume();
             log.info("result {} {}", splitBox, splitBox.getVolume());
         }
         return formatResult(total);
+    }
+
+    List<Box> getBoxes(List<Box> boxes, Box box2) {
+        List<Box> result = new ArrayList<>();
+        if (boxes.isEmpty()) {
+            result.add(box2);
+            return result;
+
+        }
+
+        for (Box box : boxes) {
+            var temp = getBoxes(box, box2);
+            for (Box boxA : temp) {
+                var found = false;
+                for (Box boxB : result) {
+                    if (boxA.sameSpace(boxB)) {
+                        boxA.steps.addAll(boxB.steps);
+//                        log.info("Found match {}", boxA);
+                        found = true;
+                        break;
+                    }
+                }
+                if (!found) {
+                    result.add(boxA);
+                }
+            }
+
+        }
+
+        return result;
+    }
+
+    List<Box> getBoxes(Box box1, Box box2) {
+        var intersects = box1.intersects(box2);
+        var intersects2 = box2.intersects(box1);
+//        log.info("box1 {} {} ", box1, box1.getVolume());
+//        log.info("box2 {} {} ", box2, box2.getVolume());
+//        log.info("intersects {}", intersects);
+//        log.info("intersects2 {}", intersects2);
+        return split(box1, box2, intersects, intersects2);
+
     }
 
     @Override
