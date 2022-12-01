@@ -157,8 +157,8 @@ public class Main {
 
     public static void main(String[] args) {
         Map<Integer, DayResult> summaries = new HashMap<>();//buildSummary();
-        int year = 2021;
-        for (int i = 21; i <= 21; i++) {
+        int year = 2022;
+        for (int i = 1; i <= 1; i++) {
 //            if (i + 1 != 15) continue;
             if (i % 5 == 0) {
                 String div = "----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------";

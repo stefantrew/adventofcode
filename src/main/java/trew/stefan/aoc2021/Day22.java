@@ -7,7 +7,10 @@ import lombok.extern.slf4j.Slf4j;
 import trew.stefan.AbstractAOC;
 import trew.stefan.utils.AOCMatcher;
 
+import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.*;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
@@ -21,289 +24,201 @@ public class Day22 extends AbstractAOC {
         return formatResult(total);
     }
 
-    private long getTotal(java.util.List<Step> list, int lowerX, int lowerY, int lowerZ, int size) {
-        var h = size;
-        long total = 0L;
-        var grid = new boolean[h][h][h];
+    public class Coordinate {
+        int x, y, z;
 
-
-        return total;
-    }
-
-    @AllArgsConstructor
-    @ToString
-    class IntersectLine {
-
-        Character axis;
-        int point;
-    }
-
-    @ToString
-    class Box {
-        int startX;
-        int endX;
-        int startY;
-        int endY;
-        int startZ;
-        int endZ;
-
-        Set<Step> steps = new HashSet<>();
-
-
-        public boolean sameSpace(Box box) {
-            return startX == box.startX && endX == box.endX && startY == box.startY && endY == box.endY && startZ == box.startZ && endZ == box.endZ;
+        Coordinate(int x, int y, int z) {
+            this.x = x;
+            this.y = y;
+            this.z = z;
         }
-
-
-        List<Box> split(IntersectLine line) {
-
-            var result = new ArrayList<Box>();
-            if (line.axis == 'x') {
-                if (startX < line.point && line.point < endX) {
-
-                    result.add(new Box(steps, startX, line.point, startY, endY, startZ, endZ));
-                    result.add(new Box(steps, line.point, endX, startY, endY, startZ, endZ));
-                } else {
-                    result.add(this);
-                }
-            }
-            if (line.axis == 'y') {
-                if (startY < line.point && line.point < endY) {
-
-                    result.add(new Box(steps, startX, endX, startY, line.point, startZ, endZ));
-                    result.add(new Box(steps, startX, endX, line.point, endY, startZ, endZ));
-                } else {
-                    result.add(this);
-                }
-            }
-            if (line.axis == 'z') {
-                if (startZ < line.point && line.point < endZ) {
-
-                    result.add(new Box(steps, startX, endX, startY, endY, startZ, line.point));
-                    result.add(new Box(steps, startX, endX, startY, endY, line.point, endZ));
-                } else {
-                    result.add(this);
-                }
-            }
-            return result;
-        }
-
-        public Box(Step step, int startX, int endX, int startY, int endY, int startZ, int endZ) {
-            this.startX = startX;
-            this.endX = endX;
-            this.startY = startY;
-            this.endY = endY;
-            this.startZ = startZ;
-            this.endZ = endZ;
-
-            this.steps.add(step);
-
-        }
-
-        public Box(Set<Step> steps, int startX, int endX, int startY, int endY, int startZ, int endZ) {
-            this.startX = startX;
-            this.endX = endX;
-            this.startY = startY;
-            this.endY = endY;
-            this.startZ = startZ;
-            this.endZ = endZ;
-
-            this.steps = steps;
-
-        }
-
-        public List<IntersectLine> intersects(Box test) {
-            var result = new ArrayList<IntersectLine>();
-            if (inStartRange(test.startX, startX, endX)) {
-                result.add(new IntersectLine('x', test.startX));
-            }
-            if (inEndRange(test.endX, startX, endX)) {
-                result.add(new IntersectLine('x', test.endX));
-            }
-            if (inStartRange(test.startY, startY, endY)) {
-                result.add(new IntersectLine('y', test.startY));
-            }
-            if (inEndRange(test.endY, startY, endY)) {
-                result.add(new IntersectLine('y', test.endY));
-            }
-            if (inStartRange(test.startZ, startZ, endZ)) {
-                result.add(new IntersectLine('z', test.startZ));
-            }
-            if (inEndRange(test.endZ, startZ, endZ)) {
-                result.add(new IntersectLine('z', test.endZ));
-            }
-
-            return result;
-        }
-
-        private boolean inStartRange(int point, int start2, int end2) {
-            return start2 < point && point < end2;
-        }
-
-        private boolean inEndRange(int point, int start2, int end2) {
-            return start2 < point && point < end2;
-        }
-
-        long getVolume() {
-
-            var state = false;
-            var list = steps.stream().sorted(Comparator.comparingInt(o -> o.order)).collect(Collectors.toList());
-
-            for (Step step : list) {
-                state = step.task.equals("on");
-            }
-
-            if (!state) {
-                return 0;
-            }
-
-            return (endX - startX) * (endY - startY) * (endZ - startZ);
-
-        }
-
-    }
-
-    @ToString
-    @NoArgsConstructor
-    class Step {
-
-        String task;
-        int order;
 
         @Override
-        public boolean equals(Object o) {
-            if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false;
-            Step step = (Step) o;
-            return order == step.order && Objects.equals(task, step.task);
+        public String toString() {
+            return "(" + x + "," + y + "," + z + ")";
+        }
+
+        @Override
+        public boolean equals(Object obj) {
+            if (obj == null) {
+                return false;
+            }
+
+            if (this.getClass() != obj.getClass()) {
+                return false;
+            }
+
+            Coordinate other = (Coordinate) obj;
+
+            if (this.x == other.x && this.y == other.y && this.z == other.z) {
+                return true;
+            }
+
+            return false;
         }
 
         @Override
         public int hashCode() {
-            return Objects.hash(task, order);
+            final int prime = 31;
+            int result = 1;
+            result = prime * result + x;
+            result = prime * result + y;
+            result = prime * result + z;
+            return result;
         }
-
-        public Step(String task, int order) {
-            this.task = task;
-
-            this.order = order;
-        }
-
     }
 
-    List<Box> split(Box box1, Box box2, List<IntersectLine> lines, List<IntersectLine> lines2) {
-        var result = split(box1, lines);
+    public class Cuboid {
+        int x1, x2, y1, y2, z1, z2;
 
-        var temp = split(box2, lines2);
-        for (Box boxA : temp) {
-            var found = false;
-            for (Box boxB : result) {
-                if (boxA.sameSpace(boxB)) {
-                    boxA.steps.addAll(boxB.steps);
-//                    log.info("Found match {}", boxA);
-                    found = true;
-                    break;
-                }
-            }
-            if (!found) {
-                result.add(boxA);
-            }
+        Cuboid(int x1, int x2, int y1, int y2, int z1, int z2) {
+            this.x1 = x1;
+            this.x2 = x2;
+            this.y1 = y1;
+            this.y2 = y2;
+            this.z1 = z1;
+            this.z2 = z2;
         }
 
-        return result;
-    }
-
-    List<Box> split(Box box, List<IntersectLine> lines) {
-        var result = new ArrayList<Box>();
-
-        result.add(box);
-
-        for (IntersectLine line : lines) {
-            var temp = new ArrayList<Box>();
-
-            for (Box box1 : result) {
-                temp.addAll(box1.split(line));
-            }
-            result = temp;
+        Cuboid(Pair<Integer, Integer> xRange, Pair<Integer, Integer> yRange, Pair<Integer, Integer> zRange) {
+            this(xRange.first, xRange.second, yRange.first, yRange.second, zRange.first, zRange.second);
         }
 
-        return result;
+        long getVolume() {
+            long length = x2 - x1 + 1;
+            long width = y2 - y1 + 1;
+            long height = z2 - z1 + 1;
+            return length * width * height;
+        }
+
+        @Override
+        public String toString() {
+            StringBuilder sb = new StringBuilder();
+            sb.append("[");
+            sb.append("(" + x1 + "," + x2 + ")");
+            sb.append(",");
+            sb.append("(" + y1 + "," + y2 + ")");
+            sb.append(",");
+            sb.append("(" + z1 + "," + z2 + ")");
+            sb.append("]");
+            return sb.toString();
+        }
     }
+
+    public class Instruction {
+        boolean toggle;
+        Pair<Integer, Integer> xRange, yRange, zRange;
+
+        Instruction(boolean toggle, Pair<Integer, Integer> xRange, Pair<Integer, Integer> yRange, Pair<Integer, Integer> zRange) {
+            this.toggle = toggle;
+            this.xRange = new Pair<>(xRange);
+            this.yRange = new Pair<>(yRange);
+            this.zRange = new Pair<>(zRange);
+        }
+
+        @Override
+        public String toString() {
+            StringBuilder sb = new StringBuilder();
+
+            sb.append(toggle ? "on" : "off");
+            sb.append(" ");
+            sb.append("x=" + xRange.first + ".." + xRange.second);
+            sb.append(",");
+            sb.append("y=" + yRange.first + ".." + yRange.second);
+            sb.append(",");
+            sb.append("z=" + zRange.first + ".." + zRange.second);
+
+            return sb.toString();
+        }
+    }
+
+    public class Pair<T, V> {
+        T first;
+        V second;
+
+        Pair(T first, V second) {
+            this.first = first;
+            this.second = second;
+        }
+
+        Pair(Pair<T, V> other) {
+            this.first = other.first;
+            this.second = other.second;
+        }
+
+        @Override
+        public String toString() {
+            return "(" + this.first + "," + this.second + ")";
+        }
+    }
+
 
     @Override
     public String runPart2() {
 
+        List<Instruction> instructions = readInstructions();
 
-        var total = 0L;
+        List<Pair<Integer, Cuboid>> reactorCore = new ArrayList<>();
 
-        List<Box> boxes = new ArrayList<>();
-        for (String s : getStringInput("_sample")) {
+        // Below solution calculates the answer using the formula for union of sets (see: https://en.wikipedia.org/wiki/Inclusion%E2%80%93exclusion_principle#Statement)
+        for (Instruction instruction : instructions) {
+            List<Pair<Integer, Cuboid>> cuboidsToAddInCore = new ArrayList<>();
+            Cuboid cuboidToProcess = new Cuboid(instruction.xRange, instruction.yRange, instruction.zRange);
 
-            var p = Pattern.compile("(on|off) x=(-?\\d*)\\.\\.(-?\\d*),y=(-?\\d*)\\.\\.(-?\\d*),z=(-?\\d*)\\.\\.(-?\\d*)");
-            var m = new AOCMatcher(p.matcher(s));
-
-            if (m.find()) {
-                m.print();
-                var step = new Step(m.group(1), boxes.size());
-                boxes.add(new Box(step, m.getInt(2), m.getInt(3) + 1, m.getInt(4), m.getInt(5) + 1, m.getInt(6), m.getInt(7) + 1));
+            if (instruction.toggle) {
+                cuboidsToAddInCore.add(new Pair<>(1, cuboidToProcess));
             }
 
-        }
-
-
-        List<Box> result = new ArrayList<Box>();
-
-        for (Box box : boxes) {
-
-            result = getBoxes(result, box);
-        }
-
-
-        for (Box splitBox : result) {
-            total += splitBox.getVolume();
-            log.info("result {} {}", splitBox, splitBox.getVolume());
-        }
-        return formatResult(total);
-    }
-
-    List<Box> getBoxes(List<Box> boxes, Box box2) {
-        List<Box> result = new ArrayList<>();
-        if (boxes.isEmpty()) {
-            result.add(box2);
-            return result;
-
-        }
-
-        for (Box box : boxes) {
-            var temp = getBoxes(box, box2);
-            for (Box boxA : temp) {
-                var found = false;
-                for (Box boxB : result) {
-                    if (boxA.sameSpace(boxB)) {
-                        boxA.steps.addAll(boxB.steps);
-//                        log.info("Found match {}", boxA);
-                        found = true;
-                        break;
-                    }
-                }
-                if (!found) {
-                    result.add(boxA);
+            for (Pair<Integer, Cuboid> reactorCuboid : reactorCore) {
+                Cuboid intersection = getIntersection(cuboidToProcess, reactorCuboid.second);
+                if (intersection != null) {
+                    cuboidsToAddInCore.add(new Pair<>(-reactorCuboid.first, intersection));
                 }
             }
 
+            reactorCore.addAll(cuboidsToAddInCore);
         }
 
-        return result;
+        long answer = reactorCore.stream().mapToLong(x -> x.first * x.second.getVolume()).sum();
+        return formatResult(answer);
     }
 
-    List<Box> getBoxes(Box box1, Box box2) {
-        var intersects = box1.intersects(box2);
-        var intersects2 = box2.intersects(box1);
-//        log.info("box1 {} {} ", box1, box1.getVolume());
-//        log.info("box2 {} {} ", box2, box2.getVolume());
-//        log.info("intersects {}", intersects);
-//        log.info("intersects2 {}", intersects2);
-        return split(box1, box2, intersects, intersects2);
+
+    private Cuboid getIntersection(Cuboid A, Cuboid B) {
+        Cuboid intersection = new Cuboid(Math.max(A.x1, B.x1), Math.min(A.x2, B.x2), Math.max(A.y1, B.y1), Math.min(A.y2, B.y2), Math.max(A.z1, B.z1), Math.min(A.z2, B.z2));
+        if ((intersection.x1 > intersection.x2) || (intersection.y1 > intersection.y2) || (intersection.z1 > intersection.z2)) {
+            return null;
+        } else {
+            return intersection;
+        }
+    }
+
+
+    private List<Instruction> readInstructions() {
+        var list = getStringInput("");
+        List<Instruction> instructions = new ArrayList<>();
+
+        Pattern instructionPattern = Pattern.compile("(on|off) (x=-?\\d+..-?\\d+),(y=-?\\d+..-?\\d+),(z=-?\\d+..-?\\d+)");
+        Pattern rangePattern = Pattern.compile("[xyz]=(-?\\d+)..(-?\\d+)");
+        for (String line : list) {
+            Matcher mat = instructionPattern.matcher(line);
+            mat.matches();
+            String toggleStr = mat.group(1);
+            boolean toggle = toggleStr.equals("on") ? true : false;
+
+            List<Pair<Integer, Integer>> ranges = new ArrayList<>();
+            for (int i = 2; i <= 4; i++) {
+                Matcher rangeMat = rangePattern.matcher(mat.group(i));
+                rangeMat.matches();
+                ranges.add(new Pair<>(Integer.decode(rangeMat.group(1)), Integer.decode(rangeMat.group(2))));
+            }
+
+            Instruction instruction = new Instruction(toggle, ranges.get(0), ranges.get(1), ranges.get(2));
+            instructions.add(instruction);
+        }
+
+        return instructions;
+
 
     }
 

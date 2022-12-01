@@ -13,8 +13,7 @@ import java.util.stream.Collectors;
 
 @Slf4j
 public class InputReader {
-
-    private static String s = "C:/code/aoc/2021/src/main/resources/inputs/";
+    private static String s = "C:/code/personal/aoc/2021/src/main/resources/inputs/";
 
     private static final String session = "***REMOVED***";
 
