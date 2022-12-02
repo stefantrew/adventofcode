@@ -1,12 +1,9 @@
 package trew.stefan.aoc2022;
 
-import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import trew.stefan.AbstractAOC;
 import trew.stefan.utils.NumberList;
 
-import java.util.ArrayList;
-import java.util.Collections;
 
 @Slf4j
 public class Day01 extends AbstractAOC {
@@ -14,8 +11,10 @@ public class Day01 extends AbstractAOC {
 
     @Override
     public String runPart1() {
+        return String.valueOf(getTotals().max());
+    }
 
-
+    private NumberList getTotals() {
         var list = getStringInput();
 
         long count = 0;
@@ -27,48 +26,17 @@ public class Day01 extends AbstractAOC {
                 totals.add(count);
                 count = 0;
             } else {
-                var i = Integer.parseInt(s);
-                count += i;
+                count += Integer.parseInt(s);
             }
 
         }
-        if (count > 0) {
-            totals.add(count);
-        }
-
-
-        return String.valueOf(totals.average());
+        totals.add(count);
+        return totals;
     }
 
     @Override
     public String runPart2() {
-
-
-        var list = getStringInput();
-
-
-        long count = 0;
-        var totals = new NumberList();
-
-        for (var s : list) {
-
-            if (s.isBlank()) {
-                totals.add(count);
-                count = 0;
-            } else {
-
-                var i = Integer.parseInt(s);
-                count += i;
-            }
-
-        }
-        if (count > 0) {
-            totals.add(count);
-        }
-
-        var i = totals.reverseSort().take(3).sum();
-
-        return String.valueOf(i);
+        return String.valueOf(getTotals().reverseSort().take(3).sum());
     }
 
     @Override
