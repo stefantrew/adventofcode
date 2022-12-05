@@ -19,7 +19,6 @@ public class Day05 extends AbstractAOC {
     }
 
     private String run(boolean moveSingle) {
-        var result = "";
 
         var p = Pattern.compile("move (\\d*) from (\\d*) to (\\d*)");
         var str = getStringInput("");
@@ -65,9 +64,7 @@ public class Day05 extends AbstractAOC {
 
         }
 
-        result = stacks.stream().collect(StringBuilder::new, (sb, stack) -> sb.append(stack.pop()), StringBuilder::append).toString();
-
-        return result;
+        return stacks.stream().collect(StringBuilder::new, (sb, stack) -> sb.append(stack.pop()), StringBuilder::append).toString();
     }
 
     @Override
