@@ -160,7 +160,7 @@ public class Main {
         Map<Integer, DayResult> summaries = new HashMap<>();//buildSummary();
         int year = 2022;
 
-        Integer runDay = 4;
+        Integer runDay = 5;
 
         if (runDay != null) {
             runDay(year, runDay, summaries.get(runDay));
