@@ -90,7 +90,8 @@ public class Main {
             day2.setDay(day, year);
 
 
-        } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | NoSuchMethodException | InvocationTargetException e) {
+        } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | NoSuchMethodException |
+                 InvocationTargetException e) {
 //            log.error(wrapColour(String.format("Day %s Class not found: %s", day, className), FOREGROUND_RED));
             return;
         }
@@ -158,13 +159,22 @@ public class Main {
     public static void main(String[] args) {
         Map<Integer, DayResult> summaries = new HashMap<>();//buildSummary();
         int year = 2022;
-        for (int i = 0; i <= 1; i++) {
+
+        Integer runDay = 4;
+
+        if (runDay != null) {
+            runDay(year, runDay, summaries.get(runDay));
+        } else {
+
+
+            for (int i = 2; i <= 2; i++) {
 //            if (i + 1 != 15) continue;
-            if (i % 5 == 0) {
-                String div = "----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------";
-                log.info(wrapColour(div, FOREGROUND_WHITE));
+                if (i % 5 == 0) {
+                    String div = "----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------";
+                    log.info(wrapColour(div, FOREGROUND_WHITE));
+                }
+                runDay(year, i + 1, summaries.get(i + 1));
             }
-            runDay(year, i + 1, summaries.get(i + 1));
         }
     }
 
