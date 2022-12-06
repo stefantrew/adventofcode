@@ -2,7 +2,6 @@ package trew.stefan.aoc2022;
 
 import lombok.extern.slf4j.Slf4j;
 import trew.stefan.AbstractAOC;
-import trew.stefan.utils.NumberList;
 
 
 @Slf4j
@@ -60,11 +59,7 @@ public class Day03 extends AbstractAOC {
             String line1 = list.get(3 * i);
             String line2 = list.get(3 * i + 1);
             String line3 = list.get(3 * i + 2);
-            log.info(line1);
 
-            log.info(list.get(3 * i + 1));
-            log.info(list.get(3 * i + 2));
-            log.info("");
 
             var max = 0;
             for (int j = 0; j < line1.length(); j++) {
@@ -74,7 +69,6 @@ public class Day03 extends AbstractAOC {
                     int b1 = getP(c);
 
                     max = Math.max(max, b1);
-                    log.info("{} {}", c, b1);
                 }
 
 
@@ -87,11 +81,11 @@ public class Day03 extends AbstractAOC {
 
     @Override
     public String getAnswerPart1() {
-        return "";
+        return "7553";
     }
 
     @Override
     public String getAnswerPart2() {
-        return "";
+        return "2758";
     }
 }

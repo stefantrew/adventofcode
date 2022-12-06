@@ -160,14 +160,14 @@ public class Main {
         Map<Integer, DayResult> summaries = new HashMap<>();//buildSummary();
         int year = 2022;
 
-        Integer runDay = 5;
+        Integer runDay = 6;
 
         if (runDay != null) {
             runDay(year, runDay, summaries.get(runDay));
         } else {
 
 
-            for (int i = 2; i <= 2; i++) {
+            for (int i = 0; i <= 4; i++) {
 //            if (i + 1 != 15) continue;
                 if (i % 5 == 0) {
                     String div = "----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------";
