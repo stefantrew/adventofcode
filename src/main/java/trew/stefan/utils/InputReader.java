@@ -7,15 +7,15 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.file.Files;
 import java.util.*;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 
 @Slf4j
 public class InputReader {
-    private static String s = "C:/code/personal/aoc/2021/src/main/resources/inputs/";
+    private static final String ROOT_FOLDER = "C:/code/personal/aoc/2021/src/main/resources/inputs/";
 
-    private static final String session = "***REMOVED***";
+    private static final String SESSION = "***REMOVED***";
+
+    private InputReader() {
+    }
 
     public static void downloadFile(File result, int year, int day) {
 
@@ -30,7 +30,7 @@ public class InputReader {
         try {
             con = (HttpURLConnection) new URL(url).openConnection();
             con.setRequestMethod("GET");
-            con.addRequestProperty("Cookie", "session=" + session);
+            con.addRequestProperty("Cookie", "session=" + SESSION);
             try (var in = new BufferedReader(new InputStreamReader(con.getInputStream()))) {
                 try (var out = new BufferedWriter(new FileWriter(result))) {
                     String inputLine;
@@ -47,20 +47,20 @@ public class InputReader {
     }
 
     public static List<Integer> readIntegers(int year, int day, String suffix) {
-        return readStrings(year, day, suffix).stream().map(Integer::parseInt).collect(Collectors.toList());
+        return readStrings(year, day, suffix).stream().map(Integer::parseInt).toList();
     }
 
     public static List<Double> readDoubles(int year, int day, String suffix) {
-        return readStrings(year, day, suffix).stream().map(Double::parseDouble).collect(Collectors.toList());
+        return readStrings(year, day, suffix).stream().map(Double::parseDouble).toList();
     }
 
     public static List<Long> readLongs(int year, int day, String suffix) {
-        return readStrings(year, day, suffix).stream().map(Long::parseLong).collect(Collectors.toList());
+        return readStrings(year, day, suffix).stream().map(Long::parseLong).toList();
     }
 
     public static List<String> readStrings(int year, int day, String suffix) {
 
-        String pathname = s + year + "/" + day + suffix + ".txt";
+        String pathname = ROOT_FOLDER + year + "/" + day + suffix + ".txt";
         File file = new File(pathname);
 
         if (suffix.equals("") && !file.exists()) {
@@ -79,13 +79,13 @@ public class InputReader {
     public static List<Long> readCommaStringsLong(int year, int day, String suffix) {
         List<String> lines = readStrings(year, day, suffix);
         String[] strs = lines.get(0).split(",");
-        return Arrays.stream(strs).map(Long::parseLong).collect(Collectors.toList());
+        return Arrays.stream(strs).map(Long::parseLong).toList();
     }
 
     public static List<Integer> readCommaStrings(int year, int day, String suffix) {
         List<String> lines = readStrings(year, day, suffix);
         String[] strs = lines.get(0).split(",");
-        return Arrays.stream(strs).map(Integer::parseInt).collect(Collectors.toList());
+        return Arrays.stream(strs).map(Integer::parseInt).toList();
     }
 
     public static List<String> readSplitStrings(String separator, int year, int day, String suffix) {
@@ -94,15 +94,15 @@ public class InputReader {
     }
 
     public static List<Integer> readSplitIntegers(String separator, int year, int day, String suffix) {
-        return readSplitStrings(separator, year, day, suffix).stream().map(Integer::parseInt).collect(Collectors.toList());
+        return readSplitStrings(separator, year, day, suffix).stream().map(Integer::parseInt).toList();
     }
 
     public static List<Double> readSplitDoubles(String separator, int year, int day, String suffix) {
-        return readSplitStrings(separator, year, day, suffix).stream().map(Double::parseDouble).collect(Collectors.toList());
+        return readSplitStrings(separator, year, day, suffix).stream().map(Double::parseDouble).toList();
     }
 
     public static List<Long> readSplitLongs(String separator, int year, int day, String suffix) {
-        return readSplitStrings(separator, year, day, suffix).stream().map(Long::parseLong).collect(Collectors.toList());
+        return readSplitStrings(separator, year, day, suffix).stream().map(Long::parseLong).toList();
     }
 
 
