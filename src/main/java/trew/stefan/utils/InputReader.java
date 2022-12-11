@@ -93,9 +93,9 @@ public class InputReader {
         return Arrays.asList(lines.get(0).split(separator));
     }
 
-    public static List<Integer> readSplitIntegers(String separator, int year, int day, String suffix) {
-        return readSplitStrings(separator, year, day, suffix).stream().map(Integer::parseInt).toList();
-    }
+        public static List<Integer> readSplitIntegers(String separator, int year, int day, String suffix) {
+            return readSplitStrings(separator, year, day, suffix).stream().map(Integer::parseInt).toList();
+        }
 
     public static List<Double> readSplitDoubles(String separator, int year, int day, String suffix) {
         return readSplitStrings(separator, year, day, suffix).stream().map(Double::parseDouble).toList();

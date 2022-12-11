@@ -8,6 +8,9 @@ import java.util.Collections;
 @Slf4j
 public class NumberList extends ArrayList<Long> {
 
+    public Long multiply() {
+        return this.stream().reduce((a, b) -> a * b).orElse(0L);
+    }
 
     public Long sum() {
         return this.stream().reduce(Long::sum).orElse(0L);
