@@ -162,18 +162,17 @@ public class Day08 extends AbstractAOC {
             }
         }
         total *= count;
-//        log.info("{} {} {} {}", start, r, c, total);
         return total;
     }
 
 
     @Override
     public String getAnswerPart1() {
-        return " ";
+        return "1543";
     }
 
     @Override
     public String getAnswerPart2() {
-        return "";
+        return "595080";
     }
 }

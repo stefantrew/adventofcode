@@ -172,6 +172,18 @@ public class Matrix<T> {
 
     }
 
+    public boolean validateColDimensions(int row, int col) {
+        if (col >= width || col < 0) {
+            return false;
+        }
+
+        if (row >= height || row < 0) {
+            return false;
+        }
+        return true;
+    }
+
+
     public List<MatrixPoint> find(Predicate<? super T> inc) {
         var temp = new ArrayList<MatrixPoint>();
         for (int row = 0; row < height; row++) {
@@ -205,6 +217,10 @@ public class Matrix<T> {
     public T get(int row, int col) {
 //        validateDimensions(row, col);
         return map[row][col];
+    }
+
+    public MatrixPoint getPoint(int row, int col) {
+        return new MatrixPoint(map[row][col], row, col);
     }
 
     public List<T> getRow(int row) {
