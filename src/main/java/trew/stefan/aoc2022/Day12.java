@@ -8,16 +8,12 @@ import trew.stefan.utils.Matrix;
 @Slf4j
 public class Day12 extends AbstractAOC {
 
+    int[][] offsets = {{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
 
     @Override
     public String runPart1() {
 
-        var list = getStringInput("");
-        var count = 0;
-
-        log.info("{}", getDistance('a', 'E'));
-        log.info("{}", getDistance('a', 'c'));
-        log.info("{}", getDistance('d', 'c'));
+        var list = getStringInput("_sample");
 
         var matrix = new Matrix<>(list.size(), list.get(0).length(), Character.class, 'a');
         var visitedMatrix = new Matrix<>(list.size(), list.get(0).length(), Integer.class, 0);
@@ -35,11 +31,8 @@ public class Day12 extends AbstractAOC {
         log.info("E {}", end);
         matrix.printMatrix(false);
 
-        Integer result = doWalk(matrix, start, visitedMatrix, 0);
 
-        visitedMatrix.printMatrix(true);
-
-        return String.valueOf(result);
+        return String.valueOf(doWalk(matrix, start, visitedMatrix, 0));
     }
 
     private int getDistance(char a, char b) {
@@ -63,65 +56,32 @@ public class Day12 extends AbstractAOC {
         if (current.getValue() == 'E') {
             return i;
         }
-//        if (i == 35) {
-//            return null;
-//        }
+
         var visit = visitedMatrix.get(current.getRow(), current.getCol());
         if (visit != 0 && i > visit) {
-//            log.info("========= {} {} {}", visit, i, current);
             return null;
         }
+
+
         visitedMatrix.set(current.getRow(), current.getCol(), i);
         matrix.setVisited(current.getRow(), current.getCol(), true);
 
-        if (matrix.validateColDimensions(current.getRow() + 1, current.getCol())) {
+        for (int[] ints : offsets) {
+            if (matrix.validateColDimensions(current.getRow() + ints[0], current.getCol() + ints[1])) {
 
-            var top = matrix.getPoint(current.getRow() + 1, current.getCol());
+                var top = matrix.getPoint(current.getRow() + ints[0], current.getCol() + ints[1]);
 
-            if (getDistance(current.getValue(), top.getValue()) <= 1) {
+                if (getDistance(current.getValue(), top.getValue()) <= 1) {
 
-                var result = doWalk(matrix, top, visitedMatrix, i + 1);
+                    var result = doWalk(matrix, top, visitedMatrix, i + 1);
 
-                if (result != null) {
-                    best = best == null ? result : Math.min(best, result);
+                    if (result != null) {
+                        best = best == null ? result : Math.min(best, result);
+                    }
                 }
             }
         }
 
-        if (matrix.validateColDimensions(current.getRow() - 1, current.getCol())) {
-            var top = matrix.getPoint(current.getRow() - 1, current.getCol());
-            if (getDistance(current.getValue(), top.getValue()) <= 1) {
-
-                var result = doWalk(matrix, top, visitedMatrix, i + 1);
-
-                if (result != null) {
-                    best = best == null ? result : Math.min(best, result);
-                }
-            }
-        }
-
-        if (matrix.validateColDimensions(current.getRow(), current.getCol() + 1)) {
-            var top = matrix.getPoint(current.getRow(), current.getCol() + 1);
-            if (getDistance(current.getValue(), top.getValue()) <= 1) {
-
-                var result = doWalk(matrix, top, visitedMatrix, i + 1);
-
-                if (result != null) {
-                    best = best == null ? result : Math.min(best, result);
-                }
-            }
-        }
-        if (matrix.validateColDimensions(current.getRow(), current.getCol() - 1)) {
-            var top = matrix.getPoint(current.getRow(), current.getCol() - 1);
-            if (getDistance(current.getValue(), top.getValue()) <= 1) {
-
-                var result = doWalk(matrix, top, visitedMatrix, i + 1);
-
-                if (result != null) {
-                    best = best == null ? result : Math.min(best, result);
-                }
-            }
-        }
 
 //        log.info("best {}", best);
         return best;
