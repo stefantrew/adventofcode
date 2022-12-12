@@ -63,6 +63,10 @@ public class Matrix<T> {
         return this;
     }
 
+    public Matrix<T> set(MatrixPoint point, T value) {
+        return set(point.row, point.col, value);
+    }
+
 
     public Matrix<T> set(int row, int col, T value) {
         validateDimensions(row, col);
