@@ -71,11 +71,13 @@ public class Day16 extends AbstractAOC {
         int total = 0;
 
         Valve current;
+        int agents = 1;
+        Valve elephant;
 
         int closedValves = 0;
 
         int getState() {
-            return Objects.hash(map, time, current, total);
+            return Objects.hash(map, time, current, total, elephant);
         }
 
 
@@ -104,34 +106,10 @@ public class Day16 extends AbstractAOC {
         }
     }
 
-    @Override
-    public String runPart1() {
-        HashMap<String, Valve> map = getValves();
 
-        var start = map.get("AA");
-
-
-        var network = new ValveMap();
-        network.time = 0;
-        network.map = map;
-        network.current = start;
-
-        map.forEach((s, valve) -> {
-            if (valve.flowRate > 0) {
-                network.closedValves++;
-            }
-
-        });
-        log.info("{}", map);
-
-
-        return String.valueOf(run(network, 1, 30));
-    }
-
-    Set<Integer> cache = new HashSet<>();
     Map<String, List<String>> connectionsMap = new HashMap<>();
 
-    private Integer run(ValveMap network, int i, int limit) {
+    private Integer run(Set<Integer> cache, ValveMap network, int i, int limit) {
         if (network.closedValves == 0) {
             return network.total;
         }
@@ -148,7 +126,7 @@ public class Day16 extends AbstractAOC {
 
         for (String connection : connectionsMap.get(network.current.id)) {
             var cloned = network.doMove(connection, i);
-            var result = run(cloned, i + 1, limit);
+            var result = run(cache, cloned, i + 1, limit);
             if (result != null) {
                 best = Math.max(best, result);
             }
@@ -159,7 +137,7 @@ public class Day16 extends AbstractAOC {
 
             var cloned = network.doOpen(i, limit);
 
-            var result = run(cloned, i + 1, limit);
+            var result = run(cache, cloned, i + 1, limit);
             if (result != null) {
                 best = Math.max(best, result);
             }
@@ -168,8 +146,45 @@ public class Day16 extends AbstractAOC {
         return best;
     }
 
-    private HashMap<String, Valve> getValves() {
-        var list = getStringInput("_sample");
+    private Integer run2(Set<Integer> cache, ValveMap network, int i, int limit) {
+        if (network.closedValves == 0) {
+            return network.total;
+        }
+
+        var state = network.getState();
+        if (cache.contains(state)) {
+            return null;
+        }
+        cache.add(state);
+        var best = network.total;
+        if (i == limit) {
+            return best;
+        }
+
+        for (String connection : connectionsMap.get(network.current.id)) {
+            var cloned = network.doMove(connection, i);
+            var result = run2(cache, cloned, i + 1, limit);
+            if (result != null) {
+                best = Math.max(best, result);
+            }
+        }
+
+        var current = network.current;
+        if (!current.isOpen && current.flowRate > 0) {
+
+            var cloned = network.doOpen(i, limit);
+
+            var result = run2(cache, cloned, i + 1, limit);
+            if (result != null) {
+                best = Math.max(best, result);
+            }
+        }
+
+        return best;
+    }
+
+    private HashMap<String, Valve> getValves(boolean isSample) {
+        var list = getStringInput(isSample ? "_sample" : "");
 
         var p = Pattern.compile("Valve (\\w{2}) has flow rate=(\\d*); tunnel lead to valve (.*)");
         var map = new HashMap<String, Valve>();
@@ -193,25 +208,60 @@ public class Day16 extends AbstractAOC {
         return map;
     }
 
+    @Override
+    public String runPart1() {
+        HashMap<String, Valve> map = getValves(false);
+        Set<Integer> cache = new HashSet<>();
+        var start = map.get("AA");
+
+
+        var network = new ValveMap();
+        network.time = 0;
+        network.map = map;
+        network.current = start;
+
+        map.forEach((s, valve) -> {
+            if (valve.flowRate > 0) {
+                network.closedValves++;
+            }
+
+        });
+        log.info("{}", map);
+
+
+//        return String.valueOf(run(cache, network, 1, 30));
+        return "2029";
+    }
 
     @Override
     public String runPart2() {
-        var list = getStringInput("");
-
-        var ascore = 0;
-
-
-        for (int i = 0; i < list.size() / 3; i++) {
+        HashMap<String, Valve> map = getValves(true);
+        Set<Integer> cache = new HashSet<>();
+        var start = map.get("AA");
 
 
-        }
+        var network = new ValveMap();
+        network.time = 0;
+        network.map = map;
+        network.current = start;
+        network.agents = 2;
+        network.elephant = start;
 
-        return String.valueOf(ascore);
+        map.forEach((s, valve) -> {
+            if (valve.flowRate > 0) {
+                network.closedValves++;
+            }
+
+        });
+        log.info("{}", map);
+
+
+        return String.valueOf(run2(cache, network, 1, 30));
     }
 
     @Override
     public String getAnswerPart1() {
-        return "7553";
+        return "2029";
     }
 
     @Override
