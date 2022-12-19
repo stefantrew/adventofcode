@@ -146,12 +146,12 @@ public class Main {
 
     private static String wrapColour(String text, int colour) {
         return "\u001b["  // Prefix - see [1]
-                + BRIGHT        // Brightness
-                + ";"        // Separator
-                + colour       // Red foreground
-                + "m"        // Suffix
-                + text       // the text to output
-                + "\u001b[m " // Prefix + Suffix to reset color
+               + BRIGHT        // Brightness
+               + ";"        // Separator
+               + colour       // Red foreground
+               + "m"        // Suffix
+               + text       // the text to output
+               + "\u001b[m " // Prefix + Suffix to reset color
                 ;
     }
 
@@ -160,7 +160,8 @@ public class Main {
         Map<Integer, DayResult> summaries = new HashMap<>();//buildSummary();
         int year = 2022;
 
-        Integer runDay = 16;
+        Integer runDay = 18;
+
 
         if (runDay != null) {
             runDay(year, runDay, summaries.get(runDay));

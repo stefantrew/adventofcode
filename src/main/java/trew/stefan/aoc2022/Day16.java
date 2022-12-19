@@ -14,28 +14,33 @@ public class Day16 extends AbstractAOC {
 
     class ValveMap {
 
-        Set<String> closedValves = new HashSet<>();
+        //        Set<String> closedValves = new HashSet<>();
+        BitSet closedValves2 = new BitSet(60);
+
 
         int time = 0;
         int total = 0;
 
-        String current;
+        int current;
         String history = "";
-        String prev = "";
+        int prev = 0;
 
-        String current2 = "";
-        String prev2 = "";
+        int current2 = 0;
+        int prev2 = 0;
+
 
         int getState() {
-            return Objects.hash(closedValves, time, current.hashCode() * current2.hashCode(), total, history, prev, prev2);
+
+            return Objects.hash(closedValves2, time, current * current2, total, history, prev * prev2);
         }
+
 
         public ValveMap doOpen(int i, int limit) {
 
             var clone = getClone(current, i);
             var valve = clone.current;
-            if (clone.closedValves.contains(valve)) {
-                clone.closedValves.remove(valve);
+            if (clone.closedValves2.get(valve)) {
+                clone.closedValves2.clear(valve);
                 var temp = (limit - i) * ratesMap.get(valve);
                 if (temp > 0) {
 
@@ -47,15 +52,15 @@ public class Day16 extends AbstractAOC {
             return clone;
         }
 
-        public ValveMap doMove(String connection, int i) {
+        public ValveMap doMove(int connection, int i) {
             var clone = getClone(connection, i);
             clone.time++;
             return clone;
         }
 
-        public ValveMap getClone(String connection, int i) {
+        public ValveMap getClone(int connection, int i) {
             var temp = new ValveMap();
-            temp.closedValves.addAll(closedValves);
+            temp.closedValves2.or(closedValves2);
             temp.current = connection;
             temp.time = i;
             temp.total = total;
@@ -69,11 +74,11 @@ public class Day16 extends AbstractAOC {
         public ValveMap doActions(Action agent1Action, Action agent2Action, int i, int limit) {
             var clone = getClone(current, i);
             clone.time++;
-            int hash = clone.current.hashCode() * clone.current2.hashCode();
+            int hash = clone.current * clone.current2;
 
             if (agent1Action.task == Task.OPEN) {
-                if (clone.closedValves.contains(agent1Action.target)) {
-                    clone.closedValves.remove(agent1Action.target);
+                if (clone.closedValves2.get(agent1Action.target)) {
+                    clone.closedValves2.clear(agent1Action.target);
                     var temp = (limit - i) * ratesMap.get(agent1Action.target);
                     if (temp > 0) {
 
@@ -88,8 +93,8 @@ public class Day16 extends AbstractAOC {
             }
 
             if (agent2Action.task == Task.OPEN) {
-                if (clone.closedValves.contains(agent2Action.target)) {
-                    clone.closedValves.remove(agent2Action.target);
+                if (clone.closedValves2.get(agent2Action.target)) {
+                    clone.closedValves2.clear(agent2Action.target);
                     var temp = (limit - i) * ratesMap.get(agent2Action.target);
                     if (temp > 0) {
 
@@ -108,11 +113,11 @@ public class Day16 extends AbstractAOC {
     }
 
 
-    Map<String, List<String>> connectionsMap = new HashMap<>();
-    Map<String, Integer> ratesMap = new HashMap<>();
+    Map<Integer, List<Integer>> connectionsMap = new HashMap<>();
+    Map<Integer, Integer> ratesMap = new HashMap<>();
 
     private Integer run(Set<Integer> cache, ValveMap network, int i, int limit) {
-        if (network.closedValves.isEmpty()) {
+        if (network.closedValves2.isEmpty()) {
             return network.total;
         }
 
@@ -129,7 +134,7 @@ public class Day16 extends AbstractAOC {
         var current = network.current;
 
 
-        if (network.closedValves.contains(current)) {
+        if (network.closedValves2.get(current)) {
 
             var cloned = network.doOpen(i, limit);
 
@@ -138,7 +143,7 @@ public class Day16 extends AbstractAOC {
                 best = Math.max(best, result);
             }
         }
-        for (String connection : connectionsMap.get(current)) {
+        for (int connection : connectionsMap.get(current)) {
             var cloned = network.doMove(connection, i);
             var result = run(cache, cloned, i + 1, limit);
             if (result != null) {
@@ -152,7 +157,7 @@ public class Day16 extends AbstractAOC {
         MOVE, OPEN, NOP
     }
 
-    record Action(String current, Task task, String target) {
+    record Action(int current, Task task, int target) {
         @Override
         public boolean equals(Object o) {
             if (this == o) return true;
@@ -171,26 +176,79 @@ public class Day16 extends AbstractAOC {
     int misses = 0;
 
     int limits = 0;
+    int bailouts15 = 0;
+    int bailouts18 = 0;
+    int bailouts20 = 0;
+
+    int max20 = 0;
+    int max15 = 0;
+    int max18 = 0;
 
     private Integer run2(Set<Integer> cache, ValveMap network, int i, int limit) {
-        if (network.closedValves.isEmpty()) {
+        if (i == 15 && network.total < 1800) {
+            bailouts15++;
+            if (bailouts15 % 1000000 == 0) {
+                log.info("bailouts 15: {}", bailouts15);
+            }
+            return null;
+        }
+
+        if (i == 18 && network.total < 2000) {
+            bailouts18++;
+            if (bailouts18 % 1000000 == 0) {
+                log.info("bailouts 18: {}", bailouts18);
+            }
+            return null;
+        }
+
+        if (i == 15 && network.total > max15) {
+            max15 = network.total;
+            log.info("Max15 {}", max15);
+        }
+
+        if (i == 18 && network.total > max18) {
+            max18 = network.total;
+            log.info("Max18 {}", max18);
+        }
+
+
+        if (i == 20 && network.total > max20) {
+            max20 = network.total;
+            log.info("Max 20, {}", max20);
+        }
+
+        if (i == 20 && network.total < 2200) {
+            bailouts20++;
+            if (bailouts20 % 1000000 == 0) {
+                log.info("bailouts 20: {}", bailouts20);
+            }
+            return null;
+        }
+
+        if (network.closedValves2.isEmpty()) {
+            limits++;
+            if (limits % 1000000 == 0) {
+                log.info("limits: {}", limits);
+            }
             return network.total;
         }
 
-        var state = network.getState();
-        if (cache.contains(state)) {
-            hits++;
-            return null;
-        }
-        misses++;
-        if (misses % 1000000 == 0) {
-            log.info("hits: {}; misses: {}; ratio: {}", hits, misses, (double) hits / misses);
-        }
-        cache.add(state);
+//        var state = network.getState();
+//        if (cache.contains(state)) {
+//            hits++;
+//            return null;
+//        }
+//
+//        misses++;
+//        if (misses % 1000000 == 0) {
+//            log.info("hits: {}; misses: {}; ratio: {}", hits, misses, (double) hits / misses);
+//        }
+//        cache.add(state);
         var best = network.total;
         if (i == limit) {
-            if (limit % 1000000 == 0) {
-                log.info("limits: {}", limit);
+            limits++;
+            if (limits % 1000000 == 0) {
+                log.info("limits: {}", limits);
             }
             return best;
         }
@@ -198,58 +256,100 @@ public class Day16 extends AbstractAOC {
         var current = network.current;
         var current2 = network.current2;
 
+        if (i > 1) {
 
-        var agent1Actions = new ArrayList<Action>();
-        var agent2Actions = new ArrayList<Action>();
 
-        if (network.closedValves.contains(current)) {
-            agent1Actions.add(new Action(current, Task.OPEN, current));
-        }
-        for (String connection : connectionsMap.get(current)) {
-            if (!connection.equals(network.prev)) {
+            var agent1Actions = new ArrayList<Action>();
+            var agent2Actions = new ArrayList<Action>();
 
-                agent1Actions.add(new Action(current, Task.MOVE, connection));
+            if (network.closedValves2.get(current)) {
+                agent1Actions.add(new Action(current, Task.OPEN, current));
             }
-        }
+            for (var connection : connectionsMap.get(current)) {
+                if (!connection.equals(network.prev)) {
 
-
-        if (network.closedValves.contains(current2)) {
-            agent2Actions.add(new Action(current2, Task.OPEN, current2));
-        }
-        for (String connection : connectionsMap.get(current2)) {
-            if (!connection.equals(network.prev2)) {
-                agent2Actions.add(new Action(current2, Task.MOVE, connection));
-            }
-        }
-
-        for (Action agent1Action : agent1Actions) {
-            for (Action agent2Action : agent2Actions) {
-                if (agent1Action.equals(agent2Action)) {
-                    continue;
-                }
-                var cloned = network.doActions(agent1Action, agent2Action, i, limit);
-
-                var result = run2(cache, cloned, i + 1, limit);
-                if (result != null) {
-                    best = Math.max(best, result);
+                    agent1Actions.add(new Action(current, Task.MOVE, connection));
                 }
             }
+
+
+            if (network.closedValves2.get(current2)) {
+                agent2Actions.add(new Action(current2, Task.OPEN, current2));
+            }
+            for (var connection : connectionsMap.get(current2)) {
+                if (!connection.equals(network.prev2)) {
+                    agent2Actions.add(new Action(current2, Task.MOVE, connection));
+                }
+            }
+            if (agent2Actions.isEmpty() || agent1Actions.isEmpty()) {
+                return null;
+            }
+
+            for (Action agent1Action : agent1Actions) {
+                for (Action agent2Action : agent2Actions) {
+                    if (agent1Action.equals(agent2Action)) {
+                        continue;
+                    }
+                    var cloned = network.doActions(agent1Action, agent2Action, i, limit);
+
+                    var result = run2(cache, cloned, i + 1, limit);
+                    if (result != null) {
+                        best = Math.max(best, result);
+                    }
+                }
+
+            }
+
+        } else {
+            var agent1Actions = new ArrayList<Action>();
+            if (network.closedValves2.get(current)) {
+                agent1Actions.add(new Action(current, Task.OPEN, current));
+            }
+            for (var connection : connectionsMap.get(current)) {
+                if (!connection.equals(network.prev)) {
+
+                    agent1Actions.add(new Action(current, Task.MOVE, connection));
+                }
+            }
+
+            if (agent1Actions.isEmpty()) {
+                return null;
+            }
+
+            for (int i1 = 0; i1 < agent1Actions.size(); i1++) {
+                for (int i2 = i1; i2 < agent1Actions.size(); i2++) {
+                    var cloned = network.doActions(agent1Actions.get(i1), agent1Actions.get(i2), i, limit);
+
+                    var result = run2(cache, cloned, i + 1, limit);
+                    if (result != null) {
+                        best = Math.max(best, result);
+                    }
+                }
+            }
+
         }
-        if (agent2Actions.isEmpty() || agent1Actions.isEmpty()) {
-//            log.info("Empties");
-            return null;
-        }
+
 
         return best;
     }
 
+    List<String> lookup = new ArrayList<>();
+
+    int getVal(String s) {
+
+        if (!lookup.contains(s)) {
+            lookup.add(s);
+        }
+
+        return lookup.indexOf(s);
+    }
 
     private ValveMap getValves(boolean isSample) {
 
 
         var network = new ValveMap();
         network.time = 0;
-        network.current = "AA";
+        network.current = getVal("AA");
 
 
         var list = getStringInput(isSample ? "_sample" : "");
@@ -265,12 +365,12 @@ public class Day16 extends AbstractAOC {
 
                 var id = m.group(1);
                 var rate = m.getInt(2);
-                var connections = m.group(3).split(", ");
-                connectionsMap.put(id, (Arrays.asList(connections)));
+                var connections = Arrays.stream(m.group(3).split(", ")).map(this::getVal).toList();
+                connectionsMap.put(getVal(id), connections);
                 if (rate > 0) {
-                    network.closedValves.add((id));
+                    network.closedValves2.set(getVal(id));
                 }
-                ratesMap.put(id, rate);
+                ratesMap.put(getVal(id), rate);
 
             } else {
                 log.info("");
@@ -297,9 +397,16 @@ public class Day16 extends AbstractAOC {
 
         network.current2 = network.current;
 
-        Set<Integer> cache = new HashSet<>(108_000_000 );
+        Set<Integer> cache = new HashSet<>(200_000_000);
 
-        return String.valueOf(run2(cache, network, 1, 26));
+        var result = String.valueOf(run2(cache, network, 1, 26));
+        log.info("==========================================");
+        log.info("bailouts 15: {}", bailouts15);
+        log.info("bailouts 18: {}", bailouts18);
+        log.info("bailouts 20: {}", bailouts20);
+        log.info("limits: {}", limits);
+        log.info("hits: {}; misses: {}; ratio: {}", hits, misses, (double) hits / misses);
+        return result;
     }
 
     @Override
