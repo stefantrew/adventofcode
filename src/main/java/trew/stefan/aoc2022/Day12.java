@@ -89,7 +89,7 @@ public class Day12 extends AbstractAOC {
             }
 
             for (int[] ints : offsets) {
-                if (matrix.validateColDimensions(current.getRow() + ints[0], current.getCol() + ints[1])) {
+                if (matrix.checkDimensions(current.getRow() + ints[0], current.getCol() + ints[1])) {
 
                     var top = matrix.getPoint(current.getRow() + ints[0], current.getCol() + ints[1]);
 

@@ -1,8 +1,10 @@
 package trew.stefan.utils;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.experimental.Accessors;
 import lombok.extern.slf4j.Slf4j;
+import trew.stefan.aoc2022.Day22;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -18,6 +20,40 @@ import java.util.function.Predicate;
 @Accessors(chain = true)
 public class Matrix<T> {
 
+    @Data
+    @AllArgsConstructor
+    public class RCPoint {
+        int row;
+        int col;
+
+        public RCPoint move(Direction dir) {
+            return move(dir, 1);
+        }
+
+        public RCPoint move(Direction dir, int i) {
+
+            var point = new RCPoint(row, col);
+            switch (dir) {
+
+                case UP -> point.row -= i;
+                case DOWN -> point.row += i;
+                case LEFT -> point.col -= i;
+                case RIGHT -> point.col += i;
+            }
+
+            return point;
+        }
+
+        @Override
+        public String toString() {
+            return "row=" + row +
+                   ", col=" + col;
+        }
+
+        public RCPoint clonePoint() {
+            return new RCPoint(row, col);
+        }
+    }
 
     @Data
     public class MatrixPoint {
@@ -30,6 +66,21 @@ public class Matrix<T> {
             this.value = value;
             this.row = row;
             this.col = col;
+        }
+
+        public RCPoint move(Direction dir) {
+            return move(dir, 1);
+        }
+
+        public RCPoint move(Direction dir, int i) {
+
+            var point = new RCPoint(row, col);
+            return point.move(dir, i);
+        }
+
+        public void setPos(RCPoint next) {
+            row = next.row;
+            col = next.col;
         }
     }
 
@@ -64,6 +115,10 @@ public class Matrix<T> {
     }
 
     public Matrix<T> set(MatrixPoint point, T value) {
+        return set(point.row, point.col, value);
+    }
+
+    public Matrix<T> set(RCPoint point, T value) {
         return set(point.row, point.col, value);
     }
 
@@ -175,8 +230,12 @@ public class Matrix<T> {
         }
 
     }
+    public boolean checkDimensions(RCPoint next) {
+        return checkDimensions(next.row, next.col);
+    }
 
-    public boolean validateColDimensions(int row, int col) {
+
+    public boolean checkDimensions(int row, int col) {
         if (col >= width || col < 0) {
             return false;
         }
@@ -218,9 +277,17 @@ public class Matrix<T> {
         return temp;
     }
 
+    public T get(RCPoint point) {
+        return get(point.row, point.col);
+    }
+
     public T get(int row, int col) {
 //        validateDimensions(row, col);
         return map[row][col];
+    }
+
+    public MatrixPoint getPoint(RCPoint point) {
+        return getPoint(point.row, point.col);
     }
 
     public MatrixPoint getPoint(int row, int col) {

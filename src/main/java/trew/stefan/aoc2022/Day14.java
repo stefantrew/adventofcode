@@ -57,7 +57,7 @@ public class Day14 extends AbstractAOC {
         var sand = matrix.getPoint(0, 500 - offset);
         while (true) {
 
-            if (!matrix.validateColDimensions(sand.getRow() + 1, sand.getCol())) {
+            if (!matrix.checkDimensions(sand.getRow() + 1, sand.getCol())) {
                 return false;
             }
             var next = matrix.getPoint(sand.getRow() + 1, sand.getCol());
