@@ -20,7 +20,7 @@ public class DayTemplate extends AbstractAOC {
         var result = "";
 
 
-//        var list = getStringInput().stream().map(this::mapper).collect(Collectors.toList());
+//        var list = getStringInput().stream().map(this::mapper).toList();
 
         var list = getStringInput();
 //        var list = getLongInput();
