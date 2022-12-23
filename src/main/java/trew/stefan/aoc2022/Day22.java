@@ -14,6 +14,8 @@ import java.util.regex.Pattern;
 @Slf4j
 public class Day22 extends AbstractAOC {
 
+
+
     enum Tile {
         WALL("#"),
         OPEN("."),
@@ -35,12 +37,12 @@ public class Day22 extends AbstractAOC {
 
     @Override
     public String runPart1() {
+        return runPart(true);
+    }
 
-        var total = 0;
-        var result = "";
+    public String runPart(boolean isPart1) {
 
         var list = getStringInput("");
-
         var code = list.remove(list.size() - 1);
 
         var max = 0;
@@ -52,8 +54,7 @@ public class Day22 extends AbstractAOC {
             }
         }
 
-        log.info("max {}", max);
-        var matrix = new Matrix<Tile>(rows, max, Tile.class, Tile.VOID);
+        var matrix = new Matrix<>(rows, max, Tile.class, Tile.VOID);
 
         for (int row = 0; row < list.size(); row++) {
             String s = list.get(row);
@@ -69,8 +70,6 @@ public class Day22 extends AbstractAOC {
             }
         }
 
-
-        log.info("tiles {}", matrix.count(tile -> tile != Tile.VOID));
         var p = Pattern.compile("[LR]");
         var m = p.matcher(code);
 
@@ -79,17 +78,13 @@ public class Day22 extends AbstractAOC {
         var start = list.get(0).indexOf(".");
         matrix.set(0, start, Tile.MONKEY);
 
-        var dir = Direction.RIGHT;
-
-        matrix.printMatrix(false);
-        return formatResult(doWork(matrix, dir, codes));
+        return formatResult(doWork(matrix, codes, isPart1));
     }
 
-    private int doWork(Matrix<Tile> matrix, Direction dir, List<String> codes) {
+    private int doWork(Matrix<Tile> matrix, List<String> codes, boolean isPart1) {
 
+        var dir = Direction.RIGHT;
         for (String code : codes) {
-//            log.info("================== {} ==================", code);
-//            matrix.printMatrix(false);
             var current = matrix.find(Tile.MONKEY).get(0);
 
             if (code.equals("L")) {
@@ -102,17 +97,16 @@ public class Day22 extends AbstractAOC {
 
                     var next = current.move(dir);
                     if (!matrix.checkDimensions(next)) {
-                        next = getPoint(matrix, next, dir);
+                        next = getPoint(matrix, next, dir, isPart1);
                     }
                     var tile = matrix.get(next);
 
                     if (tile == Tile.VOID) {
-                        next = getPoint(matrix, next, dir);
+                        next = getPoint(matrix, next, dir, isPart1);
                         tile = matrix.get(next);
                     }
 
                     if (tile == Tile.WALL) {
-//                        log.info("WALL");
                         break;
                     } else if (tile == Tile.OPEN || tile == Tile.VISITED) {
                         matrix.set(current, Tile.VISITED);
@@ -140,7 +134,11 @@ public class Day22 extends AbstractAOC {
         return total;
     }
 
-    private Matrix<Tile>.RCPoint getPoint(Matrix<Tile> matrix, Matrix<Tile>.RCPoint next, Direction dir) {
+    private Matrix<Tile>.RCPoint getPoint(Matrix<Tile> matrix, Matrix<Tile>.RCPoint next, Direction dir, boolean isPart1) {
+        return isPart1 ? getPointPart1(matrix, next, dir) : getPointPart2(matrix, next, dir);
+    }
+
+    private Matrix<Tile>.RCPoint getPointPart1(Matrix<Tile> matrix, Matrix<Tile>.RCPoint next, Direction dir) {
         var temp = next.clonePoint();
         switch (dir) {
 
@@ -152,24 +150,103 @@ public class Day22 extends AbstractAOC {
         while (matrix.get(temp) == Tile.VOID) {
             temp = temp.move(dir);
         }
-//        log.info("Returning {}", temp);
         return temp;
     }
 
+    private Matrix<Tile>.RCPoint getPointPart2(Matrix<Tile> matrix, Matrix<Tile>.RCPoint next, Direction dir) {
+        var temp = next.clonePoint();
+        switch (dir) {
 
-    @AllArgsConstructor
-    class Item {
-
+            case UP -> temp.setRow(matrix.getHeight() - 1);
+            case DOWN -> temp.setRow(0);
+            case LEFT -> temp.setCol(matrix.getWidth() - 1);
+            case RIGHT -> temp.setCol(0);
+        }
+        while (matrix.get(temp) == Tile.VOID) {
+            temp = temp.move(dir);
+        }
+        return temp;
     }
 
 
     @Override
     public String runPart2() {
+        var list = getStringInput("_sample");
+        var code = list.remove(list.size() - 1);
+
+        var max = 0;
+        var rows = 0;
+        for (var s : list) {
+            max = Math.max(max, s.length());
+            if (!s.isBlank()) {
+                rows++;
+            }
+        }
+
+        var matrix = new Matrix<>(rows, max, TileColour.class, TileColour.VOID);
+
+        for (int row = 0; row < list.size(); row++) {
+            String s = list.get(row);
+
+            for (int col = 0; col < s.toCharArray().length; col++) {
+                TileColour tile = s.charAt(col) == ' ' ? TileColour.VOID : getTileColour(row, col, max);
+                matrix.set(row, col, tile);
+
+            }
+        }
+
+        var p = Pattern.compile("[LR]");
+        var m = p.matcher(code);
+
+        var codes = Arrays.stream(m.replaceAll(",$0,").split(",")).toList();
 
 
-        var list = getStringInput();
+        matrix.printMatrix(false);
 
-        return formatResult("");
+        return "";
+    }
+
+    private TileColour getTileColour(int row, int col, int max) {
+
+        if (max < 50) {
+
+            if (row < 4) {
+                return TileColour.WHITE;
+            }
+            if (row < 8 && col < 4) {
+                return TileColour.ORANGE;
+            }
+            if (row < 8 && col < 8) {
+                return TileColour.GREEN;
+            }
+            if (row < 8) {
+                return TileColour.RED;
+            }
+            if (col < 12) {
+                return TileColour.YELLOW;
+            }
+
+            return TileColour.BLUE;
+        }
+
+
+        if (row < 50 && col < 100) {
+            return TileColour.WHITE;
+        }
+        if (row < 50) {
+            return TileColour.BLUE;
+        }
+        if (row < 100) {
+            return TileColour.RED;
+        }
+        if (row < 150 && col < 50) {
+            return TileColour.GREEN;
+        }
+        if (row < 150) {
+            return TileColour.YELLOW;
+        }
+
+        return TileColour.ORANGE;
     }
 
     @Override
