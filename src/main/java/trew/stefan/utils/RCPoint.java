@@ -40,6 +40,9 @@ public class RCPoint {
                 point.row += i;
                 point.col -= i;
             }
+            case NONE -> {
+
+            }
         }
 
         return point;

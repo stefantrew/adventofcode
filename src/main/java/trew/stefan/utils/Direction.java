@@ -12,6 +12,8 @@ public enum Direction {
     EAST("E"),
     WEST("W"),
 
+    NONE("R"),
+
     NORTH_EAST("NE"),
     SOUTH_EAST("SE"),
     NORTH_WEST("NW"),
@@ -45,6 +47,7 @@ public enum Direction {
             case SOUTH_WEST -> WEST;
             case WEST -> NORTH_WEST;
             case NORTH_WEST -> NORTH;
+            case NONE -> NONE;
         };
 
     }
@@ -66,6 +69,7 @@ public enum Direction {
             case SOUTH_EAST -> EAST;
             case NORTH_WEST -> WEST;
             case SOUTH_WEST -> SOUTH;
+            case NONE -> NONE;
         };
 
     }
@@ -86,6 +90,7 @@ public enum Direction {
             case SOUTH_EAST -> NORTH_WEST;
             case NORTH_WEST -> SOUTH_EAST;
             case SOUTH_WEST -> NORTH_EAST;
+            case NONE -> NONE;
         };
 
     }
