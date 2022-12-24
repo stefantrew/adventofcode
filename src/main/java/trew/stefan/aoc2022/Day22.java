@@ -6,6 +6,7 @@ import trew.stefan.AbstractAOC;
 import trew.stefan.utils.AOCMatcher;
 import trew.stefan.utils.Direction;
 import trew.stefan.utils.Matrix;
+import trew.stefan.utils.RCPoint;
 
 import java.util.Arrays;
 import java.util.List;
@@ -134,11 +135,11 @@ public class Day22 extends AbstractAOC {
         return total;
     }
 
-    private Matrix<Tile>.RCPoint getPoint(Matrix<Tile> matrix, Matrix<Tile>.RCPoint next, Direction dir, boolean isPart1) {
+    private RCPoint getPoint(Matrix<Tile> matrix, RCPoint next, Direction dir, boolean isPart1) {
         return isPart1 ? getPointPart1(matrix, next, dir) : getPointPart2(matrix, next, dir);
     }
 
-    private Matrix<Tile>.RCPoint getPointPart1(Matrix<Tile> matrix, Matrix<Tile>.RCPoint next, Direction dir) {
+    private RCPoint getPointPart1(Matrix<Tile> matrix, RCPoint next, Direction dir) {
         var temp = next.clonePoint();
         switch (dir) {
 
@@ -153,7 +154,7 @@ public class Day22 extends AbstractAOC {
         return temp;
     }
 
-    private Matrix<Tile>.RCPoint getPointPart2(Matrix<Tile> matrix, Matrix<Tile>.RCPoint next, Direction dir) {
+    private RCPoint getPointPart2(Matrix<Tile> matrix, RCPoint next, Direction dir) {
         var temp = next.clonePoint();
         switch (dir) {
 

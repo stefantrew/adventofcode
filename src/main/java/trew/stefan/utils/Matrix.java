@@ -14,46 +14,12 @@ import java.util.List;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
-
 @Slf4j
 @Data
 @Accessors(chain = true)
 public class Matrix<T> {
 
-    @Data
-    @AllArgsConstructor
-    public class RCPoint {
-        int row;
-        int col;
 
-        public RCPoint move(Direction dir) {
-            return move(dir, 1);
-        }
-
-        public RCPoint move(Direction dir, int i) {
-
-            var point = new RCPoint(row, col);
-            switch (dir) {
-
-                case UP -> point.row -= i;
-                case DOWN -> point.row += i;
-                case LEFT -> point.col -= i;
-                case RIGHT -> point.col += i;
-            }
-
-            return point;
-        }
-
-        @Override
-        public String toString() {
-            return "row=" + row +
-                   ", col=" + col;
-        }
-
-        public RCPoint clonePoint() {
-            return new RCPoint(row, col);
-        }
-    }
 
     @Data
     public class MatrixPoint {
