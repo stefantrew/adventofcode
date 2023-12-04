@@ -55,6 +55,10 @@ public class Day24 extends AbstractAOC {
         int height;
 
         int width;
+        int dist = 1;
+
+        boolean isRest = false;
+        Direction lastMove = null;
 
         @Override
         public boolean equals(Object o) {
@@ -66,7 +70,7 @@ public class Day24 extends AbstractAOC {
 
         @Override
         public int hashCode() {
-            return Objects.hash(point, gusts);
+            return Objects.hash(point, gusts, dist, lastMove);
         }
 
         Map<RCPoint, List<Gust>> getMap() {
@@ -77,6 +81,16 @@ public class Day24 extends AbstractAOC {
                     map.put(gust.point, new ArrayList<>());
                 }
                 map.get(gust.point).add(gust);
+            }
+
+            return map;
+        }
+
+        Set<RCPoint> getSet() {
+            var map = new HashSet<RCPoint>();
+
+            for (Gust gust : gusts) {
+                map.add(gust.point);
             }
 
             return map;
@@ -104,6 +118,9 @@ public class Day24 extends AbstractAOC {
             if (pos.getCol() == width - 2 && pos.getRow() == height - 1) {
                 return true;
             }
+            if (pos.getCol() == 1 && pos.getRow() == 0) {
+                return true;
+            }
 
             if (pos.getCol() <= 0 || pos.getCol() >= width - 1) {
                 return false;
@@ -116,22 +133,16 @@ public class Day24 extends AbstractAOC {
             return true;
         }
 
-        public Set<Direction> getMoves() {
+        public Set<Direction> getMoves(Set<Direction> dirSet) {
 
             var moves = new HashSet<Direction>();
 
-            var map = getMap();
+            var map = getSet();
 
-            var dirSet = new HashSet<Direction>();
-            dirSet.add(Direction.NORTH);
-            dirSet.add(Direction.SOUTH);
-            dirSet.add(Direction.EAST);
-            dirSet.add(Direction.WEST);
-            dirSet.add(Direction.NONE);
 
             for (Direction direction : dirSet) {
                 var temp = point.move(direction);
-                if (isValid(temp) && !map.containsKey(temp)) {
+                if (isValid(temp) && !map.contains(temp)) {
                     moves.add(direction);
                 }
             }
@@ -152,6 +163,9 @@ public class Day24 extends AbstractAOC {
                 temp.gusts.add(new Gust(gust));
 
             }
+            temp.dist = dist + 1;
+            temp.isRest = move == Direction.NONE;
+            temp.lastMove = move;
 
             return temp;
         }
@@ -168,36 +182,60 @@ public class Day24 extends AbstractAOC {
 
         printBlizzard(blizzard);
 
-        var result = doMove(blizzard, 1, new HashSet<Integer>());
 
+        var result = doMove(blizzard, 1, new HashSet<Integer>());
 
         return formatResult(result);
     }
 
     private Integer doMove(Blizzard blizzard, int i, HashSet<Integer> cache) {
+        var dirSet = new HashSet<Direction>();
+        dirSet.add(Direction.EAST);
+        dirSet.add(Direction.SOUTH);
+        dirSet.add(Direction.WEST);
+        dirSet.add(Direction.NORTH);
+        dirSet.add(Direction.NONE);
+        var queue = new LinkedList<Blizzard>();
 
-        if (blizzard.isEnd()) {
-            return i;
-        }
-        var hashCode = blizzard.hashCode();
-        if (cache.contains(hashCode)) {
-            return null;
-        }
-        cache.add(hashCode);
-
-
-        Integer best = null;
+        var least = 344;
         blizzard.moveGusts();
-        var moves = blizzard.getMoves();
-        for (Direction move : moves) {
-            var result = doMove(blizzard.doMove(move), i + 1, cache);
-            if (result != null) {
-                best = best == null ? result : Math.min(best, result);
+        queue.add(blizzard);
+        while (!queue.isEmpty()) {
+
+            var current = queue.poll();
+
+
+            if (current.isEnd()) {
+                least = Math.min(least, current.dist);
+                log.info("Least {}", least);
+                continue;
+            }
+
+            if (current.dist > least) {
+                log.info("doh");
+                continue;
+            }
+
+            var hashCode = current.hashCode();
+            if (cache.contains(hashCode)) {
+                continue;
+            }
+            cache.add(hashCode);
+
+
+            var moves = current.getMoves(dirSet);
+            for (Direction move : moves) {
+
+                var next = current.doMove(move);
+                next.moveGusts();
+
+                queue.add(next);
+
             }
 
         }
-
-        return best;
+        log.info("cache count {}", cache.size());
+        return least;
     }
 
     private Blizzard getBlizzard(List<String> list) {
@@ -271,24 +309,6 @@ public class Day24 extends AbstractAOC {
             s += col == blizzard.width - 2 ? '.' : '#';
         }
         log.info(s);
-    }
-
-
-    @AllArgsConstructor
-    class Item {
-
-    }
-
-    Item mapper(String input) {
-
-        var p = Pattern.compile("");
-        var m = new AOCMatcher(p.matcher(input));
-
-        if (m.find()) {
-            m.print();
-            return new Item();
-        }
-        return null;
     }
 
 

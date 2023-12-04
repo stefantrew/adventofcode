@@ -1,5 +1,4 @@
 package trew.stefan;
-
 import lombok.extern.slf4j.Slf4j;
 import trew.stefan.utils.InputReader;
 
@@ -158,9 +157,9 @@ public class Main {
 
     public static void main(String[] args) {
         Map<Integer, DayResult> summaries = new HashMap<>();//buildSummary();
-        int year = 2022;
+        int year = 2023;
 
-        Integer runDay = 24;
+        Integer runDay = 1;
 
 
         if (runDay != null) {
