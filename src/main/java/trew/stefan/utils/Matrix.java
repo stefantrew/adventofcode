@@ -21,6 +21,7 @@ public class Matrix<T> {
 
 
 
+
     @Data
     public class MatrixPoint {
 
@@ -68,6 +69,16 @@ public class Matrix<T> {
         visitedMap = new Boolean[height][width];
         setAll(initialValue);
     }
+    public Matrix(List<String> list, Class<? extends T> cls, T initialValue) {
+        this.height = list.size();
+        this.width = list.get(0).length();
+        this.cls = cls;
+
+        map = (T[][]) Array.newInstance(cls, height, width);
+        visitedMap = new Boolean[height][width];
+        setAll(initialValue);
+    }
+
 
     public Matrix<T> setAll(T defaultValue) {
         for (int i = 0; i < height; i++) {
