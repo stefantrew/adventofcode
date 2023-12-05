@@ -61,11 +61,21 @@ public class InputReader {
     public static List<String> readStrings(int year, int day, String suffix) {
 
         String pathname = ROOT_FOLDER + year + "/" + day + suffix + ".txt";
+        String pathname2 = ROOT_FOLDER + year + "/" + day  + "_sample.txt";
         File file = new File(pathname);
+        File file2 = new File(pathname2);
 
+        if (suffix.equals("") && !file2.exists()) {
+            try {
+                file2.createNewFile();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
         if (suffix.equals("") && !file.exists()) {
             downloadFile(new File(pathname), year, day);
         }
+
 
         try {
             return Files.readAllLines(file.toPath());
@@ -93,9 +103,9 @@ public class InputReader {
         return Arrays.asList(lines.get(0).split(separator));
     }
 
-        public static List<Integer> readSplitIntegers(String separator, int year, int day, String suffix) {
-            return readSplitStrings(separator, year, day, suffix).stream().map(Integer::parseInt).toList();
-        }
+    public static List<Integer> readSplitIntegers(String separator, int year, int day, String suffix) {
+        return readSplitStrings(separator, year, day, suffix).stream().map(Integer::parseInt).toList();
+    }
 
     public static List<Double> readSplitDoubles(String separator, int year, int day, String suffix) {
         return readSplitStrings(separator, year, day, suffix).stream().map(Double::parseDouble).toList();
