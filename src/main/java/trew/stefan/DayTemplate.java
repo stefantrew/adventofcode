@@ -35,25 +35,6 @@ public class DayTemplate extends AbstractAOC {
         return formatResult(total);
     }
 
-
-    @AllArgsConstructor
-    class Item {
-
-    }
-
-    Item mapper(String input) {
-
-        var p = Pattern.compile("");
-        var m = new AOCMatcher(p.matcher(input));
-
-        if (m.find()) {
-            m.print();
-            return new Item();
-        }
-        return null;
-    }
-
-
     @Override
     public String runPart2() {
 

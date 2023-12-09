@@ -223,12 +223,11 @@ public class Day07 extends AbstractAOC {
 
     @Override
     public String getAnswerPart1() {
-        return "";
+        return "250951660";
     }
 
     @Override
     public String getAnswerPart2() {
-        //251156055
-        return "";
+        return "251481660";
     }
 }

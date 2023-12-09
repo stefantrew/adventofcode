@@ -118,7 +118,6 @@ public class Day05 extends AbstractAOC {
 
         var list = getStringInput("");
         ItemMap map = null;
-        var seeds = new HashSet<Long>();
         var seeds2 = new ArrayList<Long>();
 
         var totalSeeds = 0L;
@@ -147,8 +146,6 @@ public class Day05 extends AbstractAOC {
             }
         }
 
-//w
-
         return "11611182L";
     }
 
@@ -161,7 +158,6 @@ public class Day05 extends AbstractAOC {
                 result2.add(convert);
             }
 
-//            log.info("{}", result2);
             seeds = new HashSet<>(result2);
             if (itemMap.destination.equals("location")) {
                 break;
@@ -170,8 +166,7 @@ public class Day05 extends AbstractAOC {
             itemMap = maps.get(itemMap.destination);
 
         }
-        var distance = seeds.stream().min(Long::compareTo).get();
-        return distance;
+        return seeds.stream().min(Long::compareTo).get();
     }
 
     @Override
@@ -181,7 +176,6 @@ public class Day05 extends AbstractAOC {
 
     @Override
     public String getAnswerPart2() {
-        return "";
+        return "11611182";
     }
 }
-//87456
