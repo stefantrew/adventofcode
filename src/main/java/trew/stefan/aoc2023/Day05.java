@@ -146,7 +146,7 @@ public class Day05 extends AbstractAOC {
             }
         }
 
-        return "11611182L";
+        return "11611182";
     }
 
     private static Long getaLong(HashMap<String, ItemMap> maps, HashSet<Long> seeds) {

@@ -82,7 +82,6 @@ public class Day03 extends AbstractAOC {
 
         var total = 0L;
 
-
         var list = getStringInput("");
 
         var map = new HashMap<String, Integer>();
@@ -98,7 +97,7 @@ public class Day03 extends AbstractAOC {
                 for (String pos : valid) {
                     if (map.containsKey(pos)) {
                         var first = map.get(pos);
-                        total += first * Long.valueOf(str);
+                        total += first * Long.parseLong(str);
                     } else {
                         map.put(pos, Integer.valueOf(str));
                     }
@@ -115,7 +114,7 @@ public class Day03 extends AbstractAOC {
                         for (String pos : valid) {
                             if (map.containsKey(pos)) {
                                 var first = map.get(pos);
-                                total += first * Long.valueOf(str);
+                                total += first * Long.parseLong(str);
                             } else {
                                 map.put(pos, Integer.valueOf(str));
                             }

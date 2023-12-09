@@ -26,7 +26,6 @@ public class Day06 extends AbstractAOC {
             var d = distance[i];
 
             var winningWays = computeWinning(t, d);
-            log.info("Winning ways for t={}, d={} is {}", t, d, winningWays);
             total *= winningWays;
         }
 
@@ -65,7 +64,6 @@ public class Day06 extends AbstractAOC {
             var d = distance[i];
 
             var winningWays = computeWinning(t, d);
-            log.info("Winning ways for t={}, d={} is {}", t, d, winningWays);
             total *= winningWays;
         }
 

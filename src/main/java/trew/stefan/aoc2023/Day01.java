@@ -16,7 +16,7 @@ public class Day01 extends AbstractAOC {
 
         for (String s : list) {
 
-            s = s.replaceAll("[^0-9]", "");
+            s = s.replaceAll("[\\D]", "");
             var a = s.charAt(0);
             var c = s.charAt(s.length() - 1);
             String s1 = a + String.valueOf(c);

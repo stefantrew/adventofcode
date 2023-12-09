@@ -97,7 +97,6 @@ public class Day08 extends AbstractAOC {
         }
         //18727 20569 14429 13201 18113 22411
         long result = 61L * 307 * 67 * 47 * 43 * 59 * 73L;
-        log.info("{}", current.size());
         var first = current.get(5);
         current.clear();
         current.add(first);
@@ -119,7 +118,6 @@ public class Day08 extends AbstractAOC {
             }
             total++;
             if (!found) {
-                log.info("{} {}", total, total - last);
                 last = Math.toIntExact(total);
                 counter++;
 //                break;

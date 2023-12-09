@@ -21,28 +21,12 @@ public class Day02 extends AbstractAOC {
             var id = parts[0].substring(5);
             var games = parts[1].split(";");
 
-            var map = new HashMap<String, Long>();
+            HashMap<String, Long> map = getMap(games);
 
-            for (String sets : games) {
-                for (String cubes : sets.split(",")) {
-                    var parts3 = cubes.trim().split(" ");
-                    var value = Long.valueOf(parts3[0].trim());
-                    var key = parts3[1].trim();
-                    var current = map.getOrDefault(key, 0L);
-                    map.put(key, Math.max(current, value));
-                }
-            }
-
-            if (map.get("blue") > 14) {
+            if (map.get("blue") > 14 || map.get("red") > 12 || map.get("green") > 13) {
                 continue;
             }
-            if (map.get("red") > 12) {
-                continue;
-            }
-            if (map.get("green") > 13) {
-                continue;
-            }
-            total += Long.valueOf(id);
+            total += Long.parseLong(id);
         }
 
 
@@ -58,27 +42,31 @@ public class Day02 extends AbstractAOC {
 
         for (String s : list) {
             var parts = s.split(":");
-            var id = parts[0].substring(5);
             var games = parts[1].split(";");
 
-            var map = new HashMap<String, Long>();
-
-            for (String sets : games) {
-                for (String cubes : sets.split(",")) {
-                    var parts3 = cubes.trim().split(" ");
-                    var value = Long.valueOf(parts3[0].trim());
-                    var key = parts3[1].trim();
-                    var current = map.getOrDefault(key, 0L);
-                    map.put(key, Math.max(current, value));
-                }
-            }
+            HashMap<String, Long> map = getMap(games);
 
             var power = map.get("blue") * map.get("red") * map.get("green");
-            total += Long.valueOf(power);
+            total += power;
         }
 
 
         return String.valueOf(total);
+    }
+
+    private static HashMap<String, Long> getMap(String[] games) {
+        var map = new HashMap<String, Long>();
+
+        for (String sets : games) {
+            for (String cubes : sets.split(",")) {
+                var parts3 = cubes.trim().split(" ");
+                long value = Long.parseLong(parts3[0].trim());
+                var key = parts3[1].trim();
+                var current = map.getOrDefault(key, 0L);
+                map.put(key, Math.max(current, value));
+            }
+        }
+        return map;
     }
 
     @Override

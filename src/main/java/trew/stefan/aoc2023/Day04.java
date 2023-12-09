@@ -54,7 +54,6 @@ public class Day04 extends AbstractAOC {
     public String runPart2() {
 
         var total = 0;
-        var result = "";
 
 
         var list = getStringInput("");
