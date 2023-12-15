@@ -159,7 +159,7 @@ public class Main {
         Map<Integer, DayResult> summaries = new HashMap<>();//buildSummary();
         int year = 2023;
 
-        Integer runDay = null;
+        Integer runDay = 11;
 
 
         if (runDay != null) {
