@@ -30,6 +30,25 @@ public class Day13 extends AbstractAOC {
         return true;
     }
 
+    private Integer isReflection2(String s, int i) {
+        int a = i;
+        int b = i + 1;
+        int error = 0;
+
+        while (a >= 0 && b < s.length()) {
+            if (s.charAt(a) != s.charAt(b)) {
+                error++;
+            }
+
+
+            a--;
+            b++;
+        }
+
+
+        return error;
+    }
+
     private List<String> transpose(List<String> input) {
 
         var length = input.get(0).length();
@@ -55,6 +74,53 @@ public class Day13 extends AbstractAOC {
 
     }
 
+
+    private Integer runList(List<String> list, boolean part2) {
+        var i = checkList(list, part2);
+        if (i == null) {
+            var list2 = transpose(list);
+            var result = checkList(list2, part2);
+            i = result * 100;
+        }
+        return i;
+    }
+
+    private Integer checkList(List<String> list, boolean part2) {
+        var length = list.get(0).length();
+
+        for (int i = 0; i < length - 1; i++) {
+            var flag = part2 ? isIndexReflective2(list, i) : isIndexReflective(list, i);
+            if (flag) {
+                return i + 1;
+            }
+        }
+
+        return null;
+    }
+
+    private boolean isIndexReflective(List<String> list, int i) {
+
+        for (var s : list) {
+            var reflection = isReflection(s, i);
+            if (!reflection) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private boolean isIndexReflective2(List<String> list, int i) {
+
+        var error = 0;
+        for (var s : list) {
+            error += isReflection2(s, i);
+            if (error > 1) {
+                return false;
+            }
+        }
+        return error == 1;
+    }
+
     @Override
     public String runPart1() {
 
@@ -67,7 +133,7 @@ public class Day13 extends AbstractAOC {
         for (int i = 0; i < list.size(); i++) {
             var s = list.get(i);
             if (s.isEmpty()) {
-                total += runList(subSet);
+                total += runList(subSet, false);
                 subSet.clear();
             } else {
                 subSet.add(s);
@@ -76,80 +142,46 @@ public class Day13 extends AbstractAOC {
         }
         if (!subSet.isEmpty()) {
 
-            total += runList(subSet);
+            total += runList(subSet, false);
         }
 
         return formatResult(total);
     }
 
-    private Integer runList(List<String> list) {
-        var i = checkList(list);
-        if (i == null) {
-            var list2 = transpose(list);
-            var result = checkList(list2);
-            if (result == null) {
-                log.info("XXXXXXXXXXXXXXXXXXXXX");
-                for (String s : list) {
-                    log.info(s);
-
-                }
-                log.info("=====================");
-                for (String s : list2) {
-                    log.info(s);
-
-                }
-                log.info("XXXXXXXXXXXXXXXXXXXXX");
-
-                return 0;
-            }
-            i = result * 100;
-        }
-//        log.info("i: {}", i);
-        return i;
-    }
-
-    private Integer checkList(List<String> list) {
-        var length = list.get(0).length();
-
-        for (int i = 0; i < length - 1; i++) {
-            var flag = isIndexReflective(list, i);
-            if (flag) {
-                return i + 1;
-            }
-        }
-
-        return null;
-    }
-
-    private boolean isIndexReflective(List<String> list, int i) {
-        log.info("");
-        for (var s : list) {
-            var reflection = isReflection(s, i);
-            log.info("{} {} {}", i, s, reflection);
-            if (!reflection) {
-                return false;
-            }
-        }
-        return true;
-    }
 
     @Override
     public String runPart2() {
 
+        var total = 0;
 
-        var list = getStringInput();
+        var list = getStringInput("");
 
-        return formatResult("");
+        var subSet = new ArrayList<String>();
+        for (int i = 0; i < list.size(); i++) {
+            var s = list.get(i);
+            if (s.isEmpty()) {
+                total += runList(subSet, true);
+                subSet.clear();
+            } else {
+                subSet.add(s);
+            }
+
+        }
+        if (!subSet.isEmpty()) {
+
+            total += runList(subSet, true);
+        }
+
+        return formatResult(total);
     }
 
     @Override
     public String getAnswerPart1() {
-        //27742
-        return "";
+        return "27742";
     }
 
     @Override
     public String getAnswerPart2() {
-        return "";
+        return "32728";
     }
 }
