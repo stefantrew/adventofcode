@@ -15,6 +15,8 @@ public enum Direction {
     NONE("R"),
 
     NORTH_EAST("NE"),
+    NORTH_SOUTH("NS"),
+    EAST_WEST("EW"),
     SOUTH_EAST("SE"),
     NORTH_WEST("NW"),
     SOUTH_WEST("S");
@@ -48,6 +50,7 @@ public enum Direction {
             case WEST -> NORTH_WEST;
             case NORTH_WEST -> NORTH;
             case NONE -> NONE;
+            default -> throw new RuntimeException("Unknown direction");
         };
 
     }
@@ -70,6 +73,7 @@ public enum Direction {
             case NORTH_WEST -> WEST;
             case SOUTH_WEST -> SOUTH;
             case NONE -> NONE;
+            default -> throw new RuntimeException("Unknown direction");
         };
 
     }
@@ -91,6 +95,7 @@ public enum Direction {
             case NORTH_WEST -> SOUTH_EAST;
             case SOUTH_WEST -> NORTH_EAST;
             case NONE -> NONE;
+            default -> throw new RuntimeException("Unknown direction");
         };
 
     }
