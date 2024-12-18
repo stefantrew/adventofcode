@@ -157,9 +157,9 @@ public class Main {
 
     public static void main(String[] args) {
         Map<Integer, DayResult> summaries = new HashMap<>();//buildSummary();
-        int year = 2023;
+        int year = 2024;
 
-        Integer runDay = 19;
+        Integer runDay = 5;
 
 
         if (runDay != null) {
