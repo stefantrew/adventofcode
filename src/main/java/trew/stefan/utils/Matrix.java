@@ -39,6 +39,19 @@ public class Matrix<T> {
             return move(dir, 1);
         }
 
+        @Override
+        public String toString() {
+            return "MatrixPoint{" +
+                   "value=" + value +
+                   ", row=" + row +
+                   ", col=" + col +
+                   '}';
+        }
+
+        public RCPoint getRcPoint() {
+            return new RCPoint(row, col);
+        }
+
         public RCPoint move(Direction dir, int i) {
 
             var point = new RCPoint(row, col);
