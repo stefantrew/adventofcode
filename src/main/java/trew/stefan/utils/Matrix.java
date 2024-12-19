@@ -20,7 +20,13 @@ import java.util.function.Predicate;
 public class Matrix<T> {
 
 
+    public int getRows() {
+        return height;
+    }
 
+    public int getCols() {
+        return width;
+    }
 
     @Data
     public class MatrixPoint {
