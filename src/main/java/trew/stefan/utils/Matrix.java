@@ -273,6 +273,35 @@ public class Matrix<T> {
         return temp;
     }
 
+    public MatrixPoint findFirstNot(T target) {
+        for (int row = 0; row < height; row++) {
+
+            for (int col = 0; col < width; col++) {
+                T value = get(row, col);
+                if (!target.equals(value)) {
+                    return new  MatrixPoint(value, row, col);
+                }
+            }
+        }
+
+        return null;
+    }
+
+    public List<MatrixPoint> findNot(T target) {
+        var temp = new ArrayList<MatrixPoint>();
+        for (int row = 0; row < height; row++) {
+
+            for (int col = 0; col < width; col++) {
+                T value = get(row, col);
+                if (!target.equals(value)) {
+                    temp.add(new MatrixPoint(value, row, col));
+                }
+            }
+        }
+
+        return temp;
+    }
+
     public T get(RCPoint point) {
         return get(point.row, point.col);
     }
