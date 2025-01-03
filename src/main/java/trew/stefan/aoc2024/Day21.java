@@ -24,8 +24,8 @@ public class Day21 extends AbstractAOC {
     };
     Map<String, String> globalCache = new HashMap<>();
     Map<String, String> globalCache2 = new HashMap<>();
-    Map<String, List<String>> globalCache3 = new HashMap<>();
-    Map<String, List<String>> globalCache4 = new HashMap<>();
+    Map<String, Set<String>> globalCache3 = new HashMap<>();
+    Map<String, Set<String>> globalCache4 = new HashMap<>();
     Map<String, String> globalCache5 = new HashMap<>();
 
 
@@ -47,7 +47,7 @@ public class Day21 extends AbstractAOC {
     private String computeShortest(String code, int depth) {
 
 
-        var results = new ArrayList<String>();
+        var results = new HashSet<String>();
 
         var paths = computePaths(code, keypad1);
 
@@ -55,6 +55,7 @@ public class Day21 extends AbstractAOC {
             log.info("Iteration {} {}", i, paths.size());
             paths = computePaths(paths, keypad2);
         }
+
         log.info("Iteration {} {}", depth, paths.stream().distinct().collect(Collectors.toSet()).size());
         results.addAll(computePaths(paths, keypad2));
 
@@ -145,16 +146,18 @@ public class Day21 extends AbstractAOC {
         return result;
     }
 
-    private List<String> computePaths(List<String> input, char[][] keypad) {
-        var result = new ArrayList<String>();
+    private Set<String> computePaths(Set<String> input, char[][] keypad) {
+        var result = new HashSet<String>();
         for (var string : input) {
             result.addAll(computePaths(string, keypad));
         }
+
+
         return result;
 
     }
 
-    private List<String> computePaths(String code, char[][] keypad) {
+    private Set<String> computePaths(String code, char[][] keypad) {
         if (globalCache3.containsKey(code)) {
             return globalCache3.get(code);
         }
@@ -180,7 +183,7 @@ public class Day21 extends AbstractAOC {
             start = target;
         }
 
-        var list = paths.stream().map(s -> computePath(s, keypad)).toList();
+        var list = paths.stream().map(s -> computePath(s, keypad)).collect(Collectors.toSet());
 
         globalCache3.put(code, list);
 
@@ -188,13 +191,13 @@ public class Day21 extends AbstractAOC {
     }
 
 
-    private List<String> computePaths(char start, char target, char[][] keypad) {
+    private Set<String> computePaths(char start, char target, char[][] keypad) {
         var code = start + "_" + target;
         if (globalCache4.containsKey(code)) {
             return globalCache4.get(code);
         }
 
-        var paths = new ArrayList<String>();
+        var paths = new HashSet<String>();
 
         if (start == target) {
             paths.add("");
@@ -250,7 +253,6 @@ public class Day21 extends AbstractAOC {
         }
 
 
-
         globalCache4.put(code, paths);
         return paths;
     }
@@ -262,7 +264,7 @@ public class Day21 extends AbstractAOC {
         var total = 0;
         var list = getStringInput("");
         for (var code : list) {
-            var shortest = computeShortest(code, 1);
+            var shortest = computeShortest(code, 2);
             total += shortest.length() * Integer.parseInt(code.substring(0, 3));
             log.info("{} {} {} {}", code, shortest.length(), Integer.parseInt(code.substring(0, 3)), shortest);
 
