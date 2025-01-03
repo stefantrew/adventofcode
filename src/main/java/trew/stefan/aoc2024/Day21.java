@@ -56,7 +56,7 @@ public class Day21 extends AbstractAOC {
             paths = computePaths(paths, keypad2);
         }
 
-        log.info("Iteration {} {}", depth, paths.stream().distinct().collect(Collectors.toSet()).size());
+        log.info("Iteration {} {}", depth, paths.size());
         results.addAll(computePaths(paths, keypad2));
 
         String shortest = null;
@@ -183,7 +183,10 @@ public class Day21 extends AbstractAOC {
             start = target;
         }
 
-        var list = paths.stream().map(s -> computePath(s, keypad)).collect(Collectors.toSet());
+        var list = paths.stream().map(s -> computePath(s, keypad))
+//                .sorted(Comparator.comparingInt(String::length))
+//                .limit(4)
+                .collect(Collectors.toSet());
 
         globalCache3.put(code, list);
 
@@ -238,7 +241,8 @@ public class Day21 extends AbstractAOC {
                 paths.add(temp1 + s);
             }
         }
-        if (dx != 0 && keypad[sy][sx + dx] != '_') {
+
+        if (dx != 0 && keypad[sy][sx + dx] != '_' ) {
             var temp1 = "";
             for (int i = sx + 1; i <= tx; i++) {
                 temp1 += keypad[sy][i];
