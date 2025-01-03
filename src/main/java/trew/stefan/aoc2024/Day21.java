@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import trew.stefan.AbstractAOC;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Slf4j
 public class Day21 extends AbstractAOC {
@@ -33,7 +34,7 @@ public class Day21 extends AbstractAOC {
         var total = 0;
         var list = getStringInput("");
         for (var code : list) {
-            var shortest = computeShortest(code);
+            var shortest = computeShortest(code, 1);
             total += shortest.length() * Integer.parseInt(code.substring(0, 3));
             log.info("{} {} {} {}", code, shortest.length(), Integer.parseInt(code.substring(0, 3)), shortest);
 
@@ -43,33 +44,29 @@ public class Day21 extends AbstractAOC {
         return formatResult(total);
     }
 
-    private String computeShortest(String code) {
+    private String computeShortest(String code, int depth) {
 
-        var cache = new HashSet<String>();
+
+        var results = new ArrayList<String>();
 
         var paths = computePaths(code, keypad1);
+
+        for (int i = 0; i < depth; i++) {
+            log.info("Iteration {} {}", i, paths.size());
+            paths = computePaths(paths, keypad2);
+        }
+        log.info("Iteration {} {}", depth, paths.stream().distinct().collect(Collectors.toSet()).size());
+        results.addAll(computePaths(paths, keypad2));
+
         String shortest = null;
-        for (var s : paths) {
+        for (var abc : results) {
 
-            var paths2 = computePaths(s, keypad2);
-            for (String string : paths2) {
-
-
-                var paths3 = computePaths(string, keypad2);
-                for (var abc : paths3) {
-
-
-                    if (shortest == null || abc.length() < shortest.length()) {
-                        shortest = abc;
-                    }
-
-
-                }
+            if (shortest == null || abc.length() < shortest.length()) {
+                shortest = abc;
             }
 
 
         }
-
         return shortest;
     }
 
@@ -148,6 +145,15 @@ public class Day21 extends AbstractAOC {
         return result;
     }
 
+    private List<String> computePaths(List<String> input, char[][] keypad) {
+        var result = new ArrayList<String>();
+        for (var string : input) {
+            result.addAll(computePaths(string, keypad));
+        }
+        return result;
+
+    }
+
     private List<String> computePaths(String code, char[][] keypad) {
         if (globalCache3.containsKey(code)) {
             return globalCache3.get(code);
@@ -216,20 +222,7 @@ public class Day21 extends AbstractAOC {
         }
         var dx = tx - sx;
         var dy = ty - sy;
-        if (dx != 0) {
-            var temp1 = "";
-            for (int i = sx + 1; i <= tx; i++) {
-                temp1 += keypad[sy][i];
-            }
-            for (int i = sx - 1; i >= tx; i--) {
-                temp1 += keypad[sy][i];
-            }
-            var temp = computePaths(keypad[sy][sx + dx], target, keypad);
-            for (var s : temp) {
-                paths.add(temp1 + s);
-            }
-        }
-        if (dy != 0) {
+        if (dy != 0 && keypad[sy + dy][sx] != '_') {
             var temp1 = "";
             for (int i = sy + 1; i <= ty; i++) {
                 temp1 += keypad[i][sx];
@@ -242,21 +235,41 @@ public class Day21 extends AbstractAOC {
                 paths.add(temp1 + s);
             }
         }
+        if (dx != 0 && keypad[sy][sx + dx] != '_') {
+            var temp1 = "";
+            for (int i = sx + 1; i <= tx; i++) {
+                temp1 += keypad[sy][i];
+            }
+            for (int i = sx - 1; i >= tx; i--) {
+                temp1 += keypad[sy][i];
+            }
+            var temp = computePaths(keypad[sy][sx + dx], target, keypad);
+            for (var s : temp) {
+                paths.add(temp1 + s);
+            }
+        }
 
-        var list = paths.stream()
-                .filter(s -> !s.contains("_"))
-                .toList();
-        globalCache4.put(code, list);
-        return list;
+
+
+        globalCache4.put(code, paths);
+        return paths;
     }
 
     @Override
     public String runPart2() {
 
 
-        var list = getStringInput();
+        var total = 0;
+        var list = getStringInput("");
+        for (var code : list) {
+            var shortest = computeShortest(code, 1);
+            total += shortest.length() * Integer.parseInt(code.substring(0, 3));
+            log.info("{} {} {} {}", code, shortest.length(), Integer.parseInt(code.substring(0, 3)), shortest);
 
-        return formatResult("");
+        }
+
+
+        return formatResult(total);
     }
 
     @Override
