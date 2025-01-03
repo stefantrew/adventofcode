@@ -180,21 +180,36 @@ public class Day21 extends AbstractAOC {
         var dx = tx - sx;
         var dy = ty - sy;
         if (dx != 0) {
-            dx = dx > 0 ? 1 : -1;
+            var temp1 = "";
+            for (int i = sx + 1; i <= tx; i++) {
+                temp1 += keypad[sy][i];
+            }
+            for (int i = sx - 1; i >= tx; i--) {
+                temp1 += keypad[sy][i];
+            }
             var temp = computePaths(keypad[sy][sx + dx], target, keypad);
             for (var s : temp) {
-                paths.add(keypad[sy][sx + dx] + s);
+                paths.add(temp1 + s);
             }
         }
         if (dy != 0) {
-            dy = dy > 0 ? 1 : -1;
+            var temp1 = "";
+            for (int i = sy + 1; i <= ty; i++) {
+                temp1 += keypad[i][sx];
+            }
+            for (int i = sy - 1; i >= ty; i--) {
+                temp1 += keypad[i][sx];
+            }
             var temp = computePaths(keypad[sy + dy][sx], target, keypad);
             for (var s : temp) {
-                paths.add(keypad[sy + dy][sx] + s);
+                paths.add(temp1 + s);
             }
         }
 
-        return paths.stream().filter(s -> !s.contains("_")).toList();
+        return paths.stream()
+                .filter(s -> !s.contains("_"))
+                .sorted((o1, o2) -> o2.length() - o1.length())
+                .toList();
     }
 
     @Override
@@ -208,7 +223,7 @@ public class Day21 extends AbstractAOC {
 
     @Override
     public String getAnswerPart1() {
-        return "";
+        return "171596";
     }
 
     @Override
