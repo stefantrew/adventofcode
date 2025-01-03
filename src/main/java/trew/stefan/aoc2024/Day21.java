@@ -46,26 +46,18 @@ public class Day21 extends AbstractAOC {
         var paths = computePaths(code, keypad1);
         String shortest = null;
         for (var s : paths) {
-            var robot2 = computePath(s, keypad1);
 
-            var paths2 = computePaths(robot2, keypad2);
+            var paths2 = computePaths(s, keypad2);
             for (String string : paths2) {
 
-                if (cache.contains(string)) {
-                    continue;
-                }
-                cache.add(string);
-
-                var computed = computePath(string, keypad2);
 
 
-                var paths3 = computePaths(computed, keypad2);
+                var paths3 = computePaths(string, keypad2);
                 for (var abc : paths3) {
 
 
-                    var computedFinal = computePath(abc, keypad2);
-                    if (shortest == null || computedFinal.length() < shortest.length()) {
-                        shortest = computedFinal;
+                    if (shortest == null || abc.length() < shortest.length()) {
+                        shortest = abc;
                     }
 
 
@@ -85,7 +77,7 @@ public class Day21 extends AbstractAOC {
         for (var i = 1; i < s.length(); i++) {
 
             var target = s.charAt(i);
-            if (target == 'X' && i != s.length() - 2) {
+            if (target == 'X' ) {
                 sb.append("A");
                 continue;
             }
@@ -146,7 +138,7 @@ public class Day21 extends AbstractAOC {
             start = target;
         }
 
-        return paths;
+        return paths.stream().map(s -> computePath(s, keypad)).toList();
     }
 
 
@@ -208,7 +200,6 @@ public class Day21 extends AbstractAOC {
 
         return paths.stream()
                 .filter(s -> !s.contains("_"))
-                .sorted((o1, o2) -> o2.length() - o1.length())
                 .toList();
     }
 
