@@ -11,6 +11,13 @@ public class RCPoint {
     int row;
     int col;
 
+    RCPoint parent;
+
+    public RCPoint(int row, int col) {
+        this.row = row;
+        this.col = col;
+    }
+
     public RCPoint move(Direction dir) {
         return move(dir, 1);
     }
@@ -44,6 +51,7 @@ public class RCPoint {
 
             }
         }
+        point.setParent(this);
 
         return point;
     }

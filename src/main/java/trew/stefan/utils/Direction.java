@@ -1,6 +1,9 @@
 package trew.stefan.utils;
 
 
+import java.util.EnumSet;
+import java.util.Map;
+
 public enum Direction {
     UP("^"),
     DOWN("v"),
@@ -25,6 +28,10 @@ public enum Direction {
 
     Direction(String name) {
         this.name = name;
+    }
+
+    public static EnumSet<Direction> basic() {
+        return EnumSet.of(UP, DOWN, LEFT, RIGHT);
     }
 
 
