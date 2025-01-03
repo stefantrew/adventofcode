@@ -3,9 +3,7 @@ package trew.stefan.aoc2024;
 import lombok.extern.slf4j.Slf4j;
 import trew.stefan.AbstractAOC;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 
 @Slf4j
 public class Day21 extends AbstractAOC {
@@ -23,6 +21,12 @@ public class Day21 extends AbstractAOC {
             {'_', '^', 'A'},
             {'<', 'v', '>'}
     };
+    Map<String, String> globalCache = new HashMap<>();
+    Map<String, String> globalCache2 = new HashMap<>();
+    Map<String, List<String>> globalCache3 = new HashMap<>();
+    Map<String, List<String>> globalCache4 = new HashMap<>();
+    Map<String, String> globalCache5 = new HashMap<>();
+
 
     @Override
     public String runPart1() {
@@ -51,7 +55,6 @@ public class Day21 extends AbstractAOC {
             for (String string : paths2) {
 
 
-
                 var paths3 = computePaths(string, keypad2);
                 for (var abc : paths3) {
 
@@ -70,14 +73,42 @@ public class Day21 extends AbstractAOC {
         return shortest;
     }
 
+
     private String computePath(String s, char[][] keypad) {
+        if (globalCache2.containsKey(s)) {
+            return globalCache2.get(s);
+        }
+
+        var parts = s.split("X");
+        var sb = new StringBuilder();
+        var start = 'A';
+        for (var part : parts) {
+            sb.append(computeSegmentPath(start + part + "X", keypad));
+            if (!part.isEmpty()) {
+
+                start = part.charAt(part.length() - 1);
+            }
+        }
+
+        var result = sb.toString();
+        globalCache2.put(s, result);
+
+        return result;
+    }
+
+    private String computeSegmentPath(String s, char[][] keypad) {
+
+        if (globalCache.containsKey(s)) {
+            return globalCache.get(s);
+        }
+
 
         var sb = new StringBuilder();
         var start = s.charAt(0);
         for (var i = 1; i < s.length(); i++) {
 
             var target = s.charAt(i);
-            if (target == 'X' ) {
+            if (target == 'X') {
                 sb.append("A");
                 continue;
             }
@@ -112,11 +143,16 @@ public class Day21 extends AbstractAOC {
 
             start = target;
         }
-
-        return sb.toString();
+        var result = sb.toString();
+        globalCache.put(s, result);
+        return result;
     }
 
     private List<String> computePaths(String code, char[][] keypad) {
+        if (globalCache3.containsKey(code)) {
+            return globalCache3.get(code);
+        }
+
         var paths = new ArrayList<String>();
         paths.add("A");
         var start = 'A';
@@ -138,11 +174,20 @@ public class Day21 extends AbstractAOC {
             start = target;
         }
 
-        return paths.stream().map(s -> computePath(s, keypad)).toList();
+        var list = paths.stream().map(s -> computePath(s, keypad)).toList();
+
+        globalCache3.put(code, list);
+
+        return list;
     }
 
 
     private List<String> computePaths(char start, char target, char[][] keypad) {
+        var code = start + "_" + target;
+        if (globalCache4.containsKey(code)) {
+            return globalCache4.get(code);
+        }
+
         var paths = new ArrayList<String>();
 
         if (start == target) {
@@ -198,9 +243,11 @@ public class Day21 extends AbstractAOC {
             }
         }
 
-        return paths.stream()
+        var list = paths.stream()
                 .filter(s -> !s.contains("_"))
                 .toList();
+        globalCache4.put(code, list);
+        return list;
     }
 
     @Override
