@@ -6,12 +6,11 @@ import lombok.Data;
 import java.util.Objects;
 
 @Data
-@AllArgsConstructor
 public class RCPoint {
-    int row;
-    int col;
+    protected int row;
+    protected int col;
 
-    RCPoint parent;
+    protected RCPoint parent;
 
     public RCPoint(int row, int col) {
         this.row = row;

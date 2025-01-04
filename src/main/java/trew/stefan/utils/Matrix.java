@@ -88,6 +88,7 @@ public class Matrix<T> {
         visitedMap = new Boolean[height][width];
         setAll(initialValue);
     }
+
     public Matrix(List<String> list, Class<? extends T> cls, T initialValue) {
         this.height = list.size();
         this.width = list.get(0).length();
@@ -226,6 +227,7 @@ public class Matrix<T> {
         }
 
     }
+
     public boolean checkDimensions(RCPoint next) {
         return checkDimensions(next.row, next.col);
     }
@@ -273,13 +275,28 @@ public class Matrix<T> {
         return temp;
     }
 
+
+    public MatrixPoint findFirst(T target) {
+        for (int row = 0; row < height; row++) {
+
+            for (int col = 0; col < width; col++) {
+                T value = get(row, col);
+                if (target.equals(value)) {
+                    return new MatrixPoint(value, row, col);
+                }
+            }
+        }
+
+        return null;
+    }
+
     public MatrixPoint findFirstNot(T target) {
         for (int row = 0; row < height; row++) {
 
             for (int col = 0; col < width; col++) {
                 T value = get(row, col);
                 if (!target.equals(value)) {
-                    return new  MatrixPoint(value, row, col);
+                    return new MatrixPoint(value, row, col);
                 }
             }
         }

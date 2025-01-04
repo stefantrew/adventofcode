@@ -31,7 +31,7 @@ public enum Direction {
     }
 
     public static EnumSet<Direction> basic() {
-        return EnumSet.of(UP, DOWN, LEFT, RIGHT);
+        return EnumSet.of(RIGHT, LEFT,UP, DOWN);
     }
 
 
