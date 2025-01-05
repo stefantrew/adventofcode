@@ -50,6 +50,47 @@ public class Day17 extends AbstractAOC {
         return result.stream().map(String::valueOf).collect(Collectors.joining(","));
     }
 
+    List<Integer> process2(Map<Character, Long> register) {
+        //2,4, 1,1 ,7,5, 1,5 ,0,3 ,4,3, 5,5 ,3,0
+        //bst
+
+        var result = new ArrayList<Integer>();
+        while (true) {
+//            log.info("=============================");
+//            log.info("Start   A: {} B: {} C: {}", register.get('A'), register.get('B'), register.get('C'));
+
+            register.put('B', register.get('A') % 8);
+//            log.info("A mod 8 A: {} B: {} C: {}", register.get('A'), register.get('B'), register.get('C'));
+
+            register.put('B', register.get('B') ^ 1);
+//            log.info("B XOR 1 A: {} B: {} C: {}", register.get('A'), register.get('B'), register.get('C'));
+
+            var denominate = Math.pow(2, register.get('B'));
+            register.put('C', (long) (register.get('A') / denominate));
+//            log.info("A/2^B   A: {} B: {} C: {}", register.get('A'), register.get('B'), register.get('C'));
+
+            register.put('B', register.get('B') ^ 5);
+//            log.info("B XOR 5 A: {} B: {} C: {}", register.get('A'), register.get('B'), register.get('C'));
+
+            register.put('A', (long) (register.get('A') / 8));
+//            log.info("A/8     A: {} B: {} C: {}", register.get('A'), register.get('B'), register.get('C'));
+
+            register.put('B', register.get('B') ^ register.get('C'));
+//            log.info("B^C     A: {} B: {} C: {}", register.get('A'), register.get('B'), register.get('C'));
+
+            result.add((int) (register.get('B') % 8L));
+//            log.info("Result  {}", register.get('B') % 8L);
+
+            if (register.get('A') == 0) {
+                break;
+            }
+
+        }
+
+
+        return result;
+    }
+
     List<Integer> process(Map<Character, Long> register, List<Integer> program, boolean flag) {
         var index = 0;
         var result = new ArrayList<Integer>();
@@ -154,39 +195,152 @@ public class Day17 extends AbstractAOC {
                 Arrays.stream(s1.split(",")).mapToInt(Integer::parseInt).forEach(program::add);
             }
         }
+        // 0 => 4
+        // 1 => 5
+        // 2 => 6
+        // 3 => 7
+        // 4 => 0
+        //40
 
-        var a = 35189490000011L;//
-//        var a = 120002950000001L;//
-        String last = "";
-//        var a = 119050000000L;//
-//                110001010000001
-        while (a < 1000000000000000L) {
-//                  119050000000
-            if (a % 10000000 == 11) {
-                log.info("a: {} {} {} {}", a, last, last.length(), programStr.length());
-            }
+        var subs = new String[]{
+                "000", "001", "010", "011", "100", "101", "110", "111"
+        };
+        var subs5 = new String[]{
+                "001",
+                "100",
+        };
+        var subs8 = new String[]{
+                "110",
+                "111",
+        };
 
-            register.put('A', a);
-            register.put('B', 0L);
-            register.put('C', 0L);
+        var subs9 = new String[]{
+                "010",
+                "011",
+                "111",
+        };
+        var subs10 = new String[]{
+                "111",
+                "010",
+                "100"
+        };
+        var subs11 = new String[]{
+                "110", "011", "100", "101"
+        };
 
-            var result = process(register, program, true);
-            if (result != null) {
-                var str = result.stream().map(String::valueOf).collect(Collectors.joining(","));
-                last = str;
-                if (str.startsWith("2,4,1,1,7,5,1,5")) {
+        var subs12 = new String[]{
+                "111", "011", "100"
+        };
+        var subs13 = new String[]{
+                "011", "110", "100", "010"
+        };
+        var subs14 = new String[]{
+                "110", "000", "001", "111", "101", "010"
+        };
 
-                    log.info("str: {} {}       {} ", a, programStr, str);
-                }
-                if (str.equals(programStr)) {
-                    log.info("Found match for a: {}", a);
-                    break;
-                }
-            }
-            a++;
+        var input = new String[16];
+        for (int i = 0; i < 16; i++) {
+            input[i] = "100";
         }
+        input[0] = "100";
+        input[1] = "101";
+        input[2] = "011";
+        input[3] = "010";
+        input[4] = "011";
+        input[5] = "001";
+        input[6] = "110";
+        input[7] = "010";
+        input[8] = "110";
+        input[9] = "111";
+        input[10] = "111";
+        input[11] = "111";
+        input[12] = "111";
+        input[13] = "111";
+        input[14] = "111";
+        input[15] = "111";
 
-        return a + "";
+        var test = 15;
+        var items = new HashSet<>();
+        Long lowest = null;
+
+
+        for (var sub15 : subs) {
+            for (var sub14 : subs14) {
+                for (var sub13 : subs13) {
+                    for (var sub12 : subs12) {
+                        for (var sub11 : subs11) {
+                            for (var sub10 : subs10) {
+                                for (var sub9 : subs9) {
+                                    for (var sub8 : subs8) {
+                                        for (var sub1 : subs5) {
+                                            for (var sub : subs) {
+
+//            var a = Long.valueOf("100" + "101" + "011" + "010011" + "001" + "110" + "010" + "110" + "111" + "100" + "011" + "011" + "011" + "001" + sub, 2);//
+
+                                                var sb = new StringBuilder();
+                                                for (var i = 0; i < input.length; i++) {
+                                                    if (i == 5) {
+                                                        sb.append(sub1);
+                                                    } else if (i == 13) {
+                                                        sb.append(sub13);
+                                                    } else if (i == 12) {
+                                                        sb.append(sub12);
+                                                    } else if (i == 11) {
+                                                        sb.append(sub11);
+                                                    } else if (i == 10) {
+                                                        sb.append(sub10);
+                                                    } else if (i == 9) {
+                                                        sb.append(sub9);
+                                                    } else if (i == 14) {
+                                                        sb.append(sub14);
+                                                    } else if (i == 15) {
+                                                        sb.append(sub15);
+                                                    } else if (i == 8) {
+                                                        sb.append(sub8);
+                                                    } else if (i == test) {
+                                                        sb.append(sub);
+                                                    } else {
+                                                        sb.append(input[i]);
+                                                    }
+                                                }
+                                                var a = Long.parseLong(sb.toString(), 2);
+
+
+                                                register.put('A', a);
+                                                register.put('B', 0L);
+                                                register.put('C', 0L);
+
+
+                                                var result = process2(register);
+                                                if (result != null) {
+                                                    var str = result.stream().map(String::valueOf).collect(Collectors.joining(","));
+                                                    if (Objects.equals(result.get(16 - test - 1), program.get(16 - test - 1))
+
+                                                        && str.equals(programStr)
+                                                    ) {
+                                                        if (lowest == null || a < lowest) {
+                                                            lowest = a;
+                                                        }
+                                                        log.info("str: {} {} [5]=> {} [8] => {} [9] = {}, [10] = {}, [11] = {} [12] = {} | {}       {} ", a, sub, sub1, sub8, sub9, sub10, sub11, sub12, programStr, str);
+                                                        items.add(sub);
+                                                    }
+                                                    //2,4,1,1,7,5,1,5,0,3,4,3,5,5,3,0
+//                log.info("str: {} {} {}       {} ", a, sub, programStr, str);
+
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        //164542125273021
+        log.info("Lowest {}", lowest);
+        return String.valueOf(lowest);
     }
 
     @Override
