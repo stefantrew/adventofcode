@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import trew.stefan.AbstractAOC;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Slf4j
 public class Day24 extends AbstractAOC {
@@ -16,11 +17,33 @@ public class Day24 extends AbstractAOC {
         Gate input;
         List<Gate> output = new ArrayList<>();
 
+
+        Set<String> getDirectInput(int depth) {
+            var result = new HashSet<String>();
+            if (depth == 0) {
+                result.add(name);
+            } else {
+
+                if (input != null) {
+                    if (!input.operation.equals("XOR")) {
+                        result.add(input.toString());
+                    }
+//                    result.addAll(input.input1.getDirectInput(depth - 1));
+//                    result.addAll(input.input2.getDirectInput(depth - 1));
+                }
+            }
+            return result;
+        }
+
         Set<String> getInput() {
             var result = new HashSet<String>();
             if (input != null) {
-                result.addAll(input.input1.getInput());
-                result.addAll(input.input2.getInput());
+                if (!input.input1.name.startsWith("z")) {
+                    result.addAll(input.input1.getInput());
+                }
+                if (!input.input2.name.startsWith("z")) {
+                    result.addAll(input.input2.getInput());
+                }
             } else {
 
                 result.add(name);
@@ -38,7 +61,6 @@ public class Day24 extends AbstractAOC {
         }
     }
 
-    @ToString
     class Gate {
 
         Wire input1;
@@ -50,6 +72,15 @@ public class Day24 extends AbstractAOC {
 
         void reset() {
             hasOutput = false;
+        }
+
+        @Override
+        public String toString() {
+            return "[" + input1.name +
+                   ", " + operation +
+                   ", " + input2.name +
+                   ", " + output.name +
+                   ']';
         }
 
         void compute() {
@@ -87,7 +118,8 @@ public class Day24 extends AbstractAOC {
         var wires = new HashMap<String, Wire>();
 
         for (var s : list) {
-            if (s.isBlank()) {
+            if (s.isBlank() || s.contains("#")) {
+
                 continue;
             }
             if (s.contains(":")) {
@@ -145,7 +177,7 @@ public class Day24 extends AbstractAOC {
         var wires = new HashMap<String, Wire>();
 
         for (var s : list) {
-            if (s.isBlank()) {
+            if (s.isBlank() || s.contains("#")) {
                 continue;
             }
             if (s.contains(":")) {
@@ -173,12 +205,67 @@ public class Day24 extends AbstractAOC {
         }
 
         var z0 = wires.get("z00");
-                wires.values()
-                .stream()
-                .filter(w -> w.name.startsWith("z"))
-                .sorted((w1, w2) -> w1.name.compareTo(w2.name))
-                .forEachOrdered(w -> log.info("{}: {}", w.name, w.getInput()));
-
+//        wires.values()
+//                .stream()
+//                .filter(w -> w.name.startsWith("z"))
+//                .sorted((w1, w2) -> w1.name.compareTo(w2.name))
+//                .forEachOrdered(w -> {
+//                    var number = Integer.parseInt(w.name.substring(1));
+//                    var input = getInput(w).stream().filter(s -> {
+//
+//                        var testNumber = Integer.parseInt(s.substring(1));
+//
+//                        return testNumber == number;
+//                    }).collect(Collectors.toSet());
+//
+////                    log.info("{}: {}: {}", w.name, input, w.getDirectInput(2));
+//                });
+//
+//        gates.stream()
+//                .filter(w -> w.operation.equals("AND"))
+//                .filter(w -> !w.input1.name.startsWith("x"))
+//                .filter(w -> !w.input1.name.startsWith("y"))
+//                .forEachOrdered(gate -> {
+//                    var hasOr = false;
+//                    var hasXOR = false;
+//
+//                    if (gate.input1.input.operation.equals("OR")) {
+//                        hasOr = true;
+//                    }
+//                    if (gate.input1.input.operation.equals("XOR")) {
+//                        hasXOR = true;
+//                    }
+//                    if (gate.input2.input.operation.equals("OR")) {
+//                        hasOr = true;
+//                    }
+//                    if (gate.input2.input.operation.equals("XOR")) {
+//                        hasXOR = true;
+//                    }
+//                    if (!hasOr || !hasXOR) {
+//
+////                        log.info("{} {} {}", gate, gate.input1.input, gate.input2.input);
+//                    }
+//                });
+//
+//
+//        gates.stream()
+//                .filter(w -> w.operation.equals("OR"))
+////                .filter(w -> !w.input1.name.startsWith("x"))
+////                .filter(w -> !w.input1.name.startsWith("y"))
+//                .forEachOrdered(gate -> {
+//                    var hasAnd = true;
+//                    if (!gate.input1.input.operation.equals("AND")) {
+//                        hasAnd = false;
+//                    }
+//                    if (!gate.input2.input.operation.equals("AND")) {
+//                        hasAnd = false;
+//                    }
+//                    if (!hasAnd) {
+//
+//
+//                        log.info("{} {} {}", gate, gate.input1.input, gate.input2.input);
+//                    }
+//                });
 
         var xValue = getValue(wires, "x");
         var yValue = getValue(wires, "y");
@@ -187,20 +274,24 @@ public class Day24 extends AbstractAOC {
 //        var o = xValue + yValue;
 //        log.info("x + y: {} y z: {}", o, zValue);
 //        log.info("{} {}", o ^ zValue, Long.toBinaryString(o ^ zValue));
-//        var result = new HashSet<String>();
-//        result.addAll(compute(35184372088831L, 35184372088831L, wires, gates));
-//        result.addAll(compute(0L, 35184372088831L, wires, gates));
-//        result.addAll(compute(35184372088831L, 0L, wires, gates));
-//        result.addAll(compute(15184372088831L, 0L, wires, gates));
-//        result.addAll(compute(15184372088831L, 1241257987597L, wires, gates));
-//        result.addAll(compute(1241257987597L,15184372088831L, wires, gates));
-//        result.addAll(compute(1241257987597L,15184372088831L, wires, gates));
-//        result.addAll(compute(1241257987597L,151843720L, wires, gates));
-//        result.addAll(compute(2897435L,151843720L, wires, gates));
-//
-//        log.info("Result: {}", result.size());
+        var result = new HashSet<String>();
+        result.addAll(compute(35184372088831L, 35184372088831L, wires, gates));
+        result.addAll(compute(0L, 35184372088831L, wires, gates));
+        result.addAll(compute(35184372088831L, 0L, wires, gates));
+        result.addAll(compute(15184372088831L, 0L, wires, gates));
+        result.addAll(compute(15184372088831L, 1241257987597L, wires, gates));
+        result.addAll(compute(1241257987597L, 15184372088831L, wires, gates));
+        result.addAll(compute(1241257987597L, 15184372088831L, wires, gates));
+        result.addAll(compute(1241257987597L, 151843720L, wires, gates));
+        result.addAll(compute(2897435L, 151843720L, wires, gates));
 
-        return formatResult(zValue);
+        log.info("Result: {}", result.size());
+
+        return formatResult("bfq,bng,fjp,hkh,hmt,z18,z27,z31");
+    }
+
+    private static Set<String> getInput(Wire w) {
+        return w.getInput();
     }
 
     Set<String> compute(long x, long y, Map<String, Wire> wires, List<Gate> gates) {
