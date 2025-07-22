@@ -60,11 +60,11 @@ public class Day22 extends AbstractAOC {
         for (int row = 0; row < list.size(); row++) {
             String s = list.get(row);
 
-            for (int col = 0; col < s.toCharArray().length; col++) {
+            for (int col = 0; col < s.length(); col++) {
                 var tile = switch (s.charAt(col)) {
                     case '.' -> Tile.OPEN;
                     case '#' -> Tile.WALL;
-                    case ' ', default -> Tile.VOID;
+                    default -> Tile.VOID;
                 };
                 matrix.set(row, col, tile);
 
@@ -189,7 +189,7 @@ public class Day22 extends AbstractAOC {
         for (int row = 0; row < list.size(); row++) {
             String s = list.get(row);
 
-            for (int col = 0; col < s.toCharArray().length; col++) {
+            for (int col = 0; col < s.length(); col++) {
                 TileColour tile = s.charAt(col) == ' ' ? TileColour.VOID : getTileColour(row, col, max);
                 matrix.set(row, col, tile);
 

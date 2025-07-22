@@ -10,7 +10,7 @@ import java.util.*;
 
 @Slf4j
 public class InputReader {
-    private static final String ROOT_FOLDER = "C:/code/personal/aoc/2021/src/main/resources/inputs/";
+    private static final String ROOT_FOLDER = "C:/Users/stefa/IdeaProjects/aoc/2021/src/main/resources/inputs/";
 
     private static final String SESSION = "***REMOVED***";
 

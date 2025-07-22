@@ -157,7 +157,7 @@ public class Main {
 
     public static void main(String[] args) {
         Map<Integer, DayResult> summaries = new HashMap<>();//buildSummary();
-        int year = 2024;
+        int year = 2023;
 
         Integer runDay = 24;
 
@@ -167,7 +167,7 @@ public class Main {
         } else {
 
 
-            for (int i = 0; i <= 11; i++) {
+            for (int i = 0; i <= 9; i++) {
 //            if (i + 1 != 15) continue;
                 if (i % 5 == 0) {
                     String div = "----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------";
