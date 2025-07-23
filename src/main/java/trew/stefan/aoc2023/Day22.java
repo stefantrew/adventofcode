@@ -22,6 +22,10 @@ public class Day22 extends AbstractAOC {
         int z1;
         String id;
         boolean isDisintegrated = false;
+        boolean hasMoved = false;
+
+        int snapZ0;
+        int snapZ1;
 
 
         public Brick(int x0, int y0, int z0, int x1, int y1, int z1, String id) {
@@ -32,6 +36,18 @@ public class Day22 extends AbstractAOC {
             this.y1 = y1;
             this.z1 = z1;
             this.id = id == null ? "?" : id;
+        }
+
+        public void createSnapShot() {
+            snapZ0 = z0;
+            snapZ1 = z1;
+        }
+
+        public void resetToSnapShot() {
+            z0 = snapZ0;
+            z1 = snapZ1;
+            hasMoved = false;
+            isDisintegrated = false;
         }
 
         public boolean hasCoord(int x, int y, int z) {
@@ -51,11 +67,15 @@ public class Day22 extends AbstractAOC {
         public void moveDown() {
             z0--;
             z1--;
+            hasMoved = true;
         }
 
         public boolean canMoveDown(List<Brick> bricks) {
 
             if (this.z0 == 1) {
+                return false;
+            }
+            if (this.isDisintegrated) {
                 return false;
             }
 
@@ -99,6 +119,52 @@ public class Day22 extends AbstractAOC {
     @Override
     public String runPart1() {
 
+        var bricks = getBricks();
+
+
+        fallBricks(bricks);
+
+        var total = 0;
+
+        for (Brick testBrick : bricks) {
+            testBrick.isDisintegrated = true;
+
+            boolean anyMove = false;
+            for (Brick brick : bricks) {
+                boolean o1 = brick.canMoveDown(bricks);
+                if (o1) {
+                    anyMove = true;
+                }
+            }
+            if (!anyMove) {
+                total++;
+            }
+
+            testBrick.isDisintegrated = false;
+        }
+
+        return formatResult(total);
+    }
+
+    private static void fallBricks(ArrayList<Brick> bricks) {
+        while (true) {
+            boolean anyMove = false;
+
+            for (Brick brick : bricks) {
+                boolean o1 = brick.canMoveDown(bricks);
+                if (o1) {
+                    brick.moveDown();
+                    anyMove = true;
+                }
+            }
+
+            if (!anyMove) {
+                break;
+            }
+        }
+    }
+
+    private ArrayList<Brick> getBricks() {
         final String regex = "(\\d*),(\\d*),(\\d*)~(\\d*),(\\d*),(\\d*),?(.)?";
 
         var pattern = Pattern.compile(regex);
@@ -123,44 +189,7 @@ public class Day22 extends AbstractAOC {
 
             }
         }
-
-
-        while (true) {
-            boolean anyMove = false;
-
-            for (Brick brick : bricks) {
-                boolean o1 = brick.canMoveDown(bricks);
-                if (o1) {
-                    brick.moveDown();
-                    anyMove = true;
-                }
-            }
-
-            if (!anyMove) {
-                break;
-            }
-        }
-
-        var total = 0;
-
-        for (Brick testBrick : bricks) {
-            testBrick.isDisintegrated = true;
-
-            boolean anyMove = false;
-            for (Brick brick : bricks) {
-                boolean o1 = brick.canMoveDown(bricks);
-                if (o1) {
-                    anyMove = true;
-                }
-            }
-            if (!anyMove) {
-                total++;
-            }
-
-            testBrick.isDisintegrated = false;
-        }
-
-        return formatResult(total);
+        return bricks;
     }
 
     private void printBricks(ArrayList<Brick> bricks) {
@@ -204,10 +233,37 @@ public class Day22 extends AbstractAOC {
     @Override
     public String runPart2() {
 
+        var bricks = getBricks();
 
-        var list = getStringInput();
 
-        return formatResult("");
+        fallBricks(bricks);
+
+        var best = 0;
+        for (Brick testBrick : bricks) {
+            testBrick.createSnapShot();
+        }
+
+        for (Brick testBrick : bricks) {
+
+            for (Brick temp : bricks) {
+                temp.resetToSnapShot();
+            }
+            testBrick.isDisintegrated = true;
+            fallBricks(bricks);
+            int current = 0;
+            for (Brick brick : bricks) {
+                if (brick.hasMoved) {
+                    current++;
+                }
+            }
+            log.info("{} {}", testBrick.id, current);
+            best += current;
+
+
+        }
+
+        return formatResult(best);
+
     }
 
     @Override
