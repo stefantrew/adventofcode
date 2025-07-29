@@ -10,9 +10,6 @@ import java.util.*;
 
 @Slf4j
 public class InputReader {
-    private static final String ROOT_FOLDER = "C:/Users/stefa/IdeaProjects/aoc/2021/src/main/resources/inputs/";
-
-    private static final String SESSION = "***REMOVED***";
 
     private InputReader() {
     }
@@ -30,7 +27,7 @@ public class InputReader {
         try {
             con = (HttpURLConnection) new URL(url).openConnection();
             con.setRequestMethod("GET");
-            con.addRequestProperty("Cookie", "session=" + SESSION);
+            con.addRequestProperty("Cookie", "session=" + System.getenv("aoc_session"));
             try (var in = new BufferedReader(new InputStreamReader(con.getInputStream()))) {
                 try (var out = new BufferedWriter(new FileWriter(result))) {
                     String inputLine;
@@ -60,8 +57,9 @@ public class InputReader {
 
     public static List<String> readStrings(int year, int day, String suffix) {
 
-        String pathname = ROOT_FOLDER + year + "/" + day + suffix + ".txt";
-        String pathname2 = ROOT_FOLDER + year + "/" + day  + "_sample.txt";
+        var folder = Objects.requireNonNull(InputReader.class.getResource("/inputs/")).getFile();
+        String pathname = folder + year + "/" + day + suffix + ".txt";
+        String pathname2 = folder + year + "/" + day + "_sample.txt";
         File file = new File(pathname);
         File file2 = new File(pathname2);
 
@@ -72,7 +70,7 @@ public class InputReader {
                 throw new RuntimeException(e);
             }
         }
-        if (suffix.equals("") && !file.exists()) {
+        if (suffix.isEmpty() && !file.exists()) {
             downloadFile(new File(pathname), year, day);
         }
 
@@ -80,7 +78,6 @@ public class InputReader {
         try {
             return Files.readAllLines(file.toPath());
         } catch (IOException e) {
-            e.printStackTrace();
             return new ArrayList<>();
         }
     }

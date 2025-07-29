@@ -25,8 +25,9 @@ public class EulerQueue {
     Queue<Point> q1 = new LinkedList<>();
 
     public List<String> readStrings() {
+        var path = getClass().getResource("/inputs/matrix.txt").getFile();
 
-        File file = new File("C:\\code\\aoc\\2021\\src\\main\\resources\\inputs\\matrix.txt");
+        File file = new File(path);
         try {
             return Files.readAllLines(file.toPath());
         } catch (IOException e) {
@@ -45,7 +46,7 @@ public class EulerQueue {
 //        strings.add("573,699,497,121,956");
 //        strings.add("805,732,524,37,331");
 
-       var strings = readStrings();
+        var strings = readStrings();
         int n = strings.size();
 
         map = new Matrix<>(n, n, Long.class, 0L);

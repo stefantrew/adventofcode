@@ -1,4 +1,5 @@
 package trew.stefan;
+
 import lombok.extern.slf4j.Slf4j;
 import trew.stefan.utils.InputReader;
 
@@ -33,49 +34,6 @@ public class Main {
     private static final String PREFIX = "\u001b[";
     private static final String SUFFIX = "m";
     private static final char SEPARATOR = ';';
-
-
-    public static List<String> readStrings() {
-        try {
-            return Files.readAllLines(new File("C:/code/aoc/2019/src/main/resources/2020/results.txt").toPath());
-        } catch (IOException e) {
-            e.printStackTrace();
-            return new ArrayList<>();
-        }
-    }
-
-    public static Map<Integer, DayResult> buildSummary() {
-        List<String> lines = readStrings();
-        Map<Integer, DayResult> result = new HashMap<>();
-        Pattern p = Pattern.compile("^(\\d+)\\s*(\\d)\\s*(.{8})\\s(\\d*)\\s*(.*)");
-
-        for (int i = 0; i < 25; i++) {
-
-            DayResult dayResult = new DayResult();
-            dayResult.day = i;
-            String line = lines.get(2 * i);
-
-            Matcher m = p.matcher(line);
-            if (m.find()) {
-                dayResult.day = Integer.parseInt(m.group(1));
-                dayResult.part1 = m.group(5);
-                dayResult.rank1 = Integer.parseInt(m.group(4));
-                dayResult.time1 = m.group(3);
-            }
-
-            line = lines.get(2 * i + 1);
-
-            m = p.matcher(line);
-            if (m.find()) {
-                dayResult.part2 = m.group(5);
-                dayResult.rank2 = Integer.parseInt(m.group(4));
-                dayResult.time2 = m.group(3);
-            }
-            result.put(dayResult.day, dayResult);
-        }
-
-        return result;
-    }
 
     public static void runDay(int year, int day, DayResult summary) {
 
@@ -145,21 +103,21 @@ public class Main {
 
     private static String wrapColour(String text, int colour) {
         return "\u001b["  // Prefix - see [1]
-               + BRIGHT        // Brightness
-               + ";"        // Separator
-               + colour       // Red foreground
-               + "m"        // Suffix
-               + text       // the text to output
-               + "\u001b[m " // Prefix + Suffix to reset color
+                + BRIGHT        // Brightness
+                + ";"        // Separator
+                + colour       // Red foreground
+                + "m"        // Suffix
+                + text       // the text to output
+                + "\u001b[m " // Prefix + Suffix to reset color
                 ;
     }
 
 
     public static void main(String[] args) {
         Map<Integer, DayResult> summaries = new HashMap<>();//buildSummary();
-        int year = 2023;
+        int year = 2015;
 
-        Integer runDay = 17;
+        Integer runDay = 2;
 
 
         if (runDay != null) {
